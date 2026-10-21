@@ -1,0 +1,6 @@
+﻿region_id,region_name,type,capacity_level,x_i_before,x_i_after,tau_i,z_i,y_i
+R1,downtown_port_hotspot,hot,3,60,55,0.12,1,0
+R2,mendenhall_glacier_hotspot,hot,2,40,38,0.15,1,0
+R3,whale_watching_cold,cold,2,15,20,0.08,0,1
+R4,rainforest_cold,cold,2,10,15,0.07,0,1
+R5,community_culture_cold,cold,1,35,32,0.08,0,1

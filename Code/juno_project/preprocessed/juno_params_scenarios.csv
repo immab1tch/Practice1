@@ -1,0 +1,12 @@
+﻿param,value,lower,upper,source
+demand_elasticity,-0.5,-0.8,-0.2,assumed_interval
+eta_I,0.7,0.5,0.9,assumed_interval
+eta_E,0.8,0.6,0.95,assumed_interval
+eta_C,0.6,0.4,0.8,assumed_interval
+eco_threshold,0.8,0.6,0.95,assumed_interval
+social_accept_min,0.5,0.4,0.7,assumed_interval
+fairness_min,0.2,0.1,0.3,assumed_interval
+w_income,0.35,0.25,0.45,assumed_interval
+w_env,0.3,0.2,0.4,assumed_interval
+w_soc,0.2,0.1,0.3,assumed_interval
+w_infra,0.15,0.05,0.25,assumed_interval

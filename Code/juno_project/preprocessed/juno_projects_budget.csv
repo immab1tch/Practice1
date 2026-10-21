@@ -1,0 +1,9 @@
+﻿project_id,category,cost_level,eta,selected_yk,category_code
+P1,I,3,0.8,1,2
+P2,I,2,0.7,0,2
+P3,E,4,0.9,1,1
+P4,E,3,0.8,0,1
+P5,C,2,0.6,1,0
+P6,C,1,0.5,0,0
+P7,E,2,0.7,1,1
+P8,I,2,0.6,1,2

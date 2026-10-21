@@ -1,0 +1,12 @@
+B01｜文献简要概述
+
+题名：Economic Impact of Juneau’s Cruise Industry, 2023
+作者与年份：McKinley Research Group，2024年1月；本地文件为2024年7月修订版。
+原文件名：Juneau-Cruise-Impacts-Report-REV-7.26.24.pdf
+整理后文件名：B01_McKinley_2024_朱诺邮轮业经济影响_2023年数据.pdf
+来源：https://juneau.org/wp-content/uploads/2024/07/Juneau-Cruise-Impacts-Report-REV-7.26.24.pdf
+
+Summary
+该报告结合游客与船员调查、邮轮公司采购记录及市政府收入资料，估计朱诺2023年邮轮业的经济贡献：约167万名游客带来3.75亿美元直接支出，其中游客支出约3.20亿美元；计入间接影响后，总支出活动约4.90亿美元，关联就业约3,850个。报告还单独列出邮轮相关费用和销售税收入，适合为B题估计游客消费、经济收益及政府预算提供依据。建模时必须区分行业支出、劳动收入与政府财政收入，不能把3.75亿美元全部当作可用于环保和基建的税收。
+
+阅读说明：依据本地PDF第1页及正文第1、7—10页（PDF第3、9—12页）整理。

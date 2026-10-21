@@ -1,0 +1,15 @@
+{
+  "project_root": "D:\\CQU\\大三上\\比赛\\美赛\\第一次模拟\\juno_project",
+  "output_dir": "D:\\CQU\\大三上\\比赛\\美赛\\第一次模拟\\juno_project\\preprocessed",
+  "files": [
+    "figures",
+    "juno_main_preprocessed.csv",
+    "juno_measures_binary.csv",
+    "juno_params_scenarios.csv",
+    "juno_preprocessed.mat",
+    "juno_projects_budget.csv",
+    "juno_region_edges.csv",
+    "juno_regions_balanced.csv",
+    "preprocess_report.json"
+  ]
+}
