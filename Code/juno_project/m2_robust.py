@@ -51,7 +51,7 @@ import itertools
 import sys
 import time
 from pathlib import Path
-from typing import Any, Dict, List, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 
 import numpy as np
 import pandas as pd
@@ -167,9 +167,13 @@ def make_scenarios(ins: Dict[str, Any]) -> Tuple[pd.DataFrame, Dict[str, np.ndar
 # M2-3 ~ M2-7: 给定项目组合 y, 计算三情景效用与鲁棒目标 z
 # =====================================================================================
 def evaluate_selection(y: np.ndarray, scen: pd.DataFrame,
-                       ins: Dict[str, Any]) -> Dict[str, Any]:
-    cfg, ctx, params = M2_CONFIG, ins["ctx"], ins["params"]
-    proj = ins["projects"]
+                       ins: Dict[str, Any],
+                       cfg: Optional[Dict[str, Any]] = None,
+                       proj: Optional[pd.DataFrame] = None) -> Dict[str, Any]:
+    """cfg/proj 可覆盖: 供 m2_sensitivity.py 做参数扰动时复用同一套公式。"""
+    cfg = M2_CONFIG if cfg is None else cfg
+    ctx, params = ins["ctx"], ins["params"]
+    proj = ins["projects"] if proj is None else proj
     cost = float(np.dot(proj["cost_100m"].to_numpy(), y))
     B_min = float(scen["B_s"].min())
     budget = ctx["delta_total"] * B_min                            # M2-2 右端
