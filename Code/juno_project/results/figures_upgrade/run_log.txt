@@ -1,0 +1,42 @@
+﻿==============================================================================
+图表升级 (O 奖风格) | 输出目录: C:\ModelingProgram\Practice1\Code\juno_project\results\figures_upgrade
+==============================================================================
+[图 1] pareto_tradeoff ...
+  [自检] ★ R: 现算 3.644939 vs m1_results 3.644939 |Δ|=0.00e+00 -> PASS
+  [自检] ★ C_env: 现算 0.500001 vs m1_results 0.500001 |Δ|=0.00e+00 -> PASS
+  [自检] ★ C_soc: 现算 0.612376 vs m1_results 0.612376 |Δ|=0.00e+00 -> PASS
+  [自检] 选中组合 m=01111 vs csv m=01111
+  [数据来源] m1_solver.solve_one_combo × 32 组合现算 (S00_baseline)
+   -> pareto_tradeoff.png  4.3s
+[图 2] lever_scan ...
+  [数据来源] m1_solver.evaluate × 61 (τ) + 61 (ε) 点现算, 固定组合 m=01111
+   -> lever_scan.png  4.3s
+[图 3] feasibility_heatmap ...
+  [数据来源] m1_solver.evaluate × 60×60=3600 网格点现算 (δ 固定于 S00 最优)
+  [网格统计] 可行 3507 | 违反生态 29 | 违反容量 64 | 收入软约束未达 0 | 未收敛 0
+   -> feasibility_heatmap.png  4.3s
+[图 4] sensitivity_radar ...
+  [数据来源] results\m3\sobol_indices.csv (Sobol S1/ST) + results\m3\m3_elasticity.csv (单因素弹性, 仅核对)
+  [提示] ['C_env'] 存在 >1 的指数 (C_env 因地板致方差退化), 图中已截断并标注
+   -> sensitivity_radar.png  0.6s
+[图 5] sensitivity_lines ...
+  [扫描] 505 次重求解 (5 参数 × 101 点), 并行 8 进程, 耗时 9.7s; 不可行点 0 个
+  [数据来源] m1_solver.solve_one_combo × 505 次重求解 (参数按基准值 ±20% 扫描), 明细 figures_upgrade/sensitivity_lines_data.csv
+   -> sensitivity_lines.png  14.5s
+[图 6] workflow_framework ...
+   -> workflow_framework.png  0.1s
+------------------------------------------------------------------------------
+产出清单 (数据来源 -> 路径):
+  pareto_tradeoff        <- m1_solver.solve_one_combo (S00 × 32)
+                         -> C:\ModelingProgram\Practice1\Code\juno_project\results\figures_upgrade\pareto_tradeoff.png
+  lever_scan             <- m1_solver.evaluate (τ/ε 扫描)
+                         -> C:\ModelingProgram\Practice1\Code\juno_project\results\figures_upgrade\lever_scan.png
+  feasibility_heatmap    <- m1_solver.evaluate (60×60 网格)
+                         -> C:\ModelingProgram\Practice1\Code\juno_project\results\figures_upgrade\feasibility_heatmap.png
+  sensitivity_radar      <- results/m3/sobol_indices.csv
+                         -> C:\ModelingProgram\Practice1\Code\juno_project\results\figures_upgrade\sensitivity_radar.png
+  sensitivity_lines      <- m1_solver.solve_one_combo (5×101 重求解)
+                         -> C:\ModelingProgram\Practice1\Code\juno_project\results\figures_upgrade\sensitivity_lines.png
+  workflow_framework     <- 无数据 (流程图)
+                         -> C:\ModelingProgram\Practice1\Code\juno_project\results\figures_upgrade\workflow_framework.png
+总耗时 28.1s
