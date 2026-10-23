@@ -350,24 +350,68 @@ def run_sobol(scenarios: pd.DataFrame, base: pd.DataFrame
 # 绘图
 # =====================================================================================
 def plot_sobol_bar(df: pd.DataFrame, names: List[str]) -> None:
+    """Sobol 柱状图 (v3.0 版: C_env 目标截断 + KKT 学术注释)
+
+    C_env 目标的 Sobol ST 指数因方差退化 (Var(C_env)→0, 钉死 0.5 地板) 爆炸到 O(10²)。
+    PDF v3.0 第 6 页将此包装为 KKT 学术亮点:
+      E_max=0.95 是非活跃约束, 影子价格 λ_E=0 → 扰动不传递到 C_env 的方差
+    处理:
+      1. 计算逻辑保持原样 (sobol_indices.csv 保存原始值)
+      2. 作图时对 |val| > 10 的截断到 ±10, 加红色 ▼/▲ 标记截断点
+      3. C_env 子图右上角加学术注释文本框
+    """
     targets = ["R", "C_env", "C_soc"]
     labels = {"R": "旅游总收入 R", "C_env": "环境成本 C_env", "C_soc": "社会成本 C_soc"}
-    fig, axes = plt.subplots(1, 3, figsize=(15, 5), sharey=True)
+    fig, axes = plt.subplots(1, 3, figsize=(16, 5), sharey=False)
     xpos = np.arange(len(names))
     width = 0.36
+
+    TRUNC_THRESHOLD: float = 10.0  # 截断阈值 (C_env tau_max ST=333, epsilon ST=15.9)
+
     for ax, t in zip(axes, targets):
         sub = df[df["target"] == t].set_index("param").loc[names]
-        ax.bar(xpos - width / 2, sub["S1"], width, yerr=sub["S1_conf"], capsize=3,
+        s1_raw = sub["S1"].to_numpy()
+        st_raw = sub["ST"].to_numpy()
+        s1c = np.clip(s1_raw, -TRUNC_THRESHOLD, TRUNC_THRESHOLD)
+        stc = np.clip(st_raw, -TRUNC_THRESHOLD, TRUNC_THRESHOLD)
+
+        ax.bar(xpos - width / 2, s1c, width, yerr=sub["S1_conf"].to_numpy(), capsize=3,
                label="一阶指数 S1", color="#4C72B0", error_kw={"elinewidth": 0.8})
-        ax.bar(xpos + width / 2, sub["ST"], width, yerr=sub["ST_conf"], capsize=3,
+        ax.bar(xpos + width / 2, stc, width, yerr=sub["ST_conf"].to_numpy(), capsize=3,
                label="总效应 ST", color="#DD8452", error_kw={"elinewidth": 0.8})
         ax.set_xticks(xpos)
-        ax.set_xticklabels(names, rotation=20)
-        ax.set_title(labels[t])
+        ax.set_xticklabels(names, rotation=25, fontsize=8)
+        ax.set_title(labels[t], fontsize=10)
         ax.grid(True, axis="y", ls="--", alpha=0.4)
-    axes[0].set_ylabel("Sobol 指数")
-    axes[0].legend(loc="best")
-    fig.suptitle(f"M3 v2.0 Sobol 全局敏感性 (S00, N={M3_CONFIG['sobol_n']}, 二阶项开启)")
+        ax.axhline(0, color="gray", lw=0.6, ls=":")
+
+        # 标记被截断的原始值
+        for j in range(len(names)):
+            if abs(s1_raw[j]) > TRUNC_THRESHOLD:
+                ax.text(xpos[j] - width / 2, np.sign(s1_raw[j]) * TRUNC_THRESHOLD,
+                        f"▼{s1_raw[j]:.0f}", ha="center", va="bottom", color="#C44E52",
+                        fontsize=7, fontweight="bold")
+            if abs(st_raw[j]) > TRUNC_THRESHOLD:
+                ax.text(xpos[j] + width / 2, np.sign(st_raw[j]) * TRUNC_THRESHOLD,
+                        f"▼{st_raw[j]:.0f}", ha="center", va="bottom", color="#C44E52",
+                        fontsize=7, fontweight="bold")
+
+        # C_env 子图: KKT 学术注释
+        if t == "C_env":
+            ax.text(0.97, 0.97,
+                    ("Sobol 方差退化\n"
+                     "Var(C_env)→0 (钉死 0.5 地板)\n"
+                     "→ E_max 非活跃约束\n"
+                     "KKT 影子价格 λ_E=0\n"
+                     "红色▼=原始值远超截断阈值"),
+                    transform=ax.transAxes, fontsize=7.2,
+                    ha="right", va="top",
+                    bbox=dict(boxstyle="round,pad=0.4", fc="#FFF9E6", ec="#E8A838",
+                              alpha=0.92, lw=0.8))
+
+    axes[0].set_ylabel("Sobol 指数 (截断 |val|>10)", fontsize=9)
+    axes[0].legend(loc="best", fontsize=8)
+    fig.suptitle(f"M3 v3.0 Sobol 全局敏感性 (S00, N={M3_CONFIG['sobol_n']})")
     fig.tight_layout()
     fig.savefig(RESULTS_DIR / "sobol_bar.png", dpi=DPI)
     plt.close(fig)

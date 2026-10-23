@@ -1,0 +1,26 @@
+================================================================================
+M5 热门-冷门空间均衡 MILP (PuLP)
+================================================================================
+[区域] 5 个节点: 2 热点 + 3 冷点
+  热点: ['R1', 'R2']
+  冷点: ['R3', 'R4', 'R5']
+[边] 8 条网络连接
+[参数] p0=0.0234, x_total=155.52万, H_max=1.2, rho=2.0, w_H=1.0, w_B=1.0, c_v=0.5, Delta_cap=5.0
+[求解] PuLP CBC MILP ...
+[状态] Optimal
+[目标] revenue=3.6450亿, -hot_penalty=-2.0000, +cold_reward=6.7760, -invest_cost=-5.5520, obj=3.2169
+[守恒] Σ x_i=155.52万 vs x_total=155.52万
+  R1 (downtown_port_hots): cap=30万, x=30.00万, τ=0.0000, z=0.0, v=0.00, H/U=1.000
+  R2 (mendenhall_glacier): cap=20万, x=20.00万, τ=0.0000, z=0.0, v=0.00, H/U=1.000
+  R3 (whale_watching_col): cap=20万, x=55.52万, τ=0.0000, z=nan, v=7.10, H/U=2.776
+  R4 (rainforest_cold   ): cap=20万, x=20.00万, τ=0.0000, z=nan, v=0.00, H/U=1.000
+  R5 (community_culture_): cap=10万, x=30.00万, τ=0.0000, z=nan, v=4.00, H/U=3.000
+[输出] m5_region_allocation.csv, m5_objectives.csv, m5_region_sankey.png
+[耗时] 0.58s
+
+[待建模手确认]
+  1. w_H=1.0, w_B=1.0, c_v=0.5 (目标权重)
+  2. Δcap=5.0, H_max=1.2, ρ=2.0 (约束参数)
+  3. cap_multiplier=10.0 (capacity_level → 万)
+  4. τ∈[0.06, 0.2] (税率范围, PDF 无数值)
+  5. M5-6 税率弹性分段 + M5-7 网络流割: 本轮简化处理, 暂未启用
