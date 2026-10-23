@@ -1,10 +1,8 @@
-# Problem B: Sustainable Tourism (Juneau) — 依赖清单
-# Python >= 3.10（当前环境为 3.13，已验证可运行）
+# Problem B: Sustainable Tourism (Juneau) — v6.0 依赖清单
+# Python 3.13 已验证
 numpy>=1.26
 pandas>=2.0
 matplotlib>=3.7
-seaborn>=0.12
 scipy>=1.10
-pymoo>=0.6            # M1 Pareto / NSGA-II 预留接口
-SALib>=1.4            # M3 Sobol 全局敏感性分析
-pulp>=2.7             # M5 空间均衡 MILP 求解
+pulp==2.9.0            # M5 MILP 求解; 4.x Rust 重写后无自带 CBC, 强制钉 2.9.0
+# v6.0 不再需要: SALib (Sobol 已删), seaborn (未用), pymoo (Pareto 已删)

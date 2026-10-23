@@ -1,6 +1,6 @@
-﻿region_id,region_name,type,cap,x_i,tau_i,z_i,v_i,H_i,U_i,revenue_i,crowding_i
-R1,downtown_port_hotspot,hot,30.0,30.0,0.0,0.0,0.0,1.0,,0.703125,1.0
-R2,mendenhall_glacier_hotspot,hot,20.0,20.0,0.0,0.0,0.0,1.0,,0.46875,1.0
-R3,whale_watching_cold,cold,20.0,55.52,0.0,,7.104,,2.776,1.30125,2.776
-R4,rainforest_cold,cold,20.0,20.0,0.0,,0.0,,1.0,0.46875,1.0
-R5,community_culture_cold,cold,10.0,30.0,0.0,,4.0,,3.0,0.703125,3.0
+﻿region_id,region_name,type,cap,x_i,tau_i,v_i,z_i,H_or_U
+R1,downtown_port_hotspot,hot,60.0,70.0,0.09,1,0,1.1666666666666667
+R2,mendenhall_glacier_hotspot,hot,40.0,0.0,0.09,0,0,0.0
+R3,whale_watching_cold,cold,15.0,25.0,0.09,1,0,1.6666666666666667
+R4,rainforest_cold,cold,10.0,20.0,0.09,1,0,2.0
+R5,community_culture_cold,cold,35.0,45.0,0.09,1,0,1.2857142857142858

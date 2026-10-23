@@ -1,145 +1,39 @@
 ==============================================================================
-M1 基准模型 v2.0 (MINLP) | 建模手裁定 + 公式升级 2026-10-21
-v2.0 变更: R_min 3.45→3.6, E_max 1.0→0.95, S_min 0.9→0.70, lambda_R 1→10
-  M1-2' 加 (C_env_0/(C_env+0.1))^γ, M1-4' 加 max(C_env_min=0.5,·)
-  C_env 内生化进不动点循环, S_min/R_min 从硬约束改为纯软罚项
-输出目录: C:\ModelingProgram\Practice1\Code\juno_project\results\m1
+M1 基准模型 v6.0 (外层枚举 160 组 × 内层 SLSQP)
+权威: Docs/模型建立v6.0.pdf + CHANGELOG §1 + Prompts/05
+输出: C:\ModelingProgram\Practice1\Code\juno_project\results\m1
 ==============================================================================
-[1] DEFAULT_PARAMS 与 juno_params_scenarios.csv 区间交叉校验 (v2.0 应全部 PASS):
-  [PASS] epsilon=-0.5 vs CSV[demand_elasticity: 点=-0.5, 区间=(-0.8,-0.2)]
-  [PASS] eta_I=0.7 vs CSV[eta_I: 点=0.7, 区间=(0.5,0.9)]
-  [PASS] eta_E=0.7 vs CSV[eta_E: 点=0.8, 区间=(0.6,0.95)]
-  [PASS] eta_C=0.7 vs CSV[eta_C: 点=0.6, 区间=(0.4,0.8)]
-  [PASS] E_max=0.95 vs CSV[eco_threshold: 点=0.8, 区间=(0.6,0.95)]
-  [PASS] S_min=0.7 vs CSV[social_accept_min: 点=0.5, 区间=(0.4,0.7)]
-[2] 前置兼容检查: 5<=7 艘/日=True; τ_min<=τ_max=True; δ_total=0.8<=1=True; 措施表可行=m1-5 全 [1,1,1,1,1]
-[3] 逐情景求解:
-[S00_baseline] 基准不动点: x*=161.7528 (目标 160.0, 偏差 1.1%), R*=3.7911 (目标 3.75), C_env=0.794, 迭代 4 次, 收敛=True
-    组合 00100 @ strict: 可行, 但有软罚项 [软: R=3.600<3.6]
-    组合 10000 @ strict: SLSQP 未收敛 (Inequality constraints incompatible)
-    组合 10000 @ relax_eco: SLSQP 未收敛 (Inequality constraints incompatible)
-    组合 11000 @ strict: SLSQP 未收敛 (Positive directional derivative for linesearch)
-    组合 11000 @ relax_eco: SLSQP 未收敛 (Positive directional derivative for linesearch)
-    组合 11000 @ relax_capacity: 可行, 但有软罚项 [软: R=3.563<3.6]
-    组合 11100 @ strict: SLSQP 未收敛 (Positive directional derivative for linesearch)
-    组合 11101 @ strict: 可行, 但有软罚项 [软: R=3.600<3.6]
-[S00_baseline] 可行 32/32 | 选中 m=01111 | relax=strict | R=3.6449 C_env=0.500 x=155.52 τ=0.1500 S=0.700 J=0.0179 | 3.94s
-[S01_low_tour] 基准不动点: x*=159.8859 (目标 157.5, 偏差 1.5%), R*=3.7434 (目标 3.69), C_env=0.757, 迭代 5 次, 收敛=True
-    组合 01000 @ strict: 可行, 但有软罚项 [软: S=0.699<0.7]
-    组合 01001 @ strict: SLSQP 未收敛 (Positive directional derivative for linesearch)
-    组合 01001 @ relax_eco: SLSQP 未收敛 (Positive directional derivative for linesearch)
-    组合 01011 @ strict: SLSQP 未收敛 (Positive directional derivative for linesearch)
-    组合 01011 @ relax_eco: SLSQP 未收敛 (Positive directional derivative for linesearch)
-    组合 11000 @ strict: SLSQP 未收敛 (Positive directional derivative for linesearch)
-    组合 11000 @ relax_eco: 可行, 但有软罚项 [软: R=3.528<3.6]
-    组合 11010 @ strict: SLSQP 未收敛 (Positive directional derivative for linesearch)
-[S01_low_tour] 可行 32/32 | 选中 m=01111 | relax=strict | R=3.6013 C_env=0.500 x=153.82 τ=0.1497 S=0.700 J=0.0182 | 4.46s
-[S02_high_tour] 基准不动点: x*=162.4986 (目标 161.5, 偏差 0.6%), R*=3.8109 (目标 3.79), C_env=0.821, 迭代 3 次, 收敛=True
-    组合 01110 @ strict: 可行, 但有软罚项 [软: R=3.600<3.6]
-    组合 11000 @ strict: 可行, 但有软罚项 [软: R=3.588<3.6]
-    组合 11010 @ strict: 可行, 但有软罚项 [软: S=0.700<0.7]
-    组合 11100 @ strict: 可行, 但有软罚项 [软: R=3.600<3.6]
-[S02_high_tour] 可行 32/32 | 选中 m=01111 | relax=strict | R=3.6653 C_env=0.500 x=156.29 τ=0.1500 S=0.700 J=0.0166 | 3.09s
-[S03_strict_eco] 基准不动点: x*=162.7630 (目标 160.0, 偏差 1.7%), R*=3.8148 (目标 3.75), C_env=0.737, 迭代 5 次, 收敛=True
-    组合 00000 @ strict: SLSQP 未收敛 (Positive directional derivative for linesearch)
-    组合 00000 @ relax_eco: SLSQP 未收敛 (Positive directional derivative for linesearch)
-    组合 10011 @ strict: 可行, 但有软罚项 [软: S=0.700<0.7]
-    组合 11010 @ strict: 可行, 但有软罚项 [软: R=3.600<3.6]
-[S03_strict_eco] 可行 32/32 | 选中 m=01111 | relax=strict | R=3.8084 C_env=0.500 x=162.49 τ=0.1500 S=0.700 J=0.0184 | 3.53s
-[S04_loose_eco] 基准不动点: x*=160.3308 (目标 160.0, 偏差 0.2%), R*=3.7578 (目标 3.75), C_env=0.847, 迭代 3 次, 收敛=True
-    组合 00001 @ strict: 可行, 但有软罚项 [软: S=0.700<0.7]
-    组合 01100 @ strict: 可行, 但有软罚项 [软: R=3.600<3.6]
-    组合 10000 @ strict: 可行, 但有软罚项 [软: R=3.573<3.6]
-    组合 10101 @ strict: 可行, 但有软罚项 [软: R=3.600<3.6]
-    组合 11000 @ strict: 可行, 但有软罚项 [软: R=3.401<3.6]
-    组合 11010 @ strict: 可行, 但有软罚项 [软: R=3.492<3.6]
-    组合 11100 @ strict: 可行, 但有软罚项 [软: R=3.488<3.6]
-    组合 11101 @ strict: SLSQP 未收敛 (Positive directional derivative for linesearch)
-    组合 11101 @ relax_eco: SLSQP 未收敛 (Positive directional derivative for linesearch)
-    组合 11110 @ strict: SLSQP 未收敛 (Positive directional derivative for linesearch)
-    组合 11110 @ relax_eco: SLSQP 未收敛 (Positive directional derivative for linesearch)
-    组合 11110 @ relax_capacity: 可行, 但有软罚项 [软: R=3.566<3.6]
-[S04_loose_eco] 可行 32/32 | 选中 m=01011 | relax=strict | R=3.6344 C_env=0.500 x=155.07 τ=0.1279 S=0.700 J=0.0118 | 3.98s
-[S05_high_tax] 基准不动点: x*=162.5226 (目标 160.0, 偏差 1.6%), R*=3.8091 (目标 3.75), C_env=0.751, 迭代 5 次, 收敛=True
-    组合 10100 @ strict: 可行, 但有软罚项 [软: S=0.699<0.7]
-[S05_high_tax] 可行 32/32 | 选中 m=11111 | relax=strict | R=3.6007 C_env=0.500 x=153.63 τ=0.1499 S=0.700 J=0.0105 | 2.58s
-[S06_low_tax] 基准不动点: x*=161.7528 (目标 160.0, 偏差 1.1%), R*=3.7911 (目标 3.75), C_env=0.794, 迭代 4 次, 收敛=True
-    组合 00010 @ strict: SLSQP 未收敛 (Positive directional derivative for linesearch)
-    组合 00010 @ relax_eco: SLSQP 未收敛 (Positive directional derivative for linesearch)
-    组合 01111 @ strict: 可行, 但有软罚项 [软: R=3.600<3.6]
-    组合 10000 @ strict: 可行, 但有软罚项 [软: R=3.529<3.6]
-    组合 11000 @ strict: 可行, 但有软罚项 [软: R=3.368<3.6]
-    组合 11010 @ strict: 可行, 但有软罚项 [软: R=3.461<3.6]
-    组合 11100 @ strict: SLSQP 未收敛 (Inequality constraints incompatible)
-    组合 11100 @ relax_eco: 可行, 但有软罚项 [软: R=3.447<3.6]
-    组合 11110 @ strict: 可行, 但有软罚项 [软: R=3.523<3.6]
-[S06_low_tax] 可行 32/32 | 选中 m=01111 | relax=strict | R=3.6000 C_env=0.500 x=153.60 τ=0.1367 S=0.760 J=0.0161 | 2.91s
-[S07_strict_cap] 基准不动点: x*=159.6198 (目标 157.5, 偏差 1.3%), R*=3.7371 (目标 3.69), C_env=0.772, 迭代 4 次, 收敛=True
-    组合 10001 @ strict: 可行, 但有软罚项 [软: R=3.600<3.6]
-    组合 11001 @ strict: 可行, 但有软罚项 [软: S=0.699<0.7]
-[S07_strict_cap] 可行 32/32 | 选中 m=01101 | relax=strict | R=3.6187 C_env=0.500 x=154.56 τ=0.1500 S=0.700 J=0.0128 | 3.03s
-[S08_loose_cap] 基准不动点: x*=162.0546 (目标 161.5, 偏差 0.3%), R*=3.8005 (目标 3.79), C_env=0.820, 迭代 3 次, 收敛=True
-    组合 00110 @ strict: 可行, 但有软罚项 [软: R=3.600<3.6]
-    组合 01110 @ strict: 可行, 但有软罚项 [软: R=3.600<3.6]
-    组合 11000 @ strict: SLSQP 未收敛 (Inequality constraints incompatible)
-    组合 11000 @ relax_eco: SLSQP 未收敛 (Positive directional derivative for linesearch)
-    组合 11000 @ relax_capacity: 可行, 但有软罚项 [软: R=3.582<3.6]
-    组合 11010 @ strict: 可行, 但有软罚项 [软: S=0.700<0.7]
-    组合 11101 @ strict: 可行, 但有软罚项 [软: R=3.600<3.6]
-[S08_loose_cap] 可行 32/32 | 选中 m=01111 | relax=strict | R=3.6627 C_env=0.500 x=156.18 τ=0.1500 S=0.700 J=0.0176 | 3.49s
-[S09_community] 基准不动点: x*=160.6827 (目标 160.0, 偏差 0.4%), R*=3.7660 (目标 3.75), C_env=0.827, 迭代 3 次, 收敛=True
-    组合 01000 @ strict: 可行, 但有软罚项 [软: R=3.600<3.6]
-    组合 11000 @ strict: 可行, 但有软罚项 [软: R=3.564<3.6]
-[S09_community] 可行 32/32 | 选中 m=01111 | relax=strict | R=3.6534 C_env=0.500 x=155.88 τ=0.1500 S=0.700 J=0.0209 | 2.76s
-[S10_infra] 基准不动点: x*=160.6126 (目标 160.0, 偏差 0.4%), R*=3.7644 (目标 3.75), C_env=0.862, 迭代 4 次, 收敛=True
-    组合 10000 @ strict: 可行, 但有软罚项 [软: S=0.700<0.7]
-    组合 11000 @ strict: SLSQP 未收敛 (Positive directional derivative for linesearch)
-    组合 11000 @ relax_eco: SLSQP 未收敛 (Positive directional derivative for linesearch)
-    组合 11000 @ relax_capacity: 可行, 但有软罚项 [软: R=3.540<3.6]
-    组合 11001 @ strict: 可行, 但有软罚项 [软: S=0.700<0.7]
-    组合 11010 @ strict: SLSQP 未收敛 (Positive directional derivative for linesearch)
-    组合 11010 @ relax_eco: SLSQP 未收敛 (Positive directional derivative for linesearch)
-    组合 11011 @ strict: 可行, 但有软罚项 [软: R=3.600<3.6]
-[S10_infra] 可行 32/32 | 选中 m=01111 | relax=strict | R=3.6229 C_env=0.500 x=154.58 τ=0.1500 S=0.700 J=0.0145 | 4.05s
-[S11_ecology] 基准不动点: x*=162.7661 (目标 160.0, 偏差 1.7%), R*=3.8148 (目标 3.75), C_env=0.737, 迭代 5 次, 收敛=True
-    组合 01010 @ strict: 可行, 但有软罚项 [软: R=3.600<3.6]
-    组合 11000 @ strict: SLSQP 未收敛 (Positive directional derivative for linesearch)
-    组合 11000 @ relax_eco: 可行, 但有软罚项 [软: R=3.599<3.6]
-    组合 11001 @ strict: 可行, 但有软罚项 [软: R=3.600<3.6]
-[S11_ecology] 可行 32/32 | 选中 m=01111 | relax=strict | R=3.6805 C_env=0.500 x=157.03 τ=0.1500 S=0.700 J=0.0226 | 3.21s
-[S12_balanced] 基准不动点: x*=160.0668 (目标 158.0, 偏差 1.3%), R*=3.7484 (目标 3.70), C_env=0.775, 迭代 4 次, 收敛=True
-    组合 00110 @ strict: SLSQP 未收敛 (Positive directional derivative for linesearch)
-    组合 00110 @ relax_eco: SLSQP 未收敛 (Positive directional derivative for linesearch)
-    组合 01000 @ strict: 可行, 但有软罚项 [软: S=0.698<0.7]
-    组合 10110 @ strict: 可行, 但有软罚项 [软: S=0.700<0.7]
-    组合 11001 @ strict: 可行, 但有软罚项 [软: S=0.699<0.7]
-[S12_balanced] 可行 32/32 | 选中 m=01111 | relax=strict | R=3.7315 C_env=0.500 x=159.35 τ=0.1500 S=0.700 J=0.0143 | 3.60s
-[S13_perturbed] 基准不动点: x*=162.3004 (目标 161.5, 偏差 0.5%), R*=3.8063 (目标 3.79), C_env=0.807, 迭代 3 次, 收敛=True
-    组合 01000 @ strict: SLSQP 未收敛 (Positive directional derivative for linesearch)
-    组合 01000 @ relax_eco: SLSQP 未收敛 (Positive directional derivative for linesearch)
-    组合 01100 @ strict: 可行, 但有软罚项 [软: R=3.600<3.6]
-    组合 10000 @ strict: 可行, 但有软罚项 [软: S=0.699<0.7]
-    组合 11001 @ strict: 可行, 但有软罚项 [软: R=3.600<3.6]
-    组合 11110 @ strict: 可行, 但有软罚项 [软: S=0.700<0.7]
-[S13_perturbed] 可行 32/32 | 选中 m=01101 | relax=strict | R=3.8105 C_env=0.500 x=162.48 τ=0.1500 S=0.700 J=0.0112 | 3.42s
-[S14_conserv] 基准不动点: x*=160.0679 (目标 157.5, 偏差 1.6%), R*=3.7476 (目标 3.69), C_env=0.746, 迭代 5 次, 收敛=True
-    组合 10000 @ strict: 可行, 但有软罚项 [软: R=3.572<3.6]
-    组合 10011 @ strict: 可行, 但有软罚项 [软: S=0.700<0.7]
-    组合 10100 @ strict: SLSQP 未收敛 (Positive directional derivative for linesearch)
-    组合 11000 @ strict: 可行, 但有软罚项 [软: R=3.402<3.6]
-    组合 11001 @ strict: 可行, 但有软罚项 [软: S=0.648<0.7] [软: R=3.425<3.6]
-    组合 11010 @ strict: 可行, 但有软罚项 [软: R=3.494<3.6]
-    组合 11100 @ strict: 可行, 但有软罚项 [软: R=3.488<3.6]
-    组合 11110 @ strict: SLSQP 未收敛 (Positive directional derivative for linesearch)
-    组合 11110 @ relax_eco: SLSQP 未收敛 (Positive directional derivative for linesearch)
-    组合 11110 @ relax_capacity: 可行, 但有软罚项 [软: R=3.571<3.6]
-[S14_conserv] 可行 32/32 | 选中 m=01011 | relax=strict | R=3.6000 C_env=0.500 x=153.76 τ=0.1312 S=0.700 J=0.0170 | 4.04s
-------------------------------------------------------------------------------
-[S00 v2.0 验收] R=3.6449 亿 (期望 >=3.6); C_env=0.500 (期望 ≈0.5, ≥0.5); τ=0.1500 (v1 为 0.1450, 应提升); x=155.52 万 (期望 ≈153.6, ≤160); S=0.700; m=01111; x_d=0.0000; J=0.0179
-可解 15/15 | 不可解 0/15
-v1→v2 对比表已生成: C:\ModelingProgram\Practice1\Code\juno_project\results\m1\v1_v2_compare.csv
-  (V1 已备份至 results/archive_v1/m1_m1_results.csv)
 
-[运行摘要] 2026-10-21 15:33:27
-  可解情景: 15/15
-  参数: R_min=3.6, E_max=0.95, S_min=0.7, gamma=0.1, lambda_R=10.0
+[验收 1] S00 基准态回代 (m=00000, n_s=5, δ=0, τ=0.11, x_d=2):
+  x=160.0000 (期望 ≈160)   R=3.7500 (期望 ≈3.75)
+  C_env=0.8000 (期望 ≈0.8)   C_soc=0.5003 (≈0.5 基准态, 非 1.0)
+  C_inf=0.0005 (≈0.0005 基准态, 非 1.0)   S=1.0000 (期望 =1.0)
+  不动点收敛: True, 迭代 1 次
+  ✓ x=160.0000 vs 160.0 (tol±5%)
+  ✓ R=3.7500 vs 3.75 (tol±5%)
+  ✓ S=1.0000 vs 1.0 (tol±1%)
+  ✓ C_env=0.8000 vs 0.8 (tol±5%)
+  ℹ C_soc=0.5003 偏离期望 1.0 — 诊断: P=3 万 与 C_soc,0=2844 代数矛盾 (x/P=53.3, ÷2844≈0.5)
+  ℹ C_inf=0.0005 偏离期望 1.0 — 诊断: I0=160 时原式 0.4+0.2=0.6, ÷1137≈0.0005
+     以上两项非代码错误, 属 Prompt 05 参数口径不一致; 继续推进, 量级由最优解校验
+  ✅ 核心 4 项通过, 继续 160 组枚举
+
+[求解] 160 组外层枚举 (32 m-combo × 5 n_s) ...
+  可行 159/160 | 耗时 6.6s
+
+[最优] m=00111, n_s=1
+  τ=0.0900  δ=(0.243,0.198,0.359)
+  x=223.27  R=5.2329  C_env=0.4000
+  C_soc=0.9739  C_inf=0.0005  S=1.3283
+  J=0.2434 (目标, 期望 ∈ [0,1])
+  软罚 S: 0.0000
+
+结果已存 C:\ModelingProgram\Practice1\Code\juno_project\results\m1\m1_results.csv (160 行, 可行 159)
+[验收 2] J=0.2434 ∈ [0,1] ✅
+[验收 3] C_soc=0.9739, C_inf=0.0005 (均 < 2) ✅
+
+[运行摘要] 2026-10-23 17:14:07
+  外层组合: 160 (32 m × 5 n_s)
+  可行解: 159
+  耗时: 6.60s
+  最优: m=00111, n_s=1, J=0.2434

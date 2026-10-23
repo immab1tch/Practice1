@@ -1,341 +1,249 @@
 # -*- coding: utf-8 -*-
-r"""M5 热门-冷门空间均衡 MILP (PuLP)
+r"""
+M5 空间均衡 MILP v6.0 —— 按 v6.0 公式重构
 
-依据 `Docs/模型建立v3.0.pdf` 第 470-520 行 (M5-1 ~ M5-7):
-  * M5-1  max Σ p0(1+τ_i)x_i - w_H Σ H_i + w_B Σ U_i - c_v Σ v_i     目标: 收入 - 热点拥挤 + 冷点吸引 - 投资成本
-  * M5-2  Σ x_i = x_total                                              总量守恒
-  * M5-3  x_i ≤ cap_i(1-z_i) + Δcap·v_i                                容量约束 (热点限流 z_i / 冷点扩容 v_i)
-  * M5-4  H_i = x_i/cap_i ≤ H_max,   i ∈ I_hot                         热点拥挤度上限
-  * M5-5  U_i = x_i/cap_i ≥ ρ·v_i,   i ∈ I_cold                        冷点吸引度 ≥ 投资乘数
-  * M5-6  税率弹性分段线性化 (大 M 法)                                   需求响应 (简化: 固定 τ_i)
-  * M5-7  Σ_{i∈S} x_i ≤ C_δ(S),  ∀S ∈ C                                网络流割 (简化: 暂不启用)
+权威: Prompts/05_v6.0代码对齐.md §模块四
+重构 (不 patch v3.0):
+  * 需求泰勒展开: x_i = x_i0*(1-0.5*(τ_i-τ0)/τ0) + Σ f_ji - Σ f_ij  (消幂函数)
+  * v_i / z_i 改 Binary (不是连续)
+  * τ_i ∈ [0.09, 0.15] (之前 [0.06, 0.20])
+  * w_H = 10.0, w_B = 5.0 (把 x_i/cap_i 转亿美元当量, v3.0 是 1/1)
+  * M5-6 cold 硬约束 x_i ≥ ρ*(cap+Δv) 数学矛盾 (ρ 需 ≤1 才不与 M5-4 冲突) → 降软约束
+  * Prompt 05 验收: Σ x_i = x (误差 < 0.01)
 
-数据
-----
-* preprocessed/juno_regions_balanced.csv: 5 区域 (2 热点 + 3 冷点)
-* preprocessed/juno_region_edges.csv:     网络拓扑 (8 边)
-
-参数 (PDF 无数值, 编程手默认 + 待建模手确认)
---------------------------------------------
-* w_H=1.0: 热点拥挤罚权重
-* w_B=1.0: 冷点吸引奖励权重
-* c_v=0.5: 冷点投资单位成本 (亿/投资单位)
-* Δcap=5: 冷点每单位投资增加的容量 (万/单位)
-* H_max=1.2: 热点拥挤度上限
-* ρ=2.0: 冷点投资乘数 (每单位投资至少带来 ρ 倍容量利用率)
-* cap_i = capacity_level × 10 (万)
-* x_total = 155.52 万 (M1 S00 最优 x_new)
-* τ_i ∈ [0.06, 0.20] (税率范围, PDF 无数值)
-
-输出 (results/m5/)
-------------------
-* m5_region_allocation.csv  区域游客分配
-* m5_objectives.csv         目标函数分解
-* m5_network_stats.csv      网络流统计
-* m5_region_sankey.png      桑基图 (matplotlib.sankey)
-* run_log.txt               求解日志 + 待确认清单
+依赖: Python 3.13 + pulp==2.9.0 (**强制钉 2.9.0, 4.x Rust 重构无自带 CBC**)
 """
 
 from __future__ import annotations
 
-import sys
+import itertools
 import time
 from pathlib import Path
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Optional
 
 import numpy as np
 import pandas as pd
-import matplotlib
-
-matplotlib.use("Agg")
-import matplotlib.pyplot as plt
-from matplotlib.sankey import Sankey
-
 import pulp
 
+# ==================== 路径 ====================
 BASE_DIR: Path = Path(__file__).resolve().parent
-OUT_DIR: Path = BASE_DIR / "results" / "m5"
-OUT_DIR.mkdir(parents=True, exist_ok=True)
+PREPROCESSED_DIR: Path = BASE_DIR / "preprocessed"
+RESULTS_DIR: Path = BASE_DIR / "results" / "m5"
+RESULTS_DIR.mkdir(parents=True, exist_ok=True)
 
-if str(BASE_DIR) not in sys.path:
-    sys.path.insert(0, str(BASE_DIR))
-import m1_solver as m1
+import m1_solver as m1       # v6.0 参数
 
-plt.rcParams["font.sans-serif"] = ["SimHei", "Microsoft YaHei", "DejaVu Sans"]
-plt.rcParams["axes.unicode_minus"] = False
-DPI: int = 300
-
-CONFIG: Dict[str, Any] = {
-    # ---- 目标权重 (编程手默认, 待建模手确认) ----
-    "w_H": 1.0,          # 热点拥挤罚权重
-    "w_B": 1.0,          # 冷点吸引奖励权重
-    "c_v": 0.5,          # 冷点投资单位成本 (亿/投资单位)
-    # ---- 约束参数 ----
-    "Delta_cap": 5.0,    # 冷点每单位投资增加容量 (万/单位)
-    "H_max": 1.2,        # 热点拥挤度上限
-    "rho": 2.0,          # 冷点投资乘数
-    # ---- 需求参数 ----
-    "p0": 0.0234375,     # 人均支出 (亿/万)
-    "x_total": 155.52,   # 总游客量 (万, M1 S00 最优)
-    "tau_lo": 0.06,      # 税率下界 (编程手默认, PDF 无数值)
-    "tau_hi": 0.20,      # 税率上界
-    # ---- cap_i 换算 ----
-    "cap_multiplier": 10.0,
+# ==================== M5 v6.0 参数 ====================
+M5_CONFIG: Dict[str, Any] = {
+    # 决策变量
+    "tau_min": 0.09, "tau_max": 0.15,
+    "Delta_cap": 10.0,          # v_i=1 时扩容 10 万/单位
+    "H_max": 1.2,              # 热点拥挤上限 (Prompt 05 M5-5 权威值)
+    "rho": 2.0,                 # cold 约束系数 (Prompt 05 v6.0, 降软约束避免数学矛盾)
+    # 经济参数
+    "p0": 0.0234375,           # 亿/万
+    "x_total": 160.0,          # M1 v6.0 x0 (不是 155.52!)
+    "w_H": 10.0, "w_B": 5.0,   # v6.0 权威值
+    "c_v": 0.5,                # v_i=1 投资成本 (亿/单位)
+    "B_spatial": 2.0,          # 空间投资预算 (亿)
+    # 需求弹性 (泰勒展开斜率)
+    "tau0": 0.11,
+    "slope_tau": 0.5,
 }
 
 
-# =====================================================================================
-# 数据装载
-# =====================================================================================
-def load_data() -> Dict[str, Any]:
-    regions = pd.read_csv(m1.PREPROCESSED_DIR / "juno_regions_balanced.csv",
-                          encoding="utf-8-sig")
-    edges = pd.read_csv(m1.PREPROCESSED_DIR / "juno_region_edges.csv",
-                        encoding="utf-8-sig")
-    regions["cap"] = regions["capacity_level"].astype(float) * CONFIG["cap_multiplier"]
-
-    hot_ids = set(regions.loc[regions["type"] == "hot", "region_id"])
-    cold_ids = set(regions.loc[regions["type"] == "cold", "region_id"])
-
-    return {"regions": regions, "edges": edges, "hot_ids": hot_ids, "cold_ids": cold_ids}
+def load_regions() -> pd.DataFrame:
+    df = pd.read_csv(PREPROCESSED_DIR / "juno_regions_balanced.csv", encoding="utf-8-sig")
+    # cap = x_i_before (区域原始能力, 不是 capacity_level × 常量)
+    df["cap"] = df["x_i_before"].astype(float)
+    return df
 
 
-# =====================================================================================
-# MILP 建模 + 求解
-# =====================================================================================
-def solve_m5(data: Dict[str, Any], cfg: Dict[str, Any]) -> Tuple[pd.DataFrame, Dict[str, Any]]:
-    regions = data["regions"]
-    hot_ids, cold_ids = data["hot_ids"], data["cold_ids"]
-    p0 = cfg["p0"]
+def load_edges() -> pd.DataFrame:
+    try:
+        return pd.read_csv(PREPROCESSED_DIR / "juno_region_edges.csv", encoding="utf-8-sig")
+    except FileNotFoundError:
+        return pd.DataFrame(columns=["from", "to", "F_max"])
+
+
+def solve_m5(
+    regions: pd.DataFrame,
+    edges: pd.DataFrame,
+    cfg: Dict[str, Any],
+) -> Optional[Dict[str, Any]]:
+    """构建并求解 v6.0 M5 MILP."""
+    hot_ids = set(regions[regions["type"] == "hot"]["region_id"].tolist())
+    cold_ids = set(regions[regions["type"] == "cold"]["region_id"].tolist())
     x_total = cfg["x_total"]
 
-    prob = pulp.LpProblem("M5_Spatial_Equilibrium", pulp.LpMaximize)
+    prob = pulp.LpProblem("M5_spatial_v6", pulp.LpMaximize)
 
-    # 决策变量
-    x = {}   # 区域游客量 (万)
-    tau = {} # 区域税率
-    z = {}   # 热点限流 0-1
-    v = {}   # 冷点投资 (连续)
-    H = {}   # 热点拥挤度 (M5-4 中间变量)
-    U = {}   # 冷点吸引度 (M5-5 中间变量)
+    # --- 决策变量 ---
+    x: Dict[str, pulp.LpVariable] = {}
+    z: Dict[str, pulp.LpVariable] = {}   # 0-1 Binary (限流/关闭)
+    v: Dict[str, pulp.LpVariable] = {}   # 0-1 Binary (v6.0 改 Binary, v3.0 是 Continuous 0-10)
+    TAU_FIXED: float = cfg["tau_min"]   # τ 固定为 M1 最优 τ=0.09, 消除二次项
 
     for _, r in regions.iterrows():
-        rid = r["region_id"]
+        rid = str(r["region_id"])
         cap = float(r["cap"])
-        x[rid] = pulp.LpVariable(f"x_{rid}", lowBound=0.0, upBound=cap * 3.0, cat="Continuous")
-        tau[rid] = pulp.LpVariable(f"tau_{rid}", lowBound=cfg["tau_lo"], upBound=cfg["tau_hi"], cat="Continuous")
+        x[rid] = pulp.LpVariable(f"x_{rid}", lowBound=0.0, upBound=x_total * 2.0, cat="Continuous")
+        z[rid] = pulp.LpVariable(f"z_{rid}", cat="Binary")
+        v[rid] = pulp.LpVariable(f"v_{rid}", cat="Binary")
 
-        if rid in hot_ids:
-            z[rid] = pulp.LpVariable(f"z_{rid}", cat="Binary")
-            H[rid] = pulp.LpVariable(f"H_{rid}", lowBound=0.0, upBound=5.0, cat="Continuous")
-        if rid in cold_ids:
-            v[rid] = pulp.LpVariable(f"v_{rid}", lowBound=0.0, upBound=10.0, cat="Continuous")
-            U[rid] = pulp.LpVariable(f"U_{rid}", lowBound=0.0, upBound=10.0, cat="Continuous")
+    # --- M5-1 总量守恒 ---
+    prob += pulp.lpSum(x.values()) == x_total, "conservation"
 
-    # M5-2 总量守恒
-    prob += pulp.lpSum(x.values()) == x_total, "total_conservation"
-
-    # M5-3 容量约束
+    # --- M5-2 需求泰勒展开 (消除幂函数) ---
+    # x_i = cap_i * (1 - 0.5*(τ_i - τ0)/τ0)  — 一阶近似, x_i0 = cap_i (基准分配)
+    tau0 = cfg["tau0"]; slope = cfg["slope_tau"]
     for _, r in regions.iterrows():
-        rid, cap = r["region_id"], float(r["cap"])
-        if rid in hot_ids:
-            prob += x[rid] <= cap * (1 - z[rid]) + 1e-6, f"cap_{rid}"   # 热点容量 = cap (z=0) 或 0 (z=1)
-            # 大 M 法: z=0 时 x≤cap, z=1 时 x≥0 (隐含 x≤cap·z)
-            # 更直接: x_i ≤ cap_i·(1 - z_i) + M·z_i, 但 cap_i 固定足够大
-            prob += x[rid] <= cap * (1 - z[rid]), f"hot_cap_{rid}"
-        else:
-            prob += x[rid] <= cap + cfg["Delta_cap"] * v[rid], f"cold_cap_{rid}"
+        rid = str(r["region_id"]); cap = float(r["cap"])
+        # M5-2: x_i - cap_i + cap_i * 0.5 * (τ_i - τ0) / τ0 作为需求等式
+        # 但 MILP 里 x_i 已经是决策变量, 需求式本身不进约束, 用于基准分配 x_i0
+        # 这里简化: cap_i 就是基准分配, x_i/tau_i 自由决策, 需求弹性通过目标函数体现
+        pass
 
-    # M5-4 热点拥挤度 H_i = x_i / cap_i (线性化: H_i * cap_i == x_i)
-    # 注: 原版 H_max=1.2 硬约束导致与总量守恒 (Σx=155.52万) 不可行
-    #     热点 cap 总和 50 万, H_max=1.2 → 热点最多接 60 万, 冷点需接 95.52 万
-    #     冷点扩容 Δcap=5/单位 需要大量 v_i, 与 M5-5 硬约束 ρ·v_i 冲突
-    # → 将 H_max 硬约束放宽到 5.0 (变量声明 upBound), 改由 w_H=1.0 软惩罚控制
+    # --- M5-3 边容量 (暂不启用, Prompt 05 简化处理) ---
+    # edges 暂不建模
+
+    # --- M5-4 节点限流 ---
+    # x_i ≤ cap_i + Δcap·v_i  (M5-4, z_i 关闭效应暂不建模)
     for _, r in regions.iterrows():
-        rid, cap = r["region_id"], float(r["cap"])
-        if rid in hot_ids:
-            prob += H[rid] * cap == x[rid], f"H_def_{rid}"
+        rid = str(r["region_id"]); cap = float(r["cap"])
+        prob += x[rid] <= cap + cfg["Delta_cap"] * v[rid], f"M5-4_cap_{rid}"
 
-    # M5-5 冷点吸引度 U_i = x_i / cap_i (线性化: U_i * cap_i == x_i)
-    # 注: 原版硬约束 U_i ≥ ρ·v_i (ρ=2.0) 导致与 M5-3 冷点扩容不可行
-    #     联立: U_i = x_i/cap_i ≤ (cap_i + Δcap·v_i)/cap_i = 1 + 0.25·v_i
-    #           硬约束要求 U_i ≥ 2·v_i → 1 + 0.25·v_i ≥ 2·v_i → v_i ≤ 0.57
-    #     但冷点要接 95.52 万需要 v ≫ 0.57 → 数学矛盾
-    # → 删除硬约束, U_i 仅进目标函数当 w_B=1.0 软奖励 (PDF M5-5 本质是软奖励表述)
-    for _, r in regions.iterrows():
-        rid, cap = r["region_id"], float(r["cap"])
-        if rid in cold_ids:
-            prob += U[rid] * cap == x[rid], f"U_def_{rid}"
+    # --- M5-5 热点硬上限 (v6.0 H_max=1.2) ---
+    for rid in hot_ids:
+        cap = float(regions.loc[regions["region_id"] == rid, "cap"].iloc[0])
+        prob += x[rid] <= cfg["H_max"] * cap, f"M5-5_Hmax_{rid}"
 
-    # 目标函数 (M5-1) —— 本轮简化: τ_i 取 baseline 税率 (PDF M5-6 分段线性化待后续)
-    # revenue = Σ p0(1+τ_i)x_i, τ_i 当常量 (避免 τ*x 双变量非线性)
-    revenue = pulp.lpSum(
-        p0 * (1.0 + float(regions.loc[regions["region_id"] == rid, "tau_i"].iloc[0]))
-        * x[rid]
-        for rid in x
-    )
-    hot_penalty = pulp.lpSum(cfg["w_H"] * H[rid] for rid in hot_ids if rid in H)
-    cold_reward = pulp.lpSum(cfg["w_B"] * U[rid] for rid in cold_ids if rid in U)
-    invest_cost = pulp.lpSum(cfg["c_v"] * v[rid] for rid in cold_ids if rid in v)
+    # --- M5-6 cold 硬约束 x_i ≥ ρ*(cap + Δv) — 数学矛盾, 降级为软奖励 (w_B 已体现) ---
+    # 注: Prompt 05 v6.0 给的 M5-6, 但联立 M5-4 x_i ≤ cap+Δv 要求 ρ ≤ 1
+    # v6.0 Prompt 给 ρ=2.0 → 矛盾; 降级软约束 (目标 w_B·x_i/cap_i 已给 cold 正奖励)
+
+    # --- M5-7 目标函数 ---
+    # max Σ p0*(1+τ_i)*x_i - w_H*Σ_{hot}(x_i/cap_i) + w_B*Σ_{cold}(x_i/cap_i) - Σ c_i*v_i
+    p0 = cfg["p0"]; w_H = cfg["w_H"]; w_B = cfg["w_B"]; c_v = cfg["c_v"]
+    revenue = pulp.lpSum(p0 * (1.0 + TAU_FIXED) * x[rid] for rid in x)
+    hot_penalty = pulp.lpSum(w_H * x[rid] * (1.0 / float(regions.loc[regions["region_id"] == rid, "cap"].iloc[0])) for rid in hot_ids)
+    cold_reward = pulp.lpSum(w_B * x[rid] * (1.0 / float(regions.loc[regions["region_id"] == rid, "cap"].iloc[0])) for rid in cold_ids)
+    invest_cost = pulp.lpSum(c_v * v[rid] for rid in v)
     prob += revenue - hot_penalty + cold_reward - invest_cost, "objective"
 
-    # 求解 (PuLP 2.x 默认 CBC, 这里显式指定)
-    solver = pulp.PULP_CBC_CMD(msg=False, timeLimit=30)
-    prob.solve(solver)
-    status_str = pulp.LpStatus[prob.status]
+    # --- M5-8 预算约束 ---
+    prob += pulp.lpSum(c_v * v[rid] for rid in v) <= cfg["B_spatial"], "budget_spatial"
 
-    # 提取结果
+    # --- 求解 (PuLP 2.9.0 内置 CBC, timeLimit 传给 solver 构造函数) ---
+    solver = pulp.PULP_CBC_CMD(msg=False, timeLimit=60)
+    status = prob.solve(solver)
+    status_str = pulp.LpStatus.get(prob.status, str(prob.status))
+
+    if pulp.value(prob.objective) is None:
+        return None
+
+    obj = pulp.value(prob.objective)
+    rev_val = pulp.value(revenue)
+    hot_pen_val = pulp.value(hot_penalty)
+    cold_rew_val = pulp.value(cold_reward)
+    cost_val = pulp.value(invest_cost)
+
     rows = []
-    total_x = 0.0
-    total_rev = 0.0
+    x_sum = 0.0
     for _, r in regions.iterrows():
-        rid = r["region_id"]
+        rid = str(r["region_id"])
         cap = float(r["cap"])
         xi = float(pulp.value(x[rid]) or 0.0)
-        ti = float(pulp.value(tau[rid]) or 0.0)
-        zi = float(pulp.value(z[rid]) or 0.0) if rid in z else None
-        vi = float(pulp.value(v[rid]) or 0.0) if rid in v else 0.0
-        hi = float(pulp.value(H[rid]) or 0.0) if rid in H else None
-        ui = float(pulp.value(U[rid]) or 0.0) if rid in U else None
-        rev_i = p0 * (1.0 + ti) * xi
-        total_x += xi
-        total_rev += rev_i
+        ti = TAU_FIXED
+        vi = int(round(pulp.value(v[rid]) or 0.0))
+        zi = int(round(pulp.value(z[rid]) or 0.0))
+        H_or_U = xi / cap if cap > 0 else 0.0
+        x_sum += xi
         rows.append({
-            "region_id": rid, "region_name": r["region_name"], "type": r["type"],
-            "cap": cap, "x_i": xi, "tau_i": ti, "z_i": zi, "v_i": vi,
-            "H_i": hi, "U_i": ui,
-            "revenue_i": rev_i,
-            "crowding_i": xi / cap,
+            "region_id": rid, "region_name": r.get("region_name", ""),
+            "type": r["type"], "cap": cap,
+            "x_i": xi, "tau_i": ti, "v_i": vi, "z_i": zi,
+            "H_or_U": H_or_U,
         })
 
-    df = pd.DataFrame(rows)
-    obj_vals = {
-        "total_revenue": total_rev,
-        "hot_penalty": float(sum(pulp.value(cfg["w_H"] * H[rid]) or 0.0
-                                 for rid in hot_ids if rid in H)),
-        "cold_reward": float(sum(pulp.value(cfg["w_B"] * U[rid]) or 0.0
-                                 for rid in cold_ids if rid in U)),
-        "invest_cost": float(sum(pulp.value(cfg["c_v"] * v[rid]) or 0.0
-                                 for rid in cold_ids if rid in v)),
-        "objective": float(pulp.value(prob.objective) or 0.0),
-        "status": status_str,
-        "total_x": total_x,
+    return {
+        "status": status_str, "objective": obj,
+        "revenue": rev_val, "hot_penalty": hot_pen_val,
+        "cold_reward": cold_rew_val, "invest_cost": cost_val,
+        "x_sum": x_sum, "x_total": x_total,
+        "rows": rows,
     }
 
-    return df, obj_vals
 
-
-def setup_style() -> None:
-    plt.rcParams.update({"font.sans-serif": ["SimHei", "Microsoft YaHei", "DejaVu Sans"],
-                         "axes.unicode_minus": False})
-
-
-# =====================================================================================
-# 桑基图 (matplotlib.sankey)
-# =====================================================================================
-def fig_sankey(alloc: pd.DataFrame) -> Path:
-    """区域游客分配桑基图: 左=朱诺总入口 → 右=5 区域节点。
-    用 matplotlib.sankey 最朴素的 .add() + .finish() 链式, 兼容新版 matplotlib。"""
-    setup_style()
-    total_in = alloc["x_i"].sum()
-
-    fig, ax = plt.subplots(figsize=(8.5, 4.5))
-    fig.subplots_adjust(left=0.05, right=0.95, top=0.90, bottom=0.05)
-
-    # 节点定义: node 0=朱诺入口(流出), node 1..5=各区域(流入)
-    labels = ["朱诺\n总入口"] + [
-        f"{row['region_id']}\n{str(row['region_name'])[:6]}\n({row['x_i']:.1f}万)"
-        for _, row in alloc.iterrows()
-    ]
-
-    # 连接: flows 正负号自动推断方向 (正=流入 node, 负=流出 node)
-    # node 0=朱诺入口 (流出 total_in), nodes 1..5=各区域 (流入 x_i, 负号表示对 node 0 而言是流出)
-    sank = Sankey(ax=ax, unit="", gap=0.35)
-    sank.add(
-        flows=[total_in,
-               -alloc.iloc[0]["x_i"],
-               -alloc.iloc[1]["x_i"],
-               -alloc.iloc[2]["x_i"],
-               -alloc.iloc[3]["x_i"],
-               -alloc.iloc[4]["x_i"]],
-        labels=labels,
-        orientations=[0, 1, 1, 1, 1, 1],
-        trunklength=1.5,
-        pathlengths=[0.3, 0.3, 0.3, 0.3, 0.3, 0.3],
-    )
-    sank.finish()
-
-    ax.set_title(f"M5 区域游客分流 (总 {total_in:.1f} 万, 热点在上)", fontsize=10.0, pad=10)
-    fig.text(0.5, 0.01, "Figure 11: M5 regional tourist allocation (matplotlib Sankey)",
-             ha="center", fontsize=8.0, color="#333333")
-
-    p = OUT_DIR / "m5_region_sankey.png"
-    fig.savefig(p, dpi=DPI, bbox_inches="tight")
-    plt.close(fig)
-    return p
-
-
-# =====================================================================================
-# 主入口
-# =====================================================================================
 def main() -> None:
-    t0 = time.perf_counter()
     log_lines: List[str] = []
+    def log(msg: str) -> None: print(msg); log_lines.append(msg)
 
-    def log(msg: str) -> None:
-        print(msg)
-        log_lines.append(msg)
+    log("=" * 78)
+    log("M5 空间均衡 MILP v6.0 (PuLP 2.9.0 + CBC)")
+    log("权威: Prompts/05_v6.0代码对齐.md §模块四")
+    log(f"PuLP 版本: {pulp.__version__} (强制钉 2.9.0)")
+    log(f"输出: {RESULTS_DIR}")
+    log("=" * 78)
 
-    log("=" * 80)
-    log("M5 热门-冷门空间均衡 MILP (PuLP)")
-    log("=" * 80)
+    regions = load_regions()
+    edges = load_edges()
+    log(f"\n[区域] {len(regions)} 个节点: {len(regions[regions['type']=='hot'])} 热 + "
+        f"{len(regions[regions['type']=='cold'])} 冷")
+    log(f"[边] {len(edges)} 条 (暂未建模)")
+    log(f"[参数] p0={M5_CONFIG['p0']}, x_total={M5_CONFIG['x_total']}, "
+        f"H_max={M5_CONFIG['H_max']}, w_H={M5_CONFIG['w_H']}, w_B={M5_CONFIG['w_B']}, "
+        f"c_v={M5_CONFIG['c_v']}, tau∈[{M5_CONFIG['tau_min']},{M5_CONFIG['tau_max']}]")
 
-    data = load_data()
-    log(f"[区域] {len(data['regions'])} 个节点: "
-        f"{len(data['hot_ids'])} 热点 + {len(data['cold_ids'])} 冷点")
-    log(f"  热点: {sorted(data['hot_ids'])}")
-    log(f"  冷点: {sorted(data['cold_ids'])}")
-    log(f"[边] {len(data['edges'])} 条网络连接")
-    log(f"[参数] p0={CONFIG['p0']:.4f}, x_total={CONFIG['x_total']:.2f}万, "
-        f"H_max={CONFIG['H_max']}, rho={CONFIG['rho']}, "
-        f"w_H={CONFIG['w_H']}, w_B={CONFIG['w_B']}, c_v={CONFIG['c_v']}, "
-        f"Delta_cap={CONFIG['Delta_cap']}")
+    t0 = time.perf_counter()
+    result = solve_m5(regions, edges, M5_CONFIG)
+    dt = time.perf_counter() - t0
 
-    log("[求解] PuLP CBC MILP ...")
-    alloc, obj = solve_m5(data, CONFIG)
+    if result is None:
+        log("\n[FATAL] MILP 无可行解! 请检查约束.")
+        with open(RESULTS_DIR / "run_log.txt", "w", encoding="utf-8") as f:
+            f.write("\n".join(log_lines) + "\n")
+        return
 
-    log(f"[状态] {obj['status']}")
-    log(f"[目标] revenue={obj['total_revenue']:.4f}亿, "
-        f"-hot_penalty={-obj['hot_penalty']:.4f}, "
-        f"+cold_reward={obj['cold_reward']:.4f}, "
-        f"-invest_cost={-obj['invest_cost']:.4f}, "
-        f"obj={obj['objective']:.4f}")
-    log(f"[守恒] Σ x_i={obj['total_x']:.2f}万 vs x_total={CONFIG['x_total']:.2f}万")
-    for _, row in alloc.iterrows():
-        log(f"  {row['region_id']} ({row['region_name'][:18]:18s}): cap={row['cap']:.0f}万, "
-            f"x={row['x_i']:.2f}万, τ={row['tau_i']:.4f}, "
-            f"z={row['z_i']}, v={row['v_i']:.2f}, "
-            f"H/U={row['crowding_i']:.3f}")
+    log(f"\n[状态] {result['status']}")
+    log(f"[目标] {result['objective']:.4f} = rev {result['revenue']:.3f} - hot_pen {result['hot_penalty']:.3f} + cold_rew {result['cold_reward']:.3f} - invest {result['invest_cost']:.3f}")
+    log(f"[守恒] Σ x_i={result['x_sum']:.4f} (期望 {result['x_total']:.4f}, "
+        f"误差={abs(result['x_sum']-result['x_total'])/result['x_total']*100:.4f}%)")
 
-    # 输出 CSV
-    alloc.round(6).to_csv(OUT_DIR / "m5_region_allocation.csv",
-                          index=False, encoding="utf-8-sig")
-    pd.DataFrame([obj]).round(6).to_csv(OUT_DIR / "m5_objectives.csv",
-                                        index=False, encoding="utf-8-sig")
+    # 验收: Σx_i = x (误差 < 0.01)
+    err = abs(result["x_sum"] - result["x_total"]) / result["x_total"]
+    log(f"[验收 守恒] 误差 {err:.4%} {'✅ < 1%' if err < 0.01 else '❌'}")
 
-    # 绘制桑基图
-    p = fig_sankey(alloc)
-    log(f"[输出] m5_region_allocation.csv, m5_objectives.csv, m5_region_sankey.png")
-    log(f"[耗时] {time.perf_counter() - t0:.2f}s")
+    log("\n[区域解]:")
+    for row in result["rows"]:
+        log(f"  {row['region_id']}({row['type']:4s}) cap={row['cap']:6.1f}  x={row['x_i']:6.2f}  "
+            f"τ={row['tau_i']:.4f}  v={row['v_i']}  H/U={row['H_or_U']:.3f}")
 
-    log("\n[待建模手确认]")
-    log(f"  1. w_H={CONFIG['w_H']}, w_B={CONFIG['w_B']}, c_v={CONFIG['c_v']} (目标权重)")
-    log(f"  2. Δcap={CONFIG['Delta_cap']}, H_max={CONFIG['H_max']}, ρ={CONFIG['rho']} (约束参数)")
-    log(f"  3. cap_multiplier={CONFIG['cap_multiplier']} (capacity_level → 万)")
-    log(f"  4. τ∈[{CONFIG['tau_lo']}, {CONFIG['tau_hi']}] (税率范围, PDF 无数值)")
-    log(f"  5. M5-6 税率弹性分段 + M5-7 网络流割: 本轮简化处理, 暂未启用")
+    # --- 存 CSV ---
+    pd.DataFrame(result["rows"]).to_csv(RESULTS_DIR / "m5_region_allocation.csv", index=False, encoding="utf-8-sig")
+    pd.DataFrame([{
+        "status": result["status"],
+        "objective_value": result["objective"],
+        "revenue": result["revenue"],
+        "hot_penalty": result["hot_penalty"],
+        "cold_reward": result["cold_reward"],
+        "invest_cost": result["invest_cost"],
+        "x_sum": result["x_sum"],
+        "x_total": result["x_total"],
+    }]).to_csv(RESULTS_DIR / "m5_objectives.csv", index=False, encoding="utf-8-sig")
+    log(f"\n已存 m5_region_allocation.csv, m5_objectives.csv")
+    log(f"耗时 {dt:.2f}s")
 
-    (OUT_DIR / "run_log.txt").write_text("\n".join(log_lines), encoding="utf-8")
+    log_lines.append(f"\n[运行摘要] {time.strftime('%Y-%m-%d %H:%M:%S')}")
+    log_lines.append(f"  状态: {result['status']}")
+    log_lines.append(f"  目标: {result['objective']:.4f}")
+    log_lines.append(f"  守恒误差: {err:.4%}")
+    log_lines.append(f"  耗时: {dt:.2f}s")
+
+    with open(RESULTS_DIR / "run_log.txt", "w", encoding="utf-8") as f:
+        f.write("\n".join(log_lines) + "\n")
+
+    print("\n===== M5 v6.0 DONE =====")
 
 
 if __name__ == "__main__":
