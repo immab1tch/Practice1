@@ -374,10 +374,13 @@ def plot_sobol_bar(df: pd.DataFrame, names: List[str]) -> None:
         st_raw = sub["ST"].to_numpy()
         s1c = np.clip(s1_raw, -TRUNC_THRESHOLD, TRUNC_THRESHOLD)
         stc = np.clip(st_raw, -TRUNC_THRESHOLD, TRUNC_THRESHOLD)
+        # 置信区间同样截断 (C_env 的 conf 与指数同源爆炸, 不截会撑爆 y 轴)
+        s1_conf_c = np.clip(sub["S1_conf"].to_numpy(), 0.0, TRUNC_THRESHOLD)
+        st_conf_c = np.clip(sub["ST_conf"].to_numpy(), 0.0, TRUNC_THRESHOLD)
 
-        ax.bar(xpos - width / 2, s1c, width, yerr=sub["S1_conf"].to_numpy(), capsize=3,
+        ax.bar(xpos - width / 2, s1c, width, yerr=s1_conf_c, capsize=3,
                label="一阶指数 S1", color="#4C72B0", error_kw={"elinewidth": 0.8})
-        ax.bar(xpos + width / 2, stc, width, yerr=sub["ST_conf"].to_numpy(), capsize=3,
+        ax.bar(xpos + width / 2, stc, width, yerr=st_conf_c, capsize=3,
                label="总效应 ST", color="#DD8452", error_kw={"elinewidth": 0.8})
         ax.set_xticks(xpos)
         ax.set_xticklabels(names, rotation=25, fontsize=8)
