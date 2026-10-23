@@ -22,3 +22,14 @@ desktop.ini
 # 临时/日志
 *.log
 !Code/juno_project/results/**/run_log.txt
+console.txt
+
+# 测试/调试产物
+test_*.png
+test_*.csv
+test_*.py
+
+# 交付包（源码仓库不含交付压缩包，交付物另行分发）
+编程手交付*/
+编程手交付*.zip
+交付说明.md
