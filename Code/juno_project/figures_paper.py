@@ -8,7 +8,8 @@ Prompt 08 — 论文图集升级: 8 张 O 奖级插图 (对标 2502617/2501687/2
   * 主色板: #1F4E79 (数据/模型), #C0504D (最优/关键), #808080 (参考)
   * 可行域用主色 15% 透明阴影
   * 图注 "Figure N: ..." 9pt, 300dpi
-输出: results/figures_upgrade/fig01_*.png ~ fig08_*.png
+输出: results/figures/fig01-03 (总览), results/m1/fig04, results/m2/fig06,
+      results/m3/fig05+fig07, results/m5/fig08
 """
 from __future__ import annotations
 
@@ -43,8 +44,13 @@ C_FEAS = "#1F4E79"   # 可行域阴影基色
 C_INF = "#C0504D"    # 不可行/风险
 
 BASE = Path(__file__).resolve().parent
-FU = BASE / "results" / "figures_upgrade"
-FU.mkdir(parents=True, exist_ok=True)
+FIG = BASE / "results" / "figures"
+M1D = BASE / "results" / "m1"
+M2D = BASE / "results" / "m2"
+M3D = BASE / "results" / "m3"
+M5D = BASE / "results" / "m5"
+for _d in (FIG, M1D, M2D, M3D, M5D):
+    _d.mkdir(parents=True, exist_ok=True)
 
 
 def figcap(ax, text):
@@ -143,7 +149,7 @@ def fig01_background():
     figcap(fig.axes[0], "")
     fig.suptitle("Figure 1: Overview of Juneau's cruise tourism industry and resident perceptions",
                  fontsize=12, y=0.985, color="#111111")
-    fig.savefig(FU / "fig01_background.png", bbox_inches="tight")
+    fig.savefig(FIG / "fig01_background.png", bbox_inches="tight")
     plt.close(fig)
     print("fig01 OK")
 
@@ -211,7 +217,7 @@ def fig02_architecture():
     ax.text(35, 2.0, "Feedback: M3 elasticity informs parameter re-calibration",
             fontsize=7.5, color=C_KEY, style="italic", ha="center")
 
-    fig.savefig(FU / "fig02_architecture.png", bbox_inches="tight")
+    fig.savefig(FIG / "fig02_architecture.png", bbox_inches="tight")
     plt.close(fig)
     print("fig02 OK")
 
@@ -263,7 +269,7 @@ def fig03_calibration():
              "McKinley (2024) reports 1.67M unadjusted passengers)",
              ha="center", fontsize=9, color="#222222")
     fig.tight_layout(rect=[0, 0.06, 1, 1])
-    fig.savefig(FU / "fig03_calibration.png", bbox_inches="tight")
+    fig.savefig(FIG / "fig03_calibration.png", bbox_inches="tight")
     plt.close(fig)
     print("fig03 OK")
 
@@ -312,7 +318,7 @@ def fig04_pareto():
              "Figure 4: Pareto frontier of M1 over ecological pressure and normalized revenue (v6.1)",
              ha="center", fontsize=9.5, color="#222222")
     fig.tight_layout(rect=[0, 0.05, 1, 1])
-    fig.savefig(FU / "fig04_pareto.png", bbox_inches="tight")
+    fig.savefig(M1D / "fig04_pareto.png", bbox_inches="tight")
     plt.close(fig)
     print("fig04 OK  best:", best["tau"], best["J"])
 
@@ -351,7 +357,7 @@ def fig05_tau_lever():
              "xd optimized; v6.1)",
              ha="center", fontsize=9.5, color="#222222")
     fig.subplots_adjust(left=0.09, right=0.86, top=0.93, bottom=0.16)
-    fig.savefig(FU / "fig05_tau_lever.png")
+    fig.savefig(M3D / "fig05_tau_lever.png")
     plt.close(fig)
     print("fig05 OK  tau*=", tau_star)
 
@@ -397,7 +403,7 @@ def fig06_m2_robust():
              "Figure 6: Robust reinvestment decisions under Monte-Carlo scenarios (v6.1)",
              ha="center", fontsize=9.5, color="#222222")
     fig.tight_layout(rect=[0, 0.06, 1, 1])
-    fig.savefig(FU / "fig06_m2_robust.png", bbox_inches="tight")
+    fig.savefig(M2D / "fig06_m2_robust.png", bbox_inches="tight")
     plt.close(fig)
     print("fig06 OK  best:", best["label"], best["z_worst"])
 
@@ -453,7 +459,7 @@ def fig07_m3_elasticity():
               "Figure 7: One-factor-at-a-time elasticity ranking and scenario robustness (v6.1)",
               ha="center", fontsize=9.5, color="#222222")
     fig2.tight_layout(rect=[0, 0.06, 1, 1])
-    fig2.savefig(FU / "fig07_m3_elasticity.png", bbox_inches="tight")
+    fig2.savefig(M3D / "fig07_m3_elasticity.png", bbox_inches="tight")
     plt.close(fig2)
     print("fig07 OK")
     return el
@@ -525,20 +531,15 @@ def fig08_m5_flow():
              "Figure 8: Spatial flow rebalancing across hot and cold attractions (M5 v6.1)",
              ha="center", fontsize=9.5, color="#222222")
     fig.tight_layout()
-    fig.savefig(FU / "fig08_m5_flow.png", bbox_inches="tight")
+    fig.savefig(M5D / "fig08_m5_flow.png", bbox_inches="tight")
     plt.close(fig)
     print("fig08 OK  total=", total)
 
 
-# ==================== 清理过时图 ====================
+# ==================== 旧图清理（历史遗留一次性动作，已由仓库整理完成） ====================
 def cleanup():
-    import os
-    for f in ["sensitivity_radar.png", "pareto_tradeoff.png",
-              "sobol_bar.png", "sobol_indices.csv", "interaction_heatmap.png"]:
-        p = FU / f if f.endswith(".png") else BASE / "results" / "m3" / f
-        if p.exists():
-            os.remove(p)
-            print("removed", p)
+    """旧版/中文图已从仓库删除；保留空函数以防外部调用."""
+    pass
 
 
 if __name__ == "__main__":
