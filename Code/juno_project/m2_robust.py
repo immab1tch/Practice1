@@ -1,18 +1,18 @@
 # -*- coding: utf-8 -*-
 r"""
-M2 鲁棒反哺模型 v6.0 —— 按 v6.0 公式重构
+M2 鲁棒反哺模型 v6.1 —— 按 v6.1 公式重构
 
-权威: Prompts/05_v6.0代码对齐.md §模块二 + CHANGELOG §1
+权威: Prompts/06_v6.1参数对齐与图表补齐.md §模块二 + CHANGELOG §1
 重构 (不 patch v3.0):
   * 项目砍到 3 类: y_I, y_E, y_C ∈ {0,1}, 枚举 2³ = 8 种组合
   * 资金注入 delta_k_s = delta_k * y_k (y=0 则 δ_k_s=0)
-  * 状态反馈公式简化 (v6.0):
+  * 状态反馈公式简化 (v6.1):
       I_s   = I0 * (1 + eta_I * delta_I_s)
       C_env_s = max(0.4, 0.8*(0.5*x_s/x0 + 0.5*(x_d/x_d0)) - eta_E*delta_E_s)
       S_s   = 1.0 - 0.3*(x_s/x0 - 1) + eta_C*delta_C_s
   * 情景需求: x_s_new = x0*(tau_s/tau0)^ε * (I_s/I0)^α * (max(0.01,S_s)/1.0)^β * prod(1+κ_j*m_j)
   * 鲁棒 min-max: 每种 y 组合下, 对 15 蒙卡情景取 z 的最小值 (最坏), 再在 8 组合取最大
-  * 量纲 ω_I=0.5, ω_E=1.0, ω_S=0.8 转亿美元当量; λ_cost=1.0, λ_L=0.05
+  * 量纲 (v6.1 修正): ω_I=1.5, ω_E=2.0, ω_S=1.2; λ_cost=0.3, λ_L=0.05
   * 蒙卡口径: x ~ N(x0, 10%), τ ~ N(τ0, 5%), 15 次抽样
 
 依赖: numpy/pandas/scipy (调用 m1_solver.v6 公式函数)
@@ -28,12 +28,12 @@ from typing import Any, Dict, List, Tuple
 import numpy as np
 import pandas as pd
 
-# ==================== 路径 + 复用 v6.0 公式 ====================
+# ==================== 路径 + 复用 v6.1 公式 ====================
 BASE_DIR: Path = Path(__file__).resolve().parent
 RESULTS_DIR: Path = BASE_DIR / "results" / "m2"
 RESULTS_DIR.mkdir(parents=True, exist_ok=True)
 
-import m1_solver as m1                      # v6.0 参数 + FP 迭代
+import m1_solver as m1                      # v6.1 参数 + FP 迭代
 
 # ==================== M2 v6.1 独有参数 ====================
 M2_CONFIG: Dict[str, Any] = {

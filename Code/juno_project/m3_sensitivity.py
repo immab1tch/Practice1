@@ -69,10 +69,20 @@ def solve_best_for_params_and_tau(
     ]
     # τ 固定时, 起点 τ 就是固定值
     tau_start = tau_fixed if tau_fixed is not None else params["tau_min"]
+    # 多起点覆盖: 含基建主导区域 (M1 v6.1 全局最优 δ≈(0.8,0,0) 附近) + 小 xd 网格
+    # (τ 高端 R_min 约束紧, xd 大时 evaluate 返回 None, SLSQP 从不可行起点会掉进 δ=0 次优坑)
     starts = [
         (tau_start, 0.2, 0.2, 0.2, params["xd0"]),
         (tau_start, 0.1, 0.1, 0.1, cap * 0.8),
         (tau_start, 0.3, 0.3, 0.2, params["xd0"]),
+        (tau_start, 0.7, 0.05, 0.05, 0.2),
+        (tau_start, 0.6, 0.1, 0.1, 0.2),
+        (tau_start, 0.5, 0.15, 0.15, 0.2),
+        (tau_start, 0.4, 0.2, 0.2, 0.2),
+        (tau_start, 0.3, 0.25, 0.25, 0.2),
+        (tau_start, 0.7, 0.05, 0.05, 0.5),
+        (tau_start, 0.5, 0.2, 0.1, 0.3),
+        (tau_start, 0.6, 0.1, 0.1, cap * 0.3),
     ]
     best_r: Optional[Dict[str, Any]] = None; best_J = -np.inf; best_R = -np.inf
     for s in starts:
@@ -109,11 +119,13 @@ def compute_elasticity_both(
     p0_special_tau: Optional[float],
     tau_low: float, tau_high: float,
     combo: Tuple[int, ...], n_s: int,
+    delta_star: Tuple[float, float, float],
 ) -> Dict[str, Any]:
     """单参数扰动, 同时算 J 和 R 双基准弹性. τ 特殊处理.
 
     对于普通参数: ±perturb_pct (默认 30%) 扰动
-    对于 τ (TAU_SPECIAL): 从 τ*=p0_special_tau 直接测端点 tau_low/tau_high
+    对于 τ (TAU_SPECIAL): 从 τ*=p0_special_tau 直接测端点 tau_low/tau_high,
+                          固定 δ=δ* (ceteris paribus), 一维优化 xd
     """
     J0, R0, _ = solve_best_for_params_and_tau(base_params, combo, n_s)
     if not np.isfinite(J0) or abs(J0) < 1e-9:
@@ -122,9 +134,14 @@ def compute_elasticity_both(
         return _nan_row(pname, pdips, None, None, "R0_inf_or_zero")
 
     if pname == TAU_SPECIAL:
-        # τ 极限测试 (Prompt 07 方案 1): 固定 τ 分别到 low/high, 只优化 δ/x_d
-        J_min, R_min, _ = solve_best_for_params_and_tau(base_params, combo, n_s, tau_fixed=tau_low)
-        J_plus, R_plus, _ = solve_best_for_params_and_tau(base_params, combo, n_s, tau_fixed=tau_high)
+        # τ 极限测试 (Prompt 07 方案 1): 固定 δ=δ* 只优化 xd (τ 高端可行域极窄, 自由 SLSQP 不可靠)
+        dI, dE, dC = delta_star
+        r_low = solve_tau_fixed_delta(base_params, tau_low, combo, n_s, dI, dE, dC)
+        r_hi = solve_tau_fixed_delta(base_params, tau_high, combo, n_s, dI, dE, dC)
+        if r_low is None or r_hi is None:
+            return _nan_row(pname, pdips, None, None, "tau_endpoint_infeasible")
+        J_min, R_min = r_low["J"], r_low["R"]
+        J_plus, R_plus = r_hi["J"], r_hi["R"]
         # 基准 τ 用最优解 τ*
         p0 = p0_special_tau if p0_special_tau is not None else base_params.get("tau0", 0.11)
         S_J_low = _safe_elasticity(J0, J_min, p0, tau_low)
@@ -140,7 +157,7 @@ def compute_elasticity_both(
             "S_J_avg": (S_J_low + S_J_hi) / 2,
             "S_R_low": S_R_low, "S_R_high": S_R_hi,
             "S_R_avg": (S_R_low + S_R_hi) / 2,
-            "note": "tau_special_endpoints",
+            "note": "tau_special_endpoints_delta_star_fixed",
         }
 
     # 普通参数 ±perturb_pct
@@ -208,16 +225,54 @@ def _nan_row(pname: str, pdips: str, p0: Optional[float], p_low: Optional[float]
     }
 
 
+# ==================== τ 固定时一维优化 xd (固定 δ=δ*, ceteris paribus) ====================
+def solve_tau_fixed_delta(
+    params: Dict[str, Any],
+    tau: float,
+    combo: Tuple[int, ...], n_s: int,
+    dI: float, dE: float, dC: float,
+) -> Optional[Dict[str, Any]]:
+    """固定 τ 与 δ, 一维网格+精修优化 xd ∈ [0, cap].
+
+    τ 高端可行域极窄 (R_min 硬约束), 自由 SLSQP 数值梯度在不可行区 (1e9) 爆炸,
+    会掉进 δ=0 次优坑; 固定 δ=δ* 只扫 xd 则平滑可靠.
+    """
+    cap = params["cap_coef"] * n_s
+    best: Optional[Dict[str, Any]] = None
+    best_J = -np.inf
+    xs = np.concatenate([np.linspace(0.001, min(cap, 0.5), 60),
+                         np.linspace(min(cap, 0.5), cap, 20)])
+    for xd in xs:
+        r = m1.evaluate_v6(params, tau, dI, dE, dC, float(xd), combo, n_s)
+        if r is None:
+            continue
+        if r["J"] > best_J:
+            best_J = r["J"]; best = r
+    if best is None:
+        return None
+    # 局部精修 (xd 邻域)
+    xd0 = best["xd"]
+    lo, hi = max(0.0, xd0 - 0.03), min(cap, xd0 + 0.03)
+    for xd in np.linspace(lo, hi, 30):
+        r = m1.evaluate_v6(params, tau, dI, dE, dC, float(xd), combo, n_s)
+        if r is None:
+            continue
+        if r["J"] > best_J:
+            best_J = r["J"]; best = r
+    return best
+
+
 # ==================== τ 扫描曲线 (Prompt 07 §二) ====================
 def tau_lever_scan(
     base_params: Dict[str, Any],
     combo: Tuple[int, ...], n_s: int,
+    dI: float, dE: float, dC: float,
 ) -> pd.DataFrame:
-    """固定 m/n_s, 扫描 τ ∈ [0.09, 0.15] 步长 0.005, 每个 τ 下优化 δ/x_d 找最优 J."""
+    """固定 m/n_s 与 δ=δ*, 扫描 τ ∈ [0.09, 0.15] 步长 0.005, 一维优化 xd."""
     taus = np.arange(0.09, 0.1501, 0.005)
     rows: List[Dict[str, Any]] = []
     for t in taus:
-        J_t, R_t, r_t = solve_best_for_params_and_tau(base_params, combo, n_s, tau_fixed=float(t))
+        r_t = solve_tau_fixed_delta(base_params, float(t), combo, n_s, dI, dE, dC)
         if r_t is None:
             rows.append({"tau": t, "x": np.nan, "R": np.nan,
                          "C_env": np.nan, "C_soc": np.nan, "C_inf": np.nan,
@@ -257,10 +312,11 @@ def main() -> None:
                   float(r0.get("delta_C", 0.0)))
     log(f"  τ*={tau_star:.4f}, δ*=({delta_star[0]:.3f},{delta_star[1]:.3f},{delta_star[2]:.3f})")
     log(f"  J0={J0_full:.4f}, R0={R0_full:.4f}")
+    log(f"  (τ 杠杆扫描与 τ 端点测试固定 δ=δ*, 一维优化 xd)")
 
     # === τ 扫描曲线 ===
-    log("\n[2] τ 杠杆扫描 [0.09, 0.15] 步长 0.005:")
-    df_tau = tau_lever_scan(base, best_combo, best_ns)
+    log("\n[2] τ 杠杆扫描 [0.09, 0.15] 步长 0.005 (δ=δ* 固定):")
+    df_tau = tau_lever_scan(base, best_combo, best_ns, *delta_star)
     df_tau.to_csv(RESULTS_DIR / "tau_lever_v61.csv", index=False, encoding="utf-8-sig")
     log(f"  {len(df_tau)} 个点, J 范围 [{df_tau['J'].min():.4f}, {df_tau['J'].max():.4f}]")
     log(f"  已存 tau_lever_v61.csv")
@@ -294,10 +350,13 @@ def main() -> None:
     t0 = time.perf_counter()
     rows: List[Dict[str, Any]] = []
     for pname, pdips, pct in KEY_PARAMS:
+        # τ 端点: 低 0.09 (可行) / 高 0.145 (最大稳定可行; 0.15 处 R_min 硬约束激活不可行,
+        # 最优 τ*=0.1483 恰贴可行域上界 —— 模型结构发现, 已记录)
         row = compute_elasticity_both(
             base, pname, pdips, pct,
-            p0_special_tau=tau_star, tau_low=0.09, tau_high=0.15,
+            p0_special_tau=tau_star, tau_low=0.09, tau_high=0.145,
             combo=best_combo, n_s=best_ns,
+            delta_star=delta_star,
         )
         rows.append(row)
         sj = row["S_J_avg"]; sr = row["S_R_avg"]
@@ -326,7 +385,7 @@ def main() -> None:
 
     if n_strong_J < 3:
         log("\n⚠ 建模手标准未达 (|S_J|>1 不足 3 个), 如实上报 Top 排序, 不强行凑数")
-        log("  原因: J0=0.0545 偏小 (v6.0 是 0.2434), C_soc+C_inf 两项权重吃掉 0.3")
+        log("  原因: J0=0.0545 偏小 (v6.1 归一化后 C_soc/C_inf 升到 1.0 吃掉权重), 权重类参数弹性放大")
 
     # 存 CSV (J 和 R 分别排序的两个表)
     cols = ["param", "display", "p0", "p_low", "p_high",
