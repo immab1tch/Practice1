@@ -1,0 +1,5 @@
+﻿name,title,note,source
+01_revenue_floor_sweep,"Varying the revenue floor, other parameters and weights fixed",Each point re-selects among 32 measure combos and optimizes continuous variables; the line joins sampled points only.,floor_sweep.csv
+02_penalty_sweep,"Same 345M USD target, varying the cost of violating it",A larger penalty does not make the preference more accurate; 0 removes the penalty while revenue stays in the four-objective score.,penalty_sweep.csv
+03_fixed_visitor_profile,Fix visitors then optimize the rest: inspect the revenue kink,"Each visitor level enumerates feasible measure combos; curves are a numerical upper-envelope approximation, not proof of global optimality.",visitor_profile.csv
+04_score_decomposition,Both policies evaluated at lambda_R=5: where the difference comes from,"Terms are additive; the avoided revenue-gap penalty is a preference term, not new fiscal revenue or actual economic benefit.",counterfactuals.csv; score_decomposition_en.csv

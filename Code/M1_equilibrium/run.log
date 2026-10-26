@@ -1,0 +1,27 @@
+NSGA-II seed 42: 180 feasible candidates
+NSGA-II seed 73: 180 feasible candidates
+NSGA-II seed 109: 180 feasible candidates
+Main recommendation: {'x': 147.20000000000007, 'tau': np.float64(0.1471884304839137), 'spend_I': np.float64(0.06087338349266906), 'spend_E': np.float64(0.18575613309651884), 'spend_C': np.float64(0.09464116354641694), 'S': 0.863930204078352, 'J': -0.07422352594244214}
+Scenario: default
+Scenario: no_maintenance
+Scenario: incremental
+Scenario: no_community_effect
+Scenario: no_investment_effects
+Scenario: economic_priority
+Scenario: ecological_priority
+Scenario: community_priority
+Scenario: new_entropy_weights
+Scenario: strict_acceptance
+Sensitivity: epsilon
+Sensitivity: eta_I
+Sensitivity: eta_E
+Sensitivity: eta_C
+Sensitivity: K_I
+Sensitivity: K_E
+Sensitivity: K_C
+Sensitivity: acceptance_slope
+Sensitivity: peak_factor
+Sensitivity: measure_cost_multiplier
+Sensitivity: R0
+Sensitivity: S_min
+Finished; figures and interpretation saved.

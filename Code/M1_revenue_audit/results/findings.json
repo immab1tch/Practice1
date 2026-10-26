@@ -1,0 +1,16 @@
+{
+  "default_x": 147.20000000000127,
+  "default_R": 3.45000000000003,
+  "default_floor": 3.45,
+  "no_penalty_x": 127.68822640983176,
+  "no_penalty_R": 2.992692806480432,
+  "delta_x_10k": 19.51177359016951,
+  "profile_left_slope": -0.002199206266680076,
+  "profile_right_slope": -0.002199465991030436,
+  "penalty_marginal_per_10k": 0.03125,
+  "local_penalty_balance_estimate": 0.35187300266881216,
+  "first_checked_penalty_at_kink": 0.5,
+  "expected_dx_per_100m": 42.666666666666664,
+  "score_decomposition_total": 0.6009684407228043,
+  "independent_max_score_gap": 1.5555473575901146e-11
+}

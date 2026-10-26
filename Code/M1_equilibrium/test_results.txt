@@ -1,0 +1,19 @@
+test_baseline (test_model.Round2Tests) ... ok
+test_baseline_maintenance_not_investment (test_model.Round2Tests) ... ok
+test_community_direct_effect_and_no_clip (test_model.Round2Tests) ... ok
+test_constant_entropy (test_model.Round2Tests) ... ok
+test_crowding_lowers_acceptance (test_model.Round2Tests) ... ok
+test_diminishing_returns_and_bounds (test_model.Round2Tests) ... ok
+test_incremental_no_double_charge (test_model.Round2Tests) ... ok
+test_optimizer_returns_feasible (test_model.Round2Tests) ... /Users/zhangjiarui/Desktop/MCM:ICM/十月练手1/Model1_v1_实现/.venv/lib/python3.9/site-packages/pymoo/operators/survival/rank_and_crowding/metrics.py:97: DeprecationWarning: `row_stack` alias is deprecated. Use `np.vstack` directly.
+  dist = np.row_stack([F, np.full(n_obj, np.inf)]) - np.row_stack([np.full(n_obj, -np.inf), F])
+ok
+test_overbudget_rejected (test_model.Round2Tests) ... ok
+test_positive_environment_no_negative_credit (test_model.Round2Tests) ... ok
+test_random_equilibrium_accounting (test_model.Round2Tests) ... ok
+test_reject_invalid_response_scale (test_model.Round2Tests) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.079s
+
+OK

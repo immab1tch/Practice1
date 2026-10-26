@@ -3,35 +3,20 @@ __pycache__/
 *.py[cod]
 *.egg-info/
 .pytest_cache/
-
-# 虚拟环境
 .venv/
 venv/
 env/
 
-# IDE
+# IDE / 系统
 .idea/
 .vscode/
-*.swp
-
-# 系统
 .DS_Store
 Thumbs.db
-desktop.ini
 
-# 临时/日志
-*.log
-!Code/juno_project/results/**/run_log.txt
-console.txt
+# 临时与日志（保留已归档的 run.log，忽略临时输出）
+*.tmp
+~$*
 
-# 测试/调试产物
-test_*.png
-test_*.csv
-test_*.py
-
-# 交付包（源码仓库不含交付压缩包，交付物另行分发）
-*交付*.zip
-*交付*/
-交付说明.md
-*.zip
-*.rar
+# 大体积中间产物（按需保留 results；忽略可重新生成的重型输出）
+*.h5
+*.pkl

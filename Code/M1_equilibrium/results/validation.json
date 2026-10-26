@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "recomputed_feasible_policies": 479,
+  "sensitivity_rows": 48,
+  "stress_samples": 600,
+  "figures": 15,
+  "no_maintenance_all_discretionary_positive": true
+}

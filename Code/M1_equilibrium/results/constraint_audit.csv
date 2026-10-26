@@ -1,0 +1,15 @@
+﻿constraint,margin,passed
+capacity,0.19675005641425472,True
+ecology,0.6178399983027509,True
+daily_cap,0.15999999999999925,True
+ship_capacity,0.15999999999999925,True
+physical_berths,2.0,True
+annual_daily_link,1.1521495327102809,True
+budget,-6.863196879500968e-15,True
+allocation,0.1279428458116752,True
+acceptance_lower,0.863930204078352,True
+acceptance_upper,0.13606979592164803,True
+tax_lower,0.0571884304839137,True
+tax_upper,0.0028115695160862986,True
+allocation_lower,0.11987667050577526,True
+allocation_upper,0.6341943640389232,True
