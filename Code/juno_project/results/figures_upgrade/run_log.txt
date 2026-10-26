@@ -1,47 +1,40 @@
 ﻿==============================================================================
-图表升级 (O 奖风格) | 输出目录: C:\ModelingProgram\Practice1\Code\juno_project\results\figures_upgrade
+论文图集 v6.1 (Prompt 08) | 输出: results/figures_upgrade
+生成时间: 2026-10-26
 ==============================================================================
-[图 1] pareto_tradeoff ...
-  [自检] ★ R: 现算 3.644939 vs m1_results 3.644939 |Δ|=0.00e+00 -> PASS
-  [自检] ★ C_env: 现算 0.500001 vs m1_results 0.500001 |Δ|=0.00e+00 -> PASS
-  [自检] ★ C_soc: 现算 0.612376 vs m1_results 0.612376 |Δ|=0.00e+00 -> PASS
-  [自检] 选中组合 m=01111 vs csv m=01111
-  [数据来源] m1_solver.solve_one_combo × 32 组合现算 (S00_baseline)
-   -> pareto_tradeoff.png  4.3s
-[图 2] lever_scan ...
-  [数据来源] m1_solver.evaluate × 61 (τ) + 61 (ε) 点现算, 固定组合 m=01111
-   -> lever_scan.png  4.3s
-[图 3] feasibility_heatmap ...
-  [数据来源] m1_solver.evaluate × 60×60=3600 网格点现算 (δ 固定于 S00 最优)
-  [网格统计] 可行 3507 | 违反生态 29 | 违反容量 64 | 收入软约束未达 0 | 未收敛 0
-   -> feasibility_heatmap.png  4.3s
-[图 4] sensitivity_radar ...
-  [数据来源] results\m3\sobol_indices.csv (Sobol S1/ST) + results\m3\m3_elasticity.csv (单因素弹性, 仅核对)
-  [提示] ['C_env'] 存在 >1 的指数 (C_env 因地板致方差退化), 图中已截断并标注
-   -> sensitivity_radar.png  0.6s
-[图 5] sensitivity_lines ...
-  [扫描] 505 次重求解 (5 参数 × 101 点), 并行 8 进程, 耗时 9.7s; 不可行点 0 个
-  [数据来源] m1_solver.solve_one_combo × 505 次重求解 (参数按基准值 ±20% 扫描), 明细 figures_upgrade/sensitivity_lines_data.csv
-   -> sensitivity_lines.png  14.5s
-[图 6] workflow_framework ...
-   -> workflow_framework.png  0.1s
-------------------------------------------------------------------------------
-产出清单 (数据来源 -> 路径):
-  pareto_tradeoff        <- m1_solver.solve_one_combo (S00 × 32)
-                         -> C:\ModelingProgram\Practice1\Code\juno_project\results\figures_upgrade\pareto_tradeoff.png
-  lever_scan             <- m1_solver.evaluate (τ/ε 扫描)
-                         -> C:\ModelingProgram\Practice1\Code\juno_project\results\figures_upgrade\lever_scan.png
-  feasibility_heatmap    <- m1_solver.evaluate (60×60 网格)
-                         -> C:\ModelingProgram\Practice1\Code\juno_project\results\figures_upgrade\feasibility_heatmap.png
-  sensitivity_radar      <- results/m3/sobol_indices.csv
-                         -> C:\ModelingProgram\Practice1\Code\juno_project\results\figures_upgrade\sensitivity_radar.png
-  sensitivity_lines      <- m1_solver.solve_one_combo (5×101 重求解)
-                         -> C:\ModelingProgram\Practice1\Code\juno_project\results\figures_upgrade\sensitivity_lines.png
-  workflow_framework     <- 无数据 (流程图)
-                         -> C:\ModelingProgram\Practice1\Code\juno_project\results\figures_upgrade\workflow_framework.png
-总耗时 28.1s
 
-=== v6.1 图表补齐 2026-10-26 14:03:54 ===
-  m1_pareto_v61.png: Pareto 前沿 (153 可行/160, 最优 m=11111, J=0.0545)
-  m5_flow_v61.png: 空间网络 (hot x≥10 防关停, hot τ≤0.12, cold τ=0.15)
-  workflow_v61.png: M1→M2→M3→M4(定性AHP)→M5
+[执行内容]
+1. 8 张 O 奖级论文图 (fig01-fig08) 全部生成, 300dpi, 全英文, 衬线字体
+   (Times New Roman), 主色板 #1F4E79/#C0504D/#808080, 可行域 15% 透明阴影
+
+[图清单]
+  fig01_background.png   背景总览 5 子图 (乘客量/支出构成/态度饼图/感知/疫情对比)
+  fig02_architecture.png 模型架构图 (带 M3 敏感性反馈回路)
+  fig03_calibration.png  数据校准 (历史 vs 模型 S00, 偏差如实标注)
+  fig04_pareto.png       M1 Pareto 前沿 (153 可行, 折中解 m=11111 τ=0.1483 J=0.0545)
+  fig05_tau_lever.png    τ 杠杆扫描 (δ=δ* 固定, J/R 双轴, R_min 约束线, τ*=0.145)
+  fig06_m2_robust.png    M2 鲁棒反哺 (8 组合 z_worst + 最优 y=(1,0,0) 蒙卡分布)
+  fig07_m3_elasticity.png M3 弹性排序 (w_R=7.22/w_S=-3.58/w_E=-2.20/τ=1.34) + 15 情景
+  fig08_m5_flow.png      M5 空间流量 (热/冷 5 节点, 容量圆+使用率着色, 守恒 160 万)
+
+[数据源]
+  fig01: B01_McKinley2024 报告 + preprocessed S00 + 题给数据
+  fig03: 2019-2023 历史 (题给/报告) vs M1 S00 基准
+  fig04: results/m1/m1_results.csv (160 行, 153 可行)
+  fig05: results/m3/tau_lever_v61.csv
+  fig06: results/m2/m2_projects.csv + m2_scenarios.csv
+  fig07: results/m3/m3_elasticity.csv + m3_scenarios.csv
+  fig08: results/m5/m5_region_allocation_v61.csv
+
+[清理过时图 (v2.0/Sobol 数据, 与 v6.1 模型不符)]
+  已删除: pareto_tradeoff.png (v2.0), sensitivity_radar.png (Sobol),
+          sensitivity_lines.png/.csv (v2.0), feasibility_heatmap.png (v2.0),
+          lever_scan.png (v2.0), workflow_framework.png (旧版),
+          m1_pareto_v61/m5_flow_v61/workflow_v61.png (中文标签, 被 fig04/08/02 取代)
+  m3 目录: 删除 sobol_bar.png/sobol_indices.csv/interaction_heatmap.png/elasticity_rank.png
+
+[备注]
+  - τ=0.15 处 R_min 硬约束激活不可行, 杠杆曲线最优 τ*=0.145 (固定 δ 口径);
+    M1 自由最优 τ*=0.1483 恰贴可行域上界 —— 生态优先政策含义待建模手确认
+  - 图注引用数据来源, 无中文标签残留
+==============================================================================
