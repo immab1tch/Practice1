@@ -35,19 +35,19 @@ RESULTS_DIR.mkdir(parents=True, exist_ok=True)
 
 import m1_solver as m1                      # v6.0 参数 + FP 迭代
 
-# ==================== M2 v6.0 独有参数 ====================
+# ==================== M2 v6.1 独有参数 ====================
 M2_CONFIG: Dict[str, Any] = {
     # 项目成本 (亿) — 3 类项目对应 c_I, c_E, c_S
     "c_I": 0.3, "c_E": 0.25, "c_S": 0.4,
     # 总预算 (亿) — 约束 Σ c_k*y_k ≤ B
     "B_total": 1.0,
-    # M1 最优解固定量 (取 M1 v6.0 最优解的 δ 和 m)
-    "m_optimal": (0, 0, 1, 1, 1),            # m=00111, n_s=1, 来自 m1 run
-    "delta_optimal": (0.243, 0.198, 0.359),  # M1 v6.0 最优 δ
-    # 量纲系数 (CHANGELOG §1.5)
-    "omega_I": 0.5, "omega_E": 1.0, "omega_S": 0.8,
-    # 罚系数 (CHANGELOG §1.5)
-    "lambda_cost": 1.0, "lambda_L": 0.05,
+    # M1 v6.1 最优解固定量 (取 m1 v6.1 run 输出)
+    "m_optimal": (1, 1, 1, 1, 1),            # m=11111, n_s=5, τ=0.1483, δ=(0.8,0,0)
+    "delta_optimal": (0.800, 0.000, 0.000),  # M1 v6.1 最优 δ (仅基建, 占满 delta_total=0.8)
+    # 量纲系数 (v6.1 修正: 0.5/1.0/0.8 → 1.5/2.0/1.2, 防退化)
+    "omega_I": 1.5, "omega_E": 2.0, "omega_S": 1.2,
+    # 罚系数 (v6.1 修正: 1.0 → 0.3, 让投资更有吸引力)
+    "lambda_cost": 0.3, "lambda_L": 0.05,
     # 蒙卡
     "n_scenarios": 15, "sigma_x": 0.10, "sigma_tau": 0.05,
     "seed": 42,
@@ -121,15 +121,15 @@ def main() -> None:
         print(msg); log_lines.append(msg)
 
     log("=" * 78)
-    log("M2 鲁棒反哺模型 v6.0")
+    log("M2 鲁棒反哺模型 v6.1")
     log(f"项目: 3 类 × 8 组合, 情景: 15 蒙卡 (x~N(x0,10%), τ~N(τ0,5%))")
-    log(f"量纲: ω_I=0.5, ω_E=1.0, ω_S=0.8; λ_cost=1.0, λ_L=0.05")
+    log(f"量纲: ω_I=1.5, ω_E=2.0, ω_S=1.2; λ_cost=0.3, λ_L=0.05")
     log("=" * 78)
 
     # --- M1 最优解 (v6.0, 从 run_log 取) ---
     m_opt = M2_CONFIG["m_optimal"]
     delta_opt = M2_CONFIG["delta_optimal"]
-    log(f"\n固定 M1 v6.0 最优: m={''.join(map(str, m_opt))}, δ=({delta_opt[0]:.3f},{delta_opt[1]:.3f},{delta_opt[2]:.3f})")
+    log(f"\n固定 M1 v6.1 最优: m={''.join(map(str, m_opt))}, δ=({delta_opt[0]:.3f},{delta_opt[1]:.3f},{delta_opt[2]:.3f})")
 
     # --- 预算约束 ---
     B = M2_CONFIG["B_total"]
@@ -226,7 +226,7 @@ def main() -> None:
     with open(RESULTS_DIR / "run_log.txt", "w", encoding="utf-8") as f:
         f.write("\n".join(log_lines) + "\n")
 
-    print("\n===== M2 v6.0 DONE =====")
+    print("\n===== M2 v6.1 DONE =====")
 
 
 if __name__ == "__main__":

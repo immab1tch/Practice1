@@ -73,9 +73,9 @@ DEFAULT_PARAMS: Dict[str, Any] = {
     "E_max": 0.95,             # M1-9 生态压力上限
     "n_s_max": 5,              # M1-11 日限船数
 
-    # --- §1.4 归一化除数 (v6.0 新增) ---
-    "C_soc_0": 2844.0,         # M1-5
-    "C_inf_0": 1137.0,         # M1-6
+    # --- §1.4 归一化除数 (v6.1 修正: 让 S00 基准态 C_soc=C_inf=1.0) ---
+    "C_soc_0": 1422.72,         # v6.1 修正 (v6.0 是 2844)
+    "C_inf_0": 0.6,             # v6.1 修正 (v6.0 是 1137)
 
     # --- §1.5 效率系数 ---
     "eta_I": 0.7,              # M1-3 基建边际效率 (B/B0 折减)
@@ -331,8 +331,8 @@ def main() -> None:
         print(msg); log_lines.append(msg)
 
     log("=" * 78)
-    log("M1 基准模型 v6.0 (外层枚举 160 组 × 内层 SLSQP)")
-    log("权威: Docs/模型建立v6.0.pdf + CHANGELOG §1 + Prompts/05")
+    log("M1 基准模型 v6.1 (外层枚举 160 组 × 内层 SLSQP)")
+    log("权威: Docs/模型建立v6.1.pdf + CHANGELOG §1 + Prompts/06")
     log(f"输出: {RESULTS_DIR}")
     log("=" * 78)
 
@@ -440,7 +440,7 @@ def main() -> None:
     with open(RESULTS_DIR / "run_log.txt", "w", encoding="utf-8") as f:
         f.write("\n".join(log_lines) + "\n")
 
-    print("\n===== M1 v6.0 DONE =====")
+    print("\n===== M1 v6.1 DONE =====")
 
 
 if __name__ == "__main__":

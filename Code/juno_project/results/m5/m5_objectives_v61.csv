@@ -1,0 +1,2 @@
+﻿status,objective_value,revenue,hot_penalty,cold_reward,invest_cost,x_sum,x_total,n_distinct_tau
+Optimal,7.289880952380953,6.3375,2.5,4.9523809523809526,1.5,160.0,160.0,2

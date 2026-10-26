@@ -40,3 +40,8 @@
   workflow_framework     <- 无数据 (流程图)
                          -> C:\ModelingProgram\Practice1\Code\juno_project\results\figures_upgrade\workflow_framework.png
 总耗时 28.1s
+
+=== v6.1 图表补齐 2026-10-26 14:03:54 ===
+  m1_pareto_v61.png: Pareto 前沿 (153 可行/160, 最优 m=11111, J=0.0545)
+  m5_flow_v61.png: 空间网络 (hot x≥10 防关停, hot τ≤0.12, cold τ=0.15)
+  workflow_v61.png: M1→M2→M3→M4(定性AHP)→M5

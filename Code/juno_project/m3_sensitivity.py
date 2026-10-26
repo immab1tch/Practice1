@@ -139,13 +139,13 @@ def main() -> None:
     def log(msg: str) -> None: print(msg); log_lines.append(msg)
 
     log("=" * 78)
-    log("M3 敏感性分析 v6.0 — 单因素 ±10% 弹性 (已删 SALib/Sobol)")
+    log("M3 敏感性分析 v6.1 — 单因素 ±10% 弹性 (已删 SALib/Sobol)")
     log(f"关键参数: {len(KEY_PARAMS)} 项")
     log("=" * 78)
 
-    # 先确定 M1 最优 (固定 m/n_s)
-    log("\n[1] 找 M1 v6.0 最优 (固定 m, n_s):")
-    best_combo, best_ns = (0, 0, 1, 1, 1), 1   # M1 跑出来的最优
+    # 先确定 M1 最优 (固定 m/n_s, 取 M1 v6.1 枚举结果)
+    log("\n[1] 找 M1 v6.1 最优 (固定 m, n_s):")
+    best_combo, best_ns = (1, 1, 1, 1, 1), 5   # M1 v6.1 最优
     J0, r0 = solve_best_for_params(base, best_combo, best_ns)
     log(f"  m={''.join(map(str, best_combo))}, n_s={best_ns}, J0={J0:.4f}")
     log(f"  τ={r0.get('tau',np.nan):.4f}, δ=({r0.get('delta_I',np.nan):.3f},"
@@ -237,7 +237,7 @@ def main() -> None:
     with open(RESULTS_DIR / "run_log.txt", "w", encoding="utf-8") as f:
         f.write("\n".join(log_lines) + "\n")
 
-    print("\n===== M3 v6.0 DONE =====")
+    print("\n===== M3 v6.1 DONE =====")
 
 
 if __name__ == "__main__":
