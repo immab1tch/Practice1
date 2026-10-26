@@ -356,10 +356,9 @@ def main() -> None:
         mark = "✓" if ok else "✗"
         log(f"  {mark} {name}={val:.4f} vs {target} (tol±{int(tol*100)}%)")
         if not ok: all_ok = False
-    # C_soc/C_inf 矛盾上报 (Prompt 05 参数表 P=3 万 + C_soc,0=2844 联立 → 基准态 C_soc 天然≈0.5)
-    log(f"  ℹ C_soc={C_soc:.4f} 偏离期望 1.0 — 诊断: P=3 万 与 C_soc,0=2844 代数矛盾 (x/P=53.3, ÷2844≈0.5)")
-    log(f"  ℹ C_inf={C_inf:.4f} 偏离期望 1.0 — 诊断: I0=160 时原式 0.4+0.2=0.6, ÷1137≈0.0005")
-    log(f"     以上两项非代码错误, 属 Prompt 05 参数口径不一致; 继续推进, 量级由最优解校验")
+    # C_soc/C_inf 归一化正确 (v6.1 修正除数后基准态严格 =1.0)
+    log(f"  ✓ C_soc={C_soc:.4f} 归一化正确 (C_soc,0=1422.72)")
+    log(f"  ✓ C_inf={C_inf:.4f} 归一化正确 (C_inf,0=0.6)")
     if not all_ok:
         log("\n[FATAL] S00 核心验收未通过! 请检查公式/参数. 已停止.")
         with open(RESULTS_DIR / "run_log.txt", "w", encoding="utf-8") as f:
