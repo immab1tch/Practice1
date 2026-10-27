@@ -1,0 +1,48 @@
+{
+  "weight_count": 18,
+  "structured_points": 15,
+  "named_points": 3,
+  "all_feasible_candidates": 426,
+  "menu_weight_rows": 18,
+  "menu_minimax_policy": "P_MAIN",
+  "menu_minimax_max_regret": 0.11810208736290884,
+  "original_max_regret": 0.11810208736290884,
+  "robust_max_regret": 0.11077955111246396,
+  "robust_worst_weights": [
+    "VE",
+    "VS",
+    "VI"
+  ],
+  "robust_x": 147.2000000000008,
+  "robust_R": 3.4500000000000193,
+  "robust_tau": 0.14764866892194486,
+  "robust_spend_million": {
+    "I": 6.75660779362605,
+    "E": 18.36363404920653,
+    "C": 9.133851979624561
+  },
+  "robust_combo": "01110",
+  "menu_x_min": 147.19999999999146,
+  "menu_x_max": 160.00000000005824,
+  "menu_plateau_at_147_2_count": 13,
+  "dense_menu_points": 455,
+  "dense_regret_max_at_vertices_verified": true,
+  "benchmark_updates": [
+    0.0
+  ],
+  "global_optimum_proven": false,
+  "benchmark_type": "best-known numerical optimum from pooled feasible candidates",
+  "elapsed_seconds": 83.08059287071228,
+  "hashes": {
+    "model.py": "348bcce14bd562380ef75802774bfa6f8b1cb5689416c526de3cc1d766385cec",
+    "run_preferences.py": "76a1ff928f9f429182ee3fafc039bccb921b77607caf83891e5e846fd3bb006c",
+    "inputs/parameters_used.json": "158bfc16d8a9656e747d901c9d6e0cd067951df24c431afdd968690e0268b041",
+    "inputs/weights_used.json": "0898ffe6c2e7a0ffccd2c92447c96f40df84e25fb123c22fdbdaf0c51d06c8f1",
+    "inputs/preference_robustness/derived_weights_alternative.json": "237753e5933324ff390f6615d89bbdfac4893072dc1608a8c051534b3d5f2a72",
+    "inputs/recommended.csv": "e1d014a3ee11452a3dd670208a821757685ef6edbfe2b562c8afab354c3ff91a",
+    "inputs/scenarios.csv": "6570bfef6acd1eec038fbd77404f35e2a68ccb9b7489f6ae7db28cb928143fd2"
+  },
+  "original_parameter_stress_passed": 245,
+  "robust_parameter_stress_passed": 245,
+  "parameter_stress_n": 600
+}

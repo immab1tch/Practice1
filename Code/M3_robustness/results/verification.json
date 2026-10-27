@@ -1,0 +1,15 @@
+{
+  "python": "3.13.16",
+  "M3": {
+    "sensitivity_rows_recomputed": 48,
+    "stress_equilibria_rerun": 600,
+    "landscape_rows_recomputed": 2352,
+    "max_replay_absolute_error": 1.1368683772161603e-13,
+    "stress_feasible_count": 245,
+    "stress_sample_count": 600,
+    "stress_feasible_fraction": 0.4083333333333333,
+    "optimization_search_reused": true,
+    "stress_is_empirical_probability": false,
+    "global_optimum_proven": false
+  }
+}

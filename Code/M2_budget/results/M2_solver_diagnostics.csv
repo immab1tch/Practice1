@@ -1,0 +1,577 @@
+﻿case,combo,success,message,max_violation,epigraph_violation
+default,00000,True,Optimization terminated successfully,2.7049070054503816e-14,1.0279184910662783e-13
+default,00000,True,Optimization terminated successfully,2.7049070054503816e-14,1.0279184910662783e-13
+default,00000,True,Optimization terminated successfully,4.171747122833922e-15,4.171747122833922e-15
+default,00001,True,Optimization terminated successfully,6.733738146205283e-12,6.733738146205283e-12
+default,00001,True,Optimization terminated successfully,6.733738146205283e-12,6.733738146205283e-12
+default,00001,True,Optimization terminated successfully,2.5368259681465246e-12,2.5368259681465246e-12
+default,00010,True,Optimization terminated successfully,0.0,0.0
+default,00010,True,Optimization terminated successfully,0.0,0.0
+default,00010,True,Optimization terminated successfully,3.964505491570559e-13,3.964505491570559e-13
+default,00011,True,Optimization terminated successfully,0.0,0.0
+default,00011,True,Optimization terminated successfully,0.0,0.0
+default,00011,True,Optimization terminated successfully,0.0,0.0
+default,00100,True,Optimization terminated successfully,1.9909999574944477e-12,1.9909999574944477e-12
+default,00100,True,Optimization terminated successfully,1.9909999574944477e-12,1.9909999574944477e-12
+default,00100,True,Optimization terminated successfully,4.412901021031289e-12,4.412901021031289e-12
+default,00101,True,Optimization terminated successfully,5.284661597215745e-14,5.284661597215745e-14
+default,00101,True,Optimization terminated successfully,5.284661597215745e-14,5.284661597215745e-14
+default,00101,True,Optimization terminated successfully,0.0,0.0
+default,00110,True,Optimization terminated successfully,1.4735687417752077e-13,1.4735687417752077e-13
+default,00110,True,Optimization terminated successfully,1.4735687417752077e-13,1.4735687417752077e-13
+default,00110,True,Optimization terminated successfully,2.1343196570369677e-13,2.1343196570369677e-13
+default,00111,False,Inequality constraints incompatible,0.00505232181425086,0.00505232181425086
+default,00111,False,Inequality constraints incompatible,0.00505232181425086,0.00505232181425086
+default,00111,False,Inequality constraints incompatible,0.005052322408272136,0.005052322408272136
+default,01000,True,Optimization terminated successfully,0.0,9.043050995449038e-16
+default,01000,True,Optimization terminated successfully,0.0,9.043050995449038e-16
+default,01000,True,Optimization terminated successfully,8.881784197001252e-14,1.3624332084580806e-12
+default,01001,True,Optimization terminated successfully,9.016356684834605e-15,9.016356684834605e-15
+default,01001,True,Optimization terminated successfully,9.016356684834605e-15,9.016356684834605e-15
+default,01001,True,Optimization terminated successfully,0.0,0.0
+default,01010,True,Optimization terminated successfully,0.0,8.187705573398756e-13
+default,01010,True,Optimization terminated successfully,0.0,8.187705573398756e-13
+default,01010,True,Optimization terminated successfully,0.0,0.0
+default,01011,True,Optimization terminated successfully,7.219813972259351e-13,7.219813972259351e-13
+default,01011,True,Optimization terminated successfully,7.219813972259351e-13,7.219813972259351e-13
+default,01011,True,Optimization terminated successfully,1.8301858345335913e-14,1.8301858345335913e-14
+default,01100,True,Optimization terminated successfully,9.02981393361794e-14,9.02981393361794e-14
+default,01100,True,Optimization terminated successfully,9.02981393361794e-14,9.02981393361794e-14
+default,01100,True,Optimization terminated successfully,1.9062192901594357e-12,7.905024782909701e-12
+default,01101,True,Optimization terminated successfully,2.517851247362022e-13,2.517851247362022e-13
+default,01101,True,Optimization terminated successfully,2.517851247362022e-13,2.517851247362022e-13
+default,01101,True,Optimization terminated successfully,0.0,0.0
+default,01110,True,Optimization terminated successfully,0.0,3.659295089164516e-14
+default,01110,True,Optimization terminated successfully,0.0,3.659295089164516e-14
+default,01110,False,Positive directional derivative for linesearch,3.3763429762461094e-11,1.8428541655642523e-10
+default,01111,True,Optimization terminated successfully,5.117791712302389e-13,5.117791712302389e-13
+default,01111,True,Optimization terminated successfully,5.117791712302389e-13,5.117791712302389e-13
+default,01111,True,Optimization terminated successfully,1.569115208136888e-13,1.569115208136888e-13
+default,10000,True,Optimization terminated successfully,5.238032230181489e-13,5.238032230181489e-13
+default,10000,True,Optimization terminated successfully,5.238032230181489e-13,5.238032230181489e-13
+default,10000,True,Optimization terminated successfully,2.0639382459001245e-12,2.0639382459001245e-12
+default,10001,False,Inequality constraints incompatible,0.12628455157417928,0.12628455157417928
+default,10001,False,Inequality constraints incompatible,0.12628455157417928,0.12628455157417928
+default,10001,False,Inequality constraints incompatible,0.12628422788693405,0.12628422788693405
+default,10010,False,Inequality constraints incompatible,0.036720939324583535,0.036720939324583535
+default,10010,False,Inequality constraints incompatible,0.036720939324583535,0.036720939324583535
+default,10010,False,Positive directional derivative for linesearch,0.03672093523086217,0.03672093523086217
+default,10011,False,Positive directional derivative for linesearch,0.1892006924991898,0.1892006924991898
+default,10011,False,Positive directional derivative for linesearch,0.1892006924991898,0.1892006924991898
+default,10011,False,Inequality constraints incompatible,0.18920070348582807,0.18920070348582807
+default,10100,False,Inequality constraints incompatible,0.010155012625704396,0.010155012625704396
+default,10100,False,Inequality constraints incompatible,0.010155012625704396,0.010155012625704396
+default,10100,False,Inequality constraints incompatible,0.010155041500588213,0.0917064109974473
+default,10101,False,Inequality constraints incompatible,0.15773150468563646,0.15773150468563646
+default,10101,False,Inequality constraints incompatible,0.15773150468563646,0.15773150468563646
+default,10101,False,Inequality constraints incompatible,0.15773150229178068,0.15773150229178068
+default,10110,False,Inequality constraints incompatible,0.06751849176940516,0.06751849176940516
+default,10110,False,Inequality constraints incompatible,0.06751849176940516,0.06751849176940516
+default,10110,False,Inequality constraints incompatible,0.0675184913261162,0.0675184913261162
+default,10111,False,Positive directional derivative for linesearch,0.2222082628752451,0.2222082628752451
+default,10111,False,Positive directional derivative for linesearch,0.2222082628752451,0.2222082628752451
+default,10111,False,Positive directional derivative for linesearch,0.2222082628751687,0.2222082628751687
+default,11000,True,Optimization terminated successfully,6.647880898967605e-14,5.711681128062196e-13
+default,11000,True,Optimization terminated successfully,6.647880898967605e-14,5.711681128062196e-13
+default,11000,True,Optimization terminated successfully,3.2529534621517087e-13,3.2529534621517087e-13
+default,11001,False,Inequality constraints incompatible,0.05192155554269906,0.05192155554269906
+default,11001,False,Inequality constraints incompatible,0.05192155554269906,0.05192155554269906
+default,11001,False,Inequality constraints incompatible,0.05192155786159525,0.05192155786159525
+default,11010,True,Optimization terminated successfully,9.059419880941277e-14,9.059419880941277e-14
+default,11010,True,Optimization terminated successfully,9.059419880941277e-14,9.059419880941277e-14
+default,11010,True,Optimization terminated successfully,0.0,1.1593503934648197e-13
+default,11011,False,Positive directional derivative for linesearch,0.11067643656779236,0.11067643656779236
+default,11011,False,Positive directional derivative for linesearch,0.11067643656779236,0.11067643656779236
+default,11011,False,Inequality constraints incompatible,0.11067643771032598,0.11067643771032598
+default,11100,True,Optimization terminated successfully,0.0,8.912315330178444e-14
+default,11100,True,Optimization terminated successfully,0.0,8.912315330178444e-14
+default,11100,True,Optimization terminated successfully,2.960594732333751e-14,2.960594732333751e-14
+default,11101,False,Inequality constraints incompatible,0.08252091603152745,0.08252091603152745
+default,11101,False,Inequality constraints incompatible,0.08252091603152745,0.08252091603152745
+default,11101,False,Inequality constraints incompatible,0.08252091609788237,0.08252091609788237
+default,11110,True,Optimization terminated successfully,2.4424906541753444e-13,2.4424906541753444e-13
+default,11110,True,Optimization terminated successfully,2.4424906541753444e-13,2.4424906541753444e-13
+default,11110,True,Optimization terminated successfully,0.0,0.0
+default,11111,False,Positive directional derivative for linesearch,0.1427125595306329,0.1427125595306329
+default,11111,False,Positive directional derivative for linesearch,0.1427125595306329,0.1427125595306329
+default,11111,False,Inequality constraints incompatible,0.1427125608161086,0.1427125608161086
+no_maintenance,00000,True,Optimization terminated successfully,1.15732339536683e-14,1.15732339536683e-14
+no_maintenance,00000,True,Optimization terminated successfully,0.0,5.731711401798141e-14
+no_maintenance,00000,True,Optimization terminated successfully,0.0,4.052462069533065e-13
+no_maintenance,00001,True,Optimization terminated successfully,4.185204371617257e-14,4.185204371617257e-14
+no_maintenance,00001,True,Optimization terminated successfully,4.215752326355428e-12,4.215752326355428e-12
+no_maintenance,00001,True,Optimization terminated successfully,1.1376758121431605e-12,1.1376758121431605e-12
+no_maintenance,00010,True,Optimization terminated successfully,3.8218586544672056e-14,3.8218586544672056e-14
+no_maintenance,00010,True,Optimization terminated successfully,2.5703345176170292e-14,2.5703345176170292e-14
+no_maintenance,00010,True,Optimization terminated successfully,1.4749144666535413e-13,1.4749144666535413e-13
+no_maintenance,00011,True,Optimization terminated successfully,0.0,0.0
+no_maintenance,00011,True,Optimization terminated successfully,0.0,0.0
+no_maintenance,00011,True,Optimization terminated successfully,3.668446018337184e-13,3.668446018337184e-13
+no_maintenance,00100,True,Optimization terminated successfully,9.352787904417986e-14,9.352787904417986e-14
+no_maintenance,00100,True,Optimization terminated successfully,1.7054371383120739e-12,1.7054371383120739e-12
+no_maintenance,00100,True,Optimization terminated successfully,3.202825210433785e-14,3.202825210433785e-14
+no_maintenance,00101,True,Optimization terminated successfully,4.574118861455645e-14,4.574118861455645e-14
+no_maintenance,00101,True,Optimization terminated successfully,9.473903143468003e-14,9.473903143468003e-14
+no_maintenance,00101,True,Optimization terminated successfully,0.0,0.0
+no_maintenance,00110,True,Optimization terminated successfully,3.1651449138404464e-13,3.1651449138404464e-13
+no_maintenance,00110,True,Optimization terminated successfully,3.9443196183955564e-13,3.9443196183955564e-13
+no_maintenance,00110,True,Optimization terminated successfully,2.366322626061667e-12,2.366322626061667e-12
+no_maintenance,00111,False,Positive directional derivative for linesearch,0.00505576923492379,0.00505576923492379
+no_maintenance,00111,False,Positive directional derivative for linesearch,0.00505688278167904,0.00505688278167904
+no_maintenance,00111,False,Positive directional derivative for linesearch,0.0051032337116998505,0.0051032337116998505
+no_maintenance,01000,True,Optimization terminated successfully,5.24832702550074e-15,4.405364961712621e-14
+no_maintenance,01000,True,Optimization terminated successfully,0.0,1.3263464400855204e-14
+no_maintenance,01000,True,Optimization terminated successfully,6.459479416000911e-15,1.2817006715219273e-12
+no_maintenance,01001,True,Optimization terminated successfully,3.445055688533819e-14,3.445055688533819e-14
+no_maintenance,01001,True,Optimization terminated successfully,4.669665327817325e-14,4.669665327817325e-14
+no_maintenance,01001,True,Optimization terminated successfully,9.90453510453473e-14,9.90453510453473e-14
+no_maintenance,01010,True,Optimization terminated successfully,0.0,2.6814761870707585e-12
+no_maintenance,01010,True,Optimization terminated successfully,1.0483196802218145e-13,1.5257721012555217e-12
+no_maintenance,01010,True,Optimization terminated successfully,9.420074148334661e-16,9.705421651534224e-13
+no_maintenance,01011,True,Optimization terminated successfully,1.058816334272816e-12,1.058816334272816e-12
+no_maintenance,01011,True,Optimization terminated successfully,4.910550081039026e-13,4.910550081039026e-13
+no_maintenance,01011,True,Optimization terminated successfully,3.2431969567837907e-14,3.2431969567837907e-14
+no_maintenance,01100,True,Optimization terminated successfully,3.8084014056838706e-14,3.8084014056838706e-14
+no_maintenance,01100,True,Optimization terminated successfully,5.306193195269082e-13,2.9316993277461735e-12
+no_maintenance,01100,True,Optimization terminated successfully,1.4802973661668755e-15,1.4802973661668755e-15
+no_maintenance,01101,True,Optimization terminated successfully,5.019553796184041e-13,5.019553796184041e-13
+no_maintenance,01101,True,Optimization terminated successfully,2.7224014288687176e-13,2.7224014288687176e-13
+no_maintenance,01101,True,Optimization terminated successfully,4.6301010163943195e-12,4.6301010163943195e-12
+no_maintenance,01110,True,Optimization terminated successfully,2.287732293166989e-15,3.600083194517841e-14
+no_maintenance,01110,True,Optimization terminated successfully,1.4802973661668755e-15,1.4802973661668755e-15
+no_maintenance,01110,True,Optimization terminated successfully,5.382899513334092e-16,1.3500311979441903e-14
+no_maintenance,01111,True,Optimization terminated successfully,1.4209508990323671e-12,1.4209508990323671e-12
+no_maintenance,01111,True,Optimization terminated successfully,3.9026021471672174e-15,3.9026021471672174e-15
+no_maintenance,01111,True,Optimization terminated successfully,7.25345709421769e-14,7.25345709421769e-14
+no_maintenance,10000,True,Optimization terminated successfully,6.661338147750939e-16,6.661338147750939e-16
+no_maintenance,10000,True,Optimization terminated successfully,4.860556401808935e-13,4.860556401808935e-13
+no_maintenance,10000,True,Optimization terminated successfully,1.7541523789077473e-14,1.7541523789077473e-14
+no_maintenance,10001,False,Positive directional derivative for linesearch,0.1262842265666413,0.1262842265666413
+no_maintenance,10001,False,Inequality constraints incompatible,0.12628424642111713,0.12628424642111713
+no_maintenance,10001,False,Inequality constraints incompatible,0.12628424231435664,0.12628424231435664
+no_maintenance,10010,False,Inequality constraints incompatible,0.03672093524267739,0.03672093524267739
+no_maintenance,10010,False,Positive directional derivative for linesearch,0.03672093529485165,0.03672093529485165
+no_maintenance,10010,False,Inequality constraints incompatible,0.03672094155597416,0.03672094155597416
+no_maintenance,10011,False,Positive directional derivative for linesearch,0.18920069249918892,0.18920069249918892
+no_maintenance,10011,False,Positive directional derivative for linesearch,0.1892006938676969,0.1892006938676969
+no_maintenance,10011,False,Positive directional derivative for linesearch,0.18920069273854256,0.18920069273854256
+no_maintenance,10100,False,Inequality constraints incompatible,0.010155011388584656,0.010155011388584656
+no_maintenance,10100,False,Positive directional derivative for linesearch,0.010155011224373567,0.010225076391209897
+no_maintenance,10100,False,Inequality constraints incompatible,0.010155012061890067,0.011988112951958382
+no_maintenance,10101,False,Inequality constraints incompatible,0.1577315096968428,0.1577315096968428
+no_maintenance,10101,False,Inequality constraints incompatible,0.15773153082304114,0.15773153082304114
+no_maintenance,10101,False,Inequality constraints incompatible,0.15774122138476976,0.15774122138476976
+no_maintenance,10110,False,Inequality constraints incompatible,0.0675184911183846,0.0675184911183846
+no_maintenance,10110,False,Positive directional derivative for linesearch,0.06751859883984235,0.06751859883984235
+no_maintenance,10110,False,Positive directional derivative for linesearch,0.0675184915152871,0.0675184915152871
+no_maintenance,10111,False,Inequality constraints incompatible,0.2222267675459959,0.2222267675459959
+no_maintenance,10111,False,Inequality constraints incompatible,0.22220826315814768,0.22220826315814768
+no_maintenance,10111,False,Positive directional derivative for linesearch,0.2222082908788705,0.2222082908788705
+no_maintenance,11000,True,Optimization terminated successfully,2.0979850853219625e-13,2.0979850853219625e-13
+no_maintenance,11000,True,Optimization terminated successfully,0.0,5.334621633323877e-14
+no_maintenance,11000,True,Optimization terminated successfully,8.948397578478762e-14,8.948397578478762e-14
+no_maintenance,11001,False,Inequality constraints incompatible,0.05192155753724337,0.05192155753724337
+no_maintenance,11001,False,Inequality constraints incompatible,0.05192155514585228,0.05192155514585228
+no_maintenance,11001,False,Inequality constraints incompatible,0.17787580326493477,0.17787580326493477
+no_maintenance,11010,True,Optimization terminated successfully,5.329070518200751e-15,4.7906123512575505e-14
+no_maintenance,11010,True,Optimization terminated successfully,6.661338147750939e-16,2.195466031196247e-14
+no_maintenance,11010,True,Optimization terminated successfully,1.6380163219075643e-12,1.6380163219075643e-12
+no_maintenance,11011,False,Inequality constraints incompatible,0.11067643900551061,0.11067643900551061
+no_maintenance,11011,False,Inequality constraints incompatible,0.11067643702655783,0.11067643702655783
+no_maintenance,11011,False,Positive directional derivative for linesearch,0.1106764376854732,0.1106764376854732
+no_maintenance,11100,True,Optimization terminated successfully,3.49888468366716e-15,3.49888468366716e-15
+no_maintenance,11100,True,Optimization terminated successfully,2.2648549702353193e-14,2.2648549702353193e-14
+no_maintenance,11100,True,Optimization terminated successfully,0.0,1.477290512141849e-13
+no_maintenance,11101,False,Inequality constraints incompatible,0.08252091653293436,0.08252091653293436
+no_maintenance,11101,False,Positive directional derivative for linesearch,0.08252091835597897,0.08252091835597897
+no_maintenance,11101,False,Inequality constraints incompatible,0.0825209158369713,0.0825209158369713
+no_maintenance,11110,True,Optimization terminated successfully,0.0,0.0
+no_maintenance,11110,True,Optimization terminated successfully,0.0,7.494005416219807e-15
+no_maintenance,11110,True,Optimization terminated successfully,1.6808103730385704e-13,1.6808103730385704e-13
+no_maintenance,11111,False,Positive directional derivative for linesearch,0.14271255714750986,0.14271255714750986
+no_maintenance,11111,False,Positive directional derivative for linesearch,0.14271261972919014,0.14271261972919014
+no_maintenance,11111,False,Inequality constraints incompatible,0.1427125568004337,0.1427125568004337
+incremental,00000,True,Optimization terminated successfully,2.4980018054066022e-15,1.2398970739013748e-13
+incremental,00000,True,Optimization terminated successfully,0.0,6.821293159949467e-11
+incremental,00000,True,Optimization terminated successfully,5.385691892456634e-13,5.385691892456634e-13
+incremental,00001,True,Optimization terminated successfully,0.0,0.0
+incremental,00001,True,Optimization terminated successfully,9.28550166050131e-15,9.28550166050131e-15
+incremental,00001,True,Optimization terminated successfully,8.444423611542858e-15,8.444423611542858e-15
+incremental,00010,True,Optimization terminated successfully,1.2389651594231289e-11,3.319922114993443e-11
+incremental,00010,True,Optimization terminated successfully,5.618401367042459e-15,5.618401367042459e-15
+incremental,00010,True,Optimization terminated successfully,0.0,6.051455632890187e-14
+incremental,00011,True,Optimization terminated successfully,2.2439962346211498e-14,2.2439962346211498e-14
+incremental,00011,True,Optimization terminated successfully,2.392025971237837e-13,2.392025971237837e-13
+incremental,00011,True,Optimization terminated successfully,6.5940519038342635e-15,6.5940519038342635e-15
+incremental,00100,True,Optimization terminated successfully,9.20408530536213e-13,9.20408530536213e-13
+incremental,00100,True,Optimization terminated successfully,5.220907881104695e-13,5.220907881104695e-13
+incremental,00100,True,Optimization terminated successfully,0.0,3.3454719615410815e-14
+incremental,00101,True,Optimization terminated successfully,9.043271182401276e-14,9.043271182401276e-14
+incremental,00101,True,Optimization terminated successfully,1.7504516354923302e-13,1.7504516354923302e-13
+incremental,00101,True,Optimization terminated successfully,2.2197731868111464e-13,2.2197731868111464e-13
+incremental,00110,True,Optimization terminated successfully,1.6049787761444765e-12,1.6049787761444765e-12
+incremental,00110,True,Optimization terminated successfully,0.0,0.0
+incremental,00110,True,Optimization terminated successfully,1.9600482852927764e-13,1.9600482852927764e-13
+incremental,00111,False,Positive directional derivative for linesearch,0.005052321841448215,0.005052321841448215
+incremental,00111,False,Inequality constraints incompatible,0.038717126445066405,0.038717126445066405
+incremental,00111,False,Inequality constraints incompatible,0.005084607259022267,0.005084607259022267
+incremental,01000,True,Optimization terminated successfully,1.141532154997635e-13,2.642034739134639e-13
+incremental,01000,True,Optimization terminated successfully,1.0261362466805354e-13,1.0261362466805354e-13
+incremental,01000,True,Optimization terminated successfully,2.3866073259074225e-12,2.3866073259074225e-12
+incremental,01001,True,Optimization terminated successfully,6.392193172084235e-16,4.1922021409845913e-14
+incremental,01001,True,Optimization terminated successfully,5.6453158646091295e-14,4.407733437498488e-13
+incremental,01001,True,Optimization terminated successfully,4.723763467926333e-12,1.949658212652139e-11
+incremental,01010,True,Optimization terminated successfully,1.032843844120979e-14,1.032843844120979e-14
+incremental,01010,True,Optimization terminated successfully,0.0,3.2448118266377907e-14
+incremental,01010,True,Optimization terminated successfully,4.3344116175024866e-13,4.3344116175024866e-13
+incremental,01011,True,Optimization terminated successfully,0.0,0.0
+incremental,01011,True,Optimization terminated successfully,1.8503717077085944e-15,1.8503717077085944e-15
+incremental,01011,True,Optimization terminated successfully,8.007063026084463e-15,8.007063026084463e-15
+incremental,01100,True,Optimization terminated successfully,0.0,1.0824674490095276e-14
+incremental,01100,True,Optimization terminated successfully,1.343201644186648e-13,1.343201644186648e-13
+incremental,01100,True,Optimization terminated successfully,1.419739746641867e-14,1.419739746641867e-14
+incremental,01101,True,Optimization terminated successfully,5.36271364015909e-14,5.36271364015909e-14
+incremental,01101,True,Optimization terminated successfully,0.0,0.0
+incremental,01101,True,Optimization terminated successfully,5.9406688322813794e-12,5.9406688322813794e-12
+incremental,01110,True,Optimization terminated successfully,3.9890986137221045e-12,3.9890986137221045e-12
+incremental,01110,True,Optimization terminated successfully,8.203875289540741e-14,8.203875289540741e-14
+incremental,01110,True,Optimization terminated successfully,0.0,1.9068080447937064e-14
+incremental,01111,True,Optimization terminated successfully,1.082299233399736e-13,1.082299233399736e-13
+incremental,01111,True,Optimization terminated successfully,2.563942324444945e-13,2.563942324444945e-13
+incremental,01111,True,Optimization terminated successfully,5.853903220750825e-15,5.853903220750825e-15
+incremental,10000,True,Optimization terminated successfully,0.0,0.0
+incremental,10000,True,Optimization terminated successfully,4.574118861455645e-14,4.296701883177434e-13
+incremental,10000,True,Optimization terminated successfully,7.454037387333301e-13,1.2061324161649623e-12
+incremental,10001,False,Positive directional derivative for linesearch,0.12628423206694372,0.12628423206694372
+incremental,10001,False,Positive directional derivative for linesearch,0.12628585730655573,0.12628585730655573
+incremental,10001,False,Inequality constraints incompatible,0.19811488053512324,0.19811488053512324
+incremental,10010,False,Positive directional derivative for linesearch,0.036720979995911396,0.10162996057335846
+incremental,10010,False,Inequality constraints incompatible,0.03672158419768734,0.03672158419768734
+incremental,10010,False,Positive directional derivative for linesearch,0.03672094387496605,0.03672094387496605
+incremental,10011,False,Inequality constraints incompatible,0.2000000004223358,0.2000000004223358
+incremental,10011,False,Inequality constraints incompatible,0.18920151761701343,0.18920151761701343
+incremental,10011,False,Inequality constraints incompatible,0.18920070267672795,0.18920070267672795
+incremental,10100,False,Inequality constraints incompatible,0.04252911641840408,0.04252911641840408
+incremental,10100,False,Positive directional derivative for linesearch,0.042529116308345535,0.11492249439376122
+incremental,10100,False,Positive directional derivative for linesearch,0.042529116308345535,0.11492249439376122
+incremental,10101,False,Inequality constraints incompatible,0.15773395668641754,0.15773395668641754
+incremental,10101,False,Positive directional derivative for linesearch,0.15774108652723928,0.15774108652723928
+incremental,10101,False,Positive directional derivative for linesearch,0.1577315019234542,0.1577315019234542
+incremental,10110,False,Inequality constraints incompatible,0.0763917586432702,0.0763917586432702
+incremental,10110,False,Positive directional derivative for linesearch,0.0675184910560136,0.08624075447199324
+incremental,10110,False,Inequality constraints incompatible,0.0675184910560136,0.08624075447199324
+incremental,10111,False,Positive directional derivative for linesearch,0.2222127949418351,0.2222127949418351
+incremental,10111,False,Inequality constraints incompatible,0.2222083251057847,0.2222083251057847
+incremental,10111,False,Positive directional derivative for linesearch,0.22220826509060165,0.22220826509060165
+incremental,11000,False,Positive directional derivative for linesearch,0.011135795518442348,0.011135795518442348
+incremental,11000,True,Optimization terminated successfully,0.0,0.0
+incremental,11000,False,Positive directional derivative for linesearch,0.007272727272727274,0.007272727272727274
+incremental,11001,False,Inequality constraints incompatible,0.05192156089771549,0.05192156089771549
+incremental,11001,False,Inequality constraints incompatible,0.05192155514585228,0.05192155514585228
+incremental,11001,False,Inequality constraints incompatible,0.051921555156460464,0.05949197896184083
+incremental,11010,True,Optimization terminated successfully,3.6141544302769163e-13,4.58869053865385e-13
+incremental,11010,True,Optimization terminated successfully,6.810377178026378e-13,6.810377178026378e-13
+incremental,11010,True,Optimization terminated successfully,0.0,0.0
+incremental,11011,False,Inequality constraints incompatible,0.11067643716646214,0.11067643716646214
+incremental,11011,False,Inequality constraints incompatible,0.11458803940091267,0.11458803940091267
+incremental,11011,False,Inequality constraints incompatible,0.11069915866464908,0.11069915866464908
+incremental,11100,False,Inequality constraints incompatible,0.08363909192433495,0.08363909192433495
+incremental,11100,False,Positive directional derivative for linesearch,0.08363908977427885,0.15036644264764
+incremental,11100,False,Inequality constraints incompatible,0.08363908979618012,0.08363908979618012
+incremental,11101,False,Positive directional derivative for linesearch,0.08252091516596605,0.08252091516596605
+incremental,11101,False,Positive directional derivative for linesearch,0.08252091516278681,0.08252091516278681
+incremental,11101,False,Positive directional derivative for linesearch,0.08252091516479232,0.08252091516479232
+incremental,11110,False,Inequality constraints incompatible,0.06307783484671235,0.06307783484671235
+incremental,11110,False,Positive directional derivative for linesearch,0.06307625335206198,0.12355539003163442
+incremental,11110,False,Inequality constraints incompatible,0.06307625340518741,0.06307625340518741
+incremental,11111,False,Positive directional derivative for linesearch,0.14271366786418804,0.14271366786418804
+incremental,11111,False,Positive directional derivative for linesearch,0.14271255680398198,0.14271255680398198
+incremental,11111,False,Inequality constraints incompatible,0.14271255680180328,0.14271255680180328
+no_community_effect,00000,True,Optimization terminated successfully,5.517472001167445e-15,9.426533627750663e-14
+no_community_effect,00000,True,Optimization terminated successfully,1.6686988491335687e-14,9.606336135575318e-13
+no_community_effect,00000,True,Optimization terminated successfully,8.747211709167901e-15,3.187968407776983e-13
+no_community_effect,00001,True,Optimization terminated successfully,0.0,0.0
+no_community_effect,00001,True,Optimization terminated successfully,4.366338940240949e-12,4.366338940240949e-12
+no_community_effect,00001,True,Optimization terminated successfully,3.606542673933842e-14,3.606542673933842e-14
+no_community_effect,00010,True,Optimization terminated successfully,0.0,0.0
+no_community_effect,00010,True,Optimization terminated successfully,0.0,0.0
+no_community_effect,00010,True,Optimization terminated successfully,8.545352977417872e-14,8.545352977417872e-14
+no_community_effect,00011,True,Optimization terminated successfully,0.0,0.0
+no_community_effect,00011,True,Optimization terminated successfully,0.0,0.0
+no_community_effect,00011,True,Optimization terminated successfully,1.1102230246251565e-13,1.1102230246251565e-13
+no_community_effect,00100,True,Optimization terminated successfully,8.747211709167901e-15,8.747211709167901e-15
+no_community_effect,00100,True,Optimization terminated successfully,0.0,2.936909974475081e-14
+no_community_effect,00100,True,Optimization terminated successfully,1.049665405100148e-14,1.049665405100148e-14
+no_community_effect,00101,True,Optimization terminated successfully,4.979182049834036e-15,4.979182049834036e-15
+no_community_effect,00101,True,Optimization terminated successfully,2.2581263458436518e-13,2.2581263458436518e-13
+no_community_effect,00101,True,Optimization terminated successfully,6.728624391667616e-15,6.728624391667616e-15
+no_community_effect,00110,True,Optimization terminated successfully,0.0,0.0
+no_community_effect,00110,True,Optimization terminated successfully,5.844483146602491e-13,5.844483146602491e-13
+no_community_effect,00110,True,Optimization terminated successfully,0.0,0.0
+no_community_effect,00111,False,Inequality constraints incompatible,0.005061143179220906,0.005061143179220906
+no_community_effect,00111,False,Inequality constraints incompatible,0.0051058218370614306,0.0051058218370614306
+no_community_effect,00111,False,Positive directional derivative for linesearch,0.00507394294185648,0.00507394294185648
+no_community_effect,01000,True,Optimization terminated successfully,7.118884606384337e-14,5.247358103588339e-13
+no_community_effect,01000,True,Optimization terminated successfully,0.0,0.0
+no_community_effect,01000,True,Optimization terminated successfully,1.4143568471285328e-13,3.4534524432982176e-12
+no_community_effect,01001,True,Optimization terminated successfully,0.0,0.0
+no_community_effect,01001,True,Optimization terminated successfully,3.8218586544672056e-14,3.8218586544672056e-14
+no_community_effect,01001,True,Optimization terminated successfully,7.778289796767764e-14,7.778289796767764e-14
+no_community_effect,01010,True,Optimization terminated successfully,6.459479416000911e-14,6.459479416000911e-14
+no_community_effect,01010,True,Optimization terminated successfully,4.454349347283962e-14,7.58976973952771e-13
+no_community_effect,01010,True,Optimization terminated successfully,2.1666170541169722e-14,4.2774672692758033e-13
+no_community_effect,01011,True,Optimization terminated successfully,7.132341855167673e-15,7.132341855167673e-15
+no_community_effect,01011,True,Optimization terminated successfully,3.829529286273707e-12,3.829529286273707e-12
+no_community_effect,01011,True,Optimization terminated successfully,1.170780644150165e-14,1.170780644150165e-14
+no_community_effect,01100,True,Optimization terminated successfully,4.03717463500057e-14,4.03717463500057e-14
+no_community_effect,01100,True,Optimization terminated successfully,5.1944980303673997e-14,2.168339581961239e-13
+no_community_effect,01100,True,Optimization terminated successfully,2.503048273700353e-14,2.03333646216682e-13
+no_community_effect,01101,True,Optimization terminated successfully,2.0589590638502905e-14,2.0589590638502905e-14
+no_community_effect,01101,True,Optimization terminated successfully,1.8893977291802666e-12,1.8893977291802666e-12
+no_community_effect,01101,True,Optimization terminated successfully,8.074349270001139e-15,8.074349270001139e-15
+no_community_effect,01110,True,Optimization terminated successfully,5.517472001167445e-15,1.6135531140508412e-14
+no_community_effect,01110,True,Optimization terminated successfully,0.0,0.0
+no_community_effect,01110,True,Optimization terminated successfully,2.556877268833694e-15,8.585724722267201e-15
+no_community_effect,01111,True,Optimization terminated successfully,6.728624391667615e-16,6.728624391667615e-16
+no_community_effect,01111,True,Optimization terminated successfully,4.072163481837241e-13,4.072163481837241e-13
+no_community_effect,01111,True,Optimization terminated successfully,6.997096504895153e-12,6.997096504895153e-12
+no_community_effect,10000,True,Optimization terminated successfully,4.884981308350689e-15,1.584843367652411e-14
+no_community_effect,10000,True,Optimization terminated successfully,2.842170943040401e-14,2.842170943040401e-14
+no_community_effect,10000,True,Optimization terminated successfully,1.4721557306529576e-13,1.4721557306529576e-13
+no_community_effect,10001,False,Positive directional derivative for linesearch,0.1262842247435687,0.1262842247435687
+no_community_effect,10001,False,Inequality constraints incompatible,0.12628422737866707,0.12628422737866707
+no_community_effect,10001,False,Inequality constraints incompatible,0.1262842248108187,0.1262842248108187
+no_community_effect,10010,False,Inequality constraints incompatible,0.03672646851829908,0.03672646851829908
+no_community_effect,10010,False,Inequality constraints incompatible,0.03672093596080184,0.03672093596080184
+no_community_effect,10010,False,Inequality constraints incompatible,0.036723434295649504,0.036723434295649504
+no_community_effect,10011,False,Inequality constraints incompatible,0.18923181508502473,0.18923181508502473
+no_community_effect,10011,False,Inequality constraints incompatible,0.18920069264040462,0.18920069264040462
+no_community_effect,10011,False,Positive directional derivative for linesearch,0.328137897125663,0.328137897125663
+no_community_effect,10100,False,Inequality constraints incompatible,0.010155011629766841,0.010155011629766841
+no_community_effect,10100,False,Positive directional derivative for linesearch,0.010155011212477527,0.11492249372542294
+no_community_effect,10100,False,Inequality constraints incompatible,0.010155011318112805,0.010155011318112805
+no_community_effect,10101,False,Inequality constraints incompatible,0.15773150275261472,0.15773150275261472
+no_community_effect,10101,False,Positive directional derivative for linesearch,0.3722750314556196,0.3722750314556196
+no_community_effect,10101,False,Inequality constraints incompatible,0.15773150272824377,0.15773150272824377
+no_community_effect,10110,False,Inequality constraints incompatible,0.06751849113220021,0.06751849113220021
+no_community_effect,10110,False,Inequality constraints incompatible,0.08530818578373753,0.08530818578373753
+no_community_effect,10110,False,Inequality constraints incompatible,0.0675184911870228,0.0675184911870228
+no_community_effect,10111,False,Positive directional derivative for linesearch,0.4205299461496443,0.4205299461496443
+no_community_effect,10111,False,Inequality constraints incompatible,0.4205299463982335,0.4205299463982335
+no_community_effect,10111,False,Positive directional derivative for linesearch,0.22220830711642137,0.22220830711642137
+no_community_effect,11000,True,Optimization terminated successfully,8.748557434046234e-14,8.748557434046234e-14
+no_community_effect,11000,True,Optimization terminated successfully,0.0,1.8744727992014987e-13
+no_community_effect,11000,True,Optimization terminated successfully,8.343494245667844e-15,2.6423307986078726e-14
+no_community_effect,11001,False,Positive directional derivative for linesearch,0.05192155522646136,0.05192155522646136
+no_community_effect,11001,False,Inequality constraints incompatible,0.05192155538766752,0.05192155538766752
+no_community_effect,11001,False,Positive directional derivative for linesearch,0.05192155514585228,0.05192155514585228
+no_community_effect,11010,True,Optimization terminated successfully,1.5570036842318863e-13,7.89687759628066e-13
+no_community_effect,11010,True,Optimization terminated successfully,1.1232765559449918e-12,1.1232765559449918e-12
+no_community_effect,11010,True,Optimization terminated successfully,2.2293278334473143e-13,2.2293278334473143e-13
+no_community_effect,11011,False,Inequality constraints incompatible,0.11067643769743651,0.11067643769743651
+no_community_effect,11011,False,Inequality constraints incompatible,0.11067643718036457,0.11067643718036457
+no_community_effect,11011,False,Inequality constraints incompatible,0.11067643677119987,0.11067643677119987
+no_community_effect,11100,True,Optimization terminated successfully,9.554646636168014e-15,1.1546319456101628e-14
+no_community_effect,11100,True,Optimization terminated successfully,2.34156128830033e-14,2.7200464103316335e-14
+no_community_effect,11100,True,Optimization terminated successfully,1.219024881038422e-13,1.219024881038422e-13
+no_community_effect,11101,False,Inequality constraints incompatible,0.08252091955674223,0.08252091955674223
+no_community_effect,11101,False,Inequality constraints incompatible,0.08252091606703171,0.08252091606703171
+no_community_effect,11101,False,Positive directional derivative for linesearch,0.08252280990608107,0.08252280990608107
+no_community_effect,11110,True,Optimization terminated successfully,9.110557426317951e-14,1.0361156377314273e-13
+no_community_effect,11110,True,Optimization terminated successfully,0.0,0.0
+no_community_effect,11110,True,Optimization terminated successfully,4.979182049834036e-15,3.622102617839573e-14
+no_community_effect,11111,False,Positive directional derivative for linesearch,0.14271255700693142,0.14271255700693142
+no_community_effect,11111,False,Inequality constraints incompatible,0.14271256011656486,0.14271256011656486
+no_community_effect,11111,False,Inequality constraints incompatible,0.14271255847909892,0.14271255847909892
+no_investment_effects,00000,True,Optimization terminated successfully,0.0,0.0
+no_investment_effects,00000,True,Optimization terminated successfully,0.0,0.0
+no_investment_effects,00000,True,Optimization terminated successfully,0.0,0.0
+no_investment_effects,00001,True,Optimization terminated successfully,0.0,0.0
+no_investment_effects,00001,True,Optimization terminated successfully,0.0,0.0
+no_investment_effects,00001,True,Optimization terminated successfully,0.0,0.0
+no_investment_effects,00010,True,Optimization terminated successfully,0.0,6.240933695759547e-14
+no_investment_effects,00010,True,Optimization terminated successfully,0.0,0.0
+no_investment_effects,00010,True,Optimization terminated successfully,0.0,0.0
+no_investment_effects,00011,True,Optimization terminated successfully,0.0,0.0
+no_investment_effects,00011,True,Optimization terminated successfully,0.0,0.0
+no_investment_effects,00011,True,Optimization terminated successfully,0.0,0.0
+no_investment_effects,00100,True,Optimization terminated successfully,0.0,0.0
+no_investment_effects,00100,True,Optimization terminated successfully,0.0,0.0
+no_investment_effects,00100,True,Optimization terminated successfully,0.0,0.0
+no_investment_effects,00101,True,Optimization terminated successfully,0.0,0.0
+no_investment_effects,00101,True,Optimization terminated successfully,0.0,0.0
+no_investment_effects,00101,True,Optimization terminated successfully,0.0,0.0
+no_investment_effects,00110,True,Optimization terminated successfully,0.0,4.736949108543457e-16
+no_investment_effects,00110,True,Optimization terminated successfully,0.0,0.0
+no_investment_effects,00110,True,Optimization terminated successfully,0.0,0.0
+no_investment_effects,00111,False,Positive directional derivative for linesearch,0.06990627834528715,0.06990627834528715
+no_investment_effects,00111,False,Positive directional derivative for linesearch,0.0050523218142899395,0.0050523218142899395
+no_investment_effects,00111,False,Positive directional derivative for linesearch,0.00505232181425086,0.00505232181425086
+no_investment_effects,01000,True,Optimization terminated successfully,0.0,3.185599931991116e-14
+no_investment_effects,01000,True,Optimization terminated successfully,0.0,2.1434705862096355e-14
+no_investment_effects,01000,True,Optimization terminated successfully,0.0,3.718506983811191e-14
+no_investment_effects,01001,True,Optimization terminated successfully,0.0,1.4483229430576708e-13
+no_investment_effects,01001,True,Optimization terminated successfully,0.0,0.0
+no_investment_effects,01001,True,Optimization terminated successfully,0.0,0.0
+no_investment_effects,01010,True,Optimization terminated successfully,0.0,0.0
+no_investment_effects,01010,True,Optimization terminated successfully,0.0,0.0
+no_investment_effects,01010,True,Optimization terminated successfully,0.0,0.0
+no_investment_effects,01011,True,Optimization terminated successfully,0.0,0.0
+no_investment_effects,01011,True,Optimization terminated successfully,0.0,0.0
+no_investment_effects,01011,True,Optimization terminated successfully,0.0,0.0
+no_investment_effects,01100,True,Optimization terminated successfully,0.0,0.0
+no_investment_effects,01100,True,Optimization terminated successfully,0.0,7.721231061926422e-14
+no_investment_effects,01100,True,Optimization terminated successfully,0.0,0.0
+no_investment_effects,01101,True,Optimization terminated successfully,0.0,0.0
+no_investment_effects,01101,True,Optimization terminated successfully,0.0,0.0
+no_investment_effects,01101,True,Optimization terminated successfully,0.0,0.0
+no_investment_effects,01110,True,Optimization terminated successfully,0.0,0.0
+no_investment_effects,01110,True,Optimization terminated successfully,0.0,2.4632148173016807e-14
+no_investment_effects,01110,True,Optimization terminated successfully,0.0,0.0
+no_investment_effects,01111,True,Optimization terminated successfully,0.0,0.0
+no_investment_effects,01111,True,Optimization terminated successfully,0.0,0.0
+no_investment_effects,01111,True,Optimization terminated successfully,0.0,0.0
+no_investment_effects,10000,True,Optimization terminated successfully,5.906386491005833e-14,5.906386491005833e-14
+no_investment_effects,10000,True,Optimization terminated successfully,1.376676550535194e-13,1.376676550535194e-13
+no_investment_effects,10000,True,Optimization terminated successfully,2.8377300509419e-13,2.8377300509419e-13
+no_investment_effects,10001,False,Positive directional derivative for linesearch,0.1262842247435687,0.1262842247435687
+no_investment_effects,10001,False,Positive directional derivative for linesearch,0.1262842247435687,0.1262842247435687
+no_investment_effects,10001,False,Positive directional derivative for linesearch,0.1262842247435687,0.1262842247435687
+no_investment_effects,10010,False,Positive directional derivative for linesearch,0.0367209350254496,0.0367209350254496
+no_investment_effects,10010,False,Positive directional derivative for linesearch,0.03672093502544804,0.10163953248727585
+no_investment_effects,10010,False,Positive directional derivative for linesearch,0.03672093502544804,0.10163953248727585
+no_investment_effects,10011,False,Positive directional derivative for linesearch,0.18920069249918892,0.18920069249918892
+no_investment_effects,10011,False,Positive directional derivative for linesearch,0.18920069249918892,0.18920069249918892
+no_investment_effects,10011,False,Positive directional derivative for linesearch,0.18920069249918892,0.18920069249918892
+no_investment_effects,10100,False,Positive directional derivative for linesearch,0.010155011212477527,0.010155011212477527
+no_investment_effects,10100,False,Inequality constraints incompatible,0.010155391023922267,0.010155391023922267
+no_investment_effects,10100,False,Positive directional derivative for linesearch,0.010155011212477527,0.010155011212477527
+no_investment_effects,10101,False,Positive directional derivative for linesearch,0.1577315019234542,0.1577315019234542
+no_investment_effects,10101,False,Singular matrix E in LSQ subproblem,0.4063779772448247,0.4063779772448247
+no_investment_effects,10101,False,Positive directional derivative for linesearch,0.15773150192345864,0.15773150192345864
+no_investment_effects,10110,False,Positive directional derivative for linesearch,0.06751849108736141,0.06751849108736141
+no_investment_effects,10110,False,Positive directional derivative for linesearch,0.06751849105601426,0.06751849105601426
+no_investment_effects,10110,False,Positive directional derivative for linesearch,0.0675184910560136,0.0675184910560136
+no_investment_effects,10111,False,Positive directional derivative for linesearch,0.22220828816466032,0.22220828816466032
+no_investment_effects,10111,False,Positive directional derivative for linesearch,0.2222082628751747,0.2222082628751747
+no_investment_effects,10111,False,Positive directional derivative for linesearch,0.2222082628751687,0.2222082628751687
+no_investment_effects,11000,True,Optimization terminated successfully,0.0,6.5469574206389325e-12
+no_investment_effects,11000,True,Optimization terminated successfully,0.0,1.5172030298771233e-12
+no_investment_effects,11000,True,Optimization terminated successfully,5.484501741648273e-14,5.484501741648273e-14
+no_investment_effects,11001,False,Positive directional derivative for linesearch,0.05192155514585228,0.05192155514585228
+no_investment_effects,11001,False,Positive directional derivative for linesearch,0.05192155514585273,0.05192155514585273
+no_investment_effects,11001,False,Positive directional derivative for linesearch,0.05192155514585228,0.09403922242707381
+no_investment_effects,11010,True,Optimization terminated successfully,8.526512829121202e-14,8.526512829121202e-14
+no_investment_effects,11010,True,Optimization terminated successfully,0.0,0.0
+no_investment_effects,11010,True,Optimization terminated successfully,0.0,5.76988457012817e-12
+no_investment_effects,11011,False,Positive directional derivative for linesearch,0.11067643656685866,0.11067643656685866
+no_investment_effects,11011,False,Positive directional derivative for linesearch,0.11067643656685999,0.11067643656685999
+no_investment_effects,11011,False,Positive directional derivative for linesearch,0.11067643656686554,0.11067643656686554
+no_investment_effects,11100,True,Optimization terminated successfully,1.0103029524088925e-13,1.0103029524088925e-13
+no_investment_effects,11100,True,Optimization terminated successfully,2.537969834293108e-13,2.537969834293108e-13
+no_investment_effects,11100,True,Optimization terminated successfully,1.7208456881689926e-13,2.1697921237517903e-13
+no_investment_effects,11101,False,Positive directional derivative for linesearch,0.08252091516278681,0.08252091516278681
+no_investment_effects,11101,False,Positive directional derivative for linesearch,0.08252091516278681,0.08252091516278681
+no_investment_effects,11101,False,Positive directional derivative for linesearch,0.08252091516278681,0.08252091516278681
+no_investment_effects,11110,True,Optimization terminated successfully,0.0,5.756506382681437e-14
+no_investment_effects,11110,True,Optimization terminated successfully,0.0,1.630237611571772e-12
+no_investment_effects,11110,True,Optimization terminated successfully,0.0,2.8665125828553073e-12
+no_investment_effects,11111,False,Positive directional derivative for linesearch,0.1427125568004528,0.1427125568004528
+no_investment_effects,11111,False,Positive directional derivative for linesearch,0.1427125568004337,0.1427125568004337
+no_investment_effects,11111,False,Positive directional derivative for linesearch,0.1427125568004357,0.1427125568004357
+strict_acceptance,00000,True,Optimization terminated successfully,2.1222081331319661e-13,2.658831488311364e-12
+strict_acceptance,00000,True,Optimization terminated successfully,0.0,1.0808430575450094e-13
+strict_acceptance,00000,True,Optimization terminated successfully,7.455315825967718e-14,1.1758288787078186e-11
+strict_acceptance,00001,True,Optimization terminated successfully,1.5341263613002164e-14,6.631084570329904e-13
+strict_acceptance,00001,True,Optimization terminated successfully,2.1127880589836313e-14,2.3696322681843185e-14
+strict_acceptance,00001,True,Optimization terminated successfully,7.401486830834377e-15,4.323624791524594e-14
+strict_acceptance,00010,True,Optimization terminated successfully,1.4399256198168697e-13,4.945155396285372e-12
+strict_acceptance,00010,True,Optimization terminated successfully,1.520669112516881e-14,5.2638449155040234e-14
+strict_acceptance,00010,True,Optimization terminated successfully,0.0,3.559895433991045e-13
+strict_acceptance,00011,True,Optimization terminated successfully,0.0,6.848688283156434e-14
+strict_acceptance,00011,True,Optimization terminated successfully,9.769962616701378e-15,3.957945082788683e-14
+strict_acceptance,00011,False,Inequality constraints incompatible,1.749696350501419,1.749696350501419
+strict_acceptance,00100,True,Optimization terminated successfully,8.747211709167901e-15,3.159278394448961e-14
+strict_acceptance,00100,True,Optimization terminated successfully,1.01602228314181e-13,2.067804261152162e-12
+strict_acceptance,00100,True,Optimization terminated successfully,2.6645352591003757e-14,8.306549892367343e-14
+strict_acceptance,00101,True,Optimization terminated successfully,7.670631806501082e-15,2.5805746428630982e-14
+strict_acceptance,00101,True,Optimization terminated successfully,3.49888468366716e-15,7.159550730051478e-14
+strict_acceptance,00101,True,Optimization terminated successfully,1.2702297126590125e-12,1.9402771056498125e-11
+strict_acceptance,00110,True,Optimization terminated successfully,1.9068921525986024e-13,1.3215990801729305e-12
+strict_acceptance,00110,True,Optimization terminated successfully,4.171747122833922e-15,4.171747122833922e-15
+strict_acceptance,00110,True,Optimization terminated successfully,9.689219124001367e-15,8.056472156070527e-13
+strict_acceptance,00111,False,Inequality constraints incompatible,0.0050523225165250985,0.0050523225165250985
+strict_acceptance,00111,False,Inequality constraints incompatible,0.005779874217485048,0.03833788751978398
+strict_acceptance,00111,False,Positive directional derivative for linesearch,0.005059131681711904,0.052687729355552326
+strict_acceptance,01000,True,Optimization terminated successfully,1.6956133467002393e-14,5.3033966107562946e-14
+strict_acceptance,01000,True,Optimization terminated successfully,6.580594655050928e-14,1.364047763630083e-13
+strict_acceptance,01000,True,Optimization terminated successfully,1.221514472063339e-12,2.3823668963511105e-11
+strict_acceptance,01001,True,Optimization terminated successfully,1.9687954970019444e-13,3.0769692349608135e-12
+strict_acceptance,01001,True,Optimization terminated successfully,1.170780644150165e-14,1.5536183450848284e-14
+strict_acceptance,01001,True,Optimization terminated successfully,4.575464586333978e-15,4.062722380737682e-14
+strict_acceptance,01010,True,Optimization terminated successfully,2.415576156608674e-13,3.741825100299528e-12
+strict_acceptance,01010,True,Optimization terminated successfully,0.0,0.0
+strict_acceptance,01010,True,Optimization terminated successfully,0.0,1.218580791758787e-13
+strict_acceptance,01011,True,Optimization terminated successfully,2.34156128830033e-14,9.522625743496604e-13
+strict_acceptance,01011,True,Optimization terminated successfully,1.735985093050245e-14,1.8155615899573263e-14
+strict_acceptance,01011,True,Optimization terminated successfully,4.575464586333978e-15,3.2057689836051395e-13
+strict_acceptance,01100,True,Optimization terminated successfully,1.0162914281174766e-12,3.161446104904542e-11
+strict_acceptance,01100,True,Optimization terminated successfully,6.486393913567582e-13,2.544918857760212e-12
+strict_acceptance,01100,True,Optimization terminated successfully,0.0,1.4939161018980325e-13
+strict_acceptance,01101,True,Optimization terminated successfully,1.3726393759001936e-14,2.4331231474050696e-13
+strict_acceptance,01101,True,Optimization terminated successfully,3.1097010488531054e-12,8.192928974137814e-11
+strict_acceptance,01101,True,Optimization terminated successfully,1.170780644150165e-13,1.5209500325852332e-12
+strict_acceptance,01110,True,Optimization terminated successfully,4.65620807903399e-14,1.5985823775821473e-13
+strict_acceptance,01110,True,Optimization terminated successfully,4.979182049834036e-15,4.979182049834036e-15
+strict_acceptance,01110,True,Optimization terminated successfully,5.086840040100717e-14,5.629906263404649e-13
+strict_acceptance,01111,True,Optimization terminated successfully,7.939776782167786e-15,4.929390229335695e-14
+strict_acceptance,01111,False,Positive directional derivative for linesearch,7.096007283452668e-12,1.8364560219752413e-10
+strict_acceptance,01111,True,Optimization terminated successfully,3.4181411909671486e-14,5.890739285252522e-13
+strict_acceptance,10000,True,Optimization terminated successfully,2.287732293166989e-15,5.520583989948591e-14
+strict_acceptance,10000,True,Optimization terminated successfully,3.068252722600433e-14,3.068252722600433e-14
+strict_acceptance,10000,True,Optimization terminated successfully,9.145546273154623e-13,9.145546273154623e-13
+strict_acceptance,10001,False,Positive directional derivative for linesearch,0.12628422504330183,0.12628422504330183
+strict_acceptance,10001,False,Positive directional derivative for linesearch,0.2828036064044262,0.2828036064044262
+strict_acceptance,10001,False,Inequality constraints incompatible,0.1262842249498055,0.1262842249498055
+strict_acceptance,10010,False,Positive directional derivative for linesearch,0.03672094518917968,0.052158882884191723
+strict_acceptance,10010,False,Inequality constraints incompatible,0.03672093753885619,0.03672093753885619
+strict_acceptance,10010,False,Inequality constraints incompatible,0.03672093538986454,0.03672093538986454
+strict_acceptance,10011,False,Inequality constraints incompatible,0.1892006942136566,0.1892006942136566
+strict_acceptance,10011,False,Positive directional derivative for linesearch,0.1892007401358211,0.1892007401358211
+strict_acceptance,10011,False,Inequality constraints incompatible,0.18920365520853877,0.18920365520853877
+strict_acceptance,10100,False,Positive directional derivative for linesearch,0.3707935857496561,0.3707935857496561
+strict_acceptance,10100,False,Inequality constraints incompatible,0.010155011275917003,0.06748140390128168
+strict_acceptance,10100,False,Positive directional derivative for linesearch,0.010155011212477527,0.03247356970638873
+strict_acceptance,10101,False,Inequality constraints incompatible,0.15773150372506017,0.15773150372506017
+strict_acceptance,10101,False,Positive directional derivative for linesearch,0.1577327649233844,0.1577327649233844
+strict_acceptance,10101,False,Inequality constraints incompatible,0.15773150193470098,0.15773150193470098
+strict_acceptance,10110,False,Inequality constraints incompatible,0.06751849132295051,0.06751849132295051
+strict_acceptance,10110,False,Inequality constraints incompatible,0.3873146755596734,0.3873146755596734
+strict_acceptance,10110,False,Positive directional derivative for linesearch,0.06751908102169657,0.06751908102169657
+strict_acceptance,10111,False,Positive directional derivative for linesearch,0.2222082628751687,0.2222082628751687
+strict_acceptance,10111,False,Inequality constraints incompatible,0.22220828905036671,0.22220828905036671
+strict_acceptance,10111,False,Positive directional derivative for linesearch,0.22220858332325788,0.22220858332325788
+strict_acceptance,11000,True,Optimization terminated successfully,6.99776936733432e-15,1.3593119685406663e-13
+strict_acceptance,11000,True,Optimization terminated successfully,1.3726393759001936e-14,1.3726393759001936e-14
+strict_acceptance,11000,True,Optimization terminated successfully,1.532107773982716e-14,1.532107773982716e-14
+strict_acceptance,11001,False,Inequality constraints incompatible,0.05192155520625219,0.05192155520625219
+strict_acceptance,11001,False,Inequality constraints incompatible,0.05192155540749188,0.06569012147787179
+strict_acceptance,11001,False,Positive directional derivative for linesearch,0.05192155568686152,0.05192155568686152
+strict_acceptance,11010,True,Optimization terminated successfully,1.0362081563168129e-14,6.442069100387471e-14
+strict_acceptance,11010,True,Optimization terminated successfully,2.438049762076844e-13,2.438049762076844e-13
+strict_acceptance,11010,True,Optimization terminated successfully,2.9202229859837454e-14,2.9202229859837454e-14
+strict_acceptance,11011,False,Inequality constraints incompatible,0.11067643684048578,0.11067643684048578
+strict_acceptance,11011,False,Positive directional derivative for linesearch,0.11067645472968879,0.11067645472968879
+strict_acceptance,11011,False,Inequality constraints incompatible,0.11067643827891094,0.11067643827891094
+strict_acceptance,11100,True,Optimization terminated successfully,3.708144902248023e-14,3.708144902248023e-14
+strict_acceptance,11100,True,Optimization terminated successfully,9.406616899551327e-14,3.459454944731988e-13
+strict_acceptance,11100,True,Optimization terminated successfully,3.364312195833808e-15,4.542546894192867e-14
+strict_acceptance,11101,False,Inequality constraints incompatible,0.0825209179938553,0.0825209179938553
+strict_acceptance,11101,False,Inequality constraints incompatible,0.08252091537080797,0.08252091537080797
+strict_acceptance,11101,False,Positive directional derivative for linesearch,0.08252091516278681,0.11167775940893004
+strict_acceptance,11110,True,Optimization terminated successfully,0.0,1.4365730827137213e-12
+strict_acceptance,11110,True,Optimization terminated successfully,5.612883895041292e-12,5.612883895041292e-12
+strict_acceptance,11110,True,Optimization terminated successfully,1.1102230246251565e-15,1.1102230246251565e-15
+strict_acceptance,11111,False,Positive directional derivative for linesearch,0.1427147966177562,0.1427147966177562
+strict_acceptance,11111,False,Inequality constraints incompatible,0.14271255770449698,0.14271255770449698
+strict_acceptance,11111,False,Inequality constraints incompatible,0.14271255873528665,0.14271255873528665

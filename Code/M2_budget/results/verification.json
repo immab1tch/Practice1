@@ -1,0 +1,9 @@
+{
+  "python": "3.13.16",
+  "M2": {
+    "scenario_count": 6,
+    "optimization_rerun": true,
+    "solver_runs": 576,
+    "max_score_change_from_previous": 7.897849041427207e-14
+  }
+}

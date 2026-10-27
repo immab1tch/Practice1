@@ -1,0 +1,6 @@
+﻿file,source,note
+M3_01_Sensitivity,M3_sensitivity.csv; M3_sensitivity_ranking.csv,"x marks an unmet hard constraint; changing the revenue baseline shifts revenue, budget and the soft penalty. The ranking is not causal importance or a Sobol index."
+M3_02_Stress_test,M3_stress_samples.csv; M3_constraint_violations.csv,"Independent uniform sampling ranges are reused from round 2; the result is scenario coverage, not a real-world policy success probability or confidence interval."
+M3_03_Preference_tradeoff,M3_preference_scenarios.csv,"Different preferences use different scoring weights, so J levels across scenarios are not ranked against each other. Lines only help identify the same indicator."
+M3_04_Search_stage_gap,M3_search_stage_gaps.csv,NSGA-II searches four-objective Pareto candidates with J scored afterwards; the two stages differ in computation and per-seed refinement is absent. This figure cannot prove convergence.
+M3_05_Income_floor_check,M3_income_floor_sweep.csv; inputs/income_findings.json,"Reuses the completed revenue-floor audit; the curve shows piecewise response and measure switching, and 1.472 million is not an independently estimated carrying-capacity ceiling."

@@ -1,0 +1,3 @@
+﻿file,source,note
+M2_01_Budget_breakdown,M2_budget_ledger.csv,"Incremental-only scenario assumes baseline funds keep funding existing services and maintenance, and are not part of the new allocation. Measure costs are annualized."
+M2_02_Feedback_decomposition,M2_feedback.csv,"Decomposition fixed at the recommended equilibrium; not an equilibrium comparison with another policy, and not a measured abatement or approval rate."

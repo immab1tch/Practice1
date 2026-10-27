@@ -1,0 +1,74 @@
+{
+  "inputs/parameters_used.json": {
+    "source": "/Users/zhangjiarui/Desktop/MCM:ICM/十月练手1/Model1_v2_第二轮/results/parameters_used.json",
+    "sha256": "158bfc16d8a9656e747d901c9d6e0cd067951df24c431afdd968690e0268b041"
+  },
+  "inputs/weights_used.json": {
+    "source": "/Users/zhangjiarui/Desktop/MCM:ICM/十月练手1/Model1_v2_第二轮/results/weights_used.json",
+    "sha256": "0898ffe6c2e7a0ffccd2c92447c96f40df84e25fb123c22fdbdaf0c51d06c8f1"
+  },
+  "inputs/recommended.csv": {
+    "source": "/Users/zhangjiarui/Desktop/MCM:ICM/十月练手1/Model1_v2_第二轮/results/recommended.csv",
+    "sha256": "e1d014a3ee11452a3dd670208a821757685ef6edbfe2b562c8afab354c3ff91a"
+  },
+  "inputs/scenarios.csv": {
+    "source": "/Users/zhangjiarui/Desktop/MCM:ICM/十月练手1/Model1_v2_第二轮/results/scenarios.csv",
+    "sha256": "6570bfef6acd1eec038fbd77404f35e2a68ccb9b7489f6ae7db28cb928143fd2"
+  },
+  "inputs/sensitivity.csv": {
+    "source": "/Users/zhangjiarui/Desktop/MCM:ICM/十月练手1/Model1_v2_第二轮/results/sensitivity.csv",
+    "sha256": "1f52a6b149dc057e563ad57b26f5f06f7faa8ae82476f8ed4f7b169734a4ed79"
+  },
+  "inputs/stress_samples.csv": {
+    "source": "/Users/zhangjiarui/Desktop/MCM:ICM/十月练手1/Model1_v2_第二轮/results/stress_samples.csv",
+    "sha256": "571ef427d9803d1502827929ff547673815a47680e69447db853a7857e0fe3f4"
+  },
+  "inputs/seed_comparison.csv": {
+    "source": "/Users/zhangjiarui/Desktop/MCM:ICM/十月练手1/Model1_v2_第二轮/results/seed_comparison.csv",
+    "sha256": "b8730fec05dec54b3a7734a73387a12c9b610e9c1a4566b5626c1fe2929f3ecc"
+  },
+  "inputs/marginal_transfers.csv": {
+    "source": "/Users/zhangjiarui/Desktop/MCM:ICM/十月练手1/Model1_v2_第二轮/results/marginal_transfers.csv",
+    "sha256": "aef747c0d20c0b1577592c0567ca5aad7555d7da944d9dbadeaaf5d41f47f440"
+  },
+  "inputs/policy_landscape.csv": {
+    "source": "/Users/zhangjiarui/Desktop/MCM:ICM/十月练手1/Model1_v2_第二轮/results/policy_landscape.csv",
+    "sha256": "d41b2c1d284e881371b1d4efafe73d3f12f2e00bce05f56a939b6dde6b4b2b03"
+  },
+  "model.py": {
+    "source": "/Users/zhangjiarui/Desktop/MCM:ICM/十月练手1/Model1_v2_第二轮/model.py",
+    "sha256": "348bcce14bd562380ef75802774bfa6f8b1cb5689416c526de3cc1d766385cec"
+  },
+  "requirements-lock.txt": {
+    "source": "/Users/zhangjiarui/Desktop/MCM:ICM/十月练手1/Model1_v2_第二轮/requirements-lock.txt",
+    "sha256": "6b5f9284e642002d6af837fa1a1e4deb8ec41b29a588c3637d96cc96ad31f22e"
+  },
+  "parameter_sources.csv": {
+    "source": "/Users/zhangjiarui/Desktop/MCM:ICM/十月练手1/Model1_v2_第二轮/parameter_sources.csv",
+    "sha256": "f036a34aa52b5746c4035f97bb4285edf180d712f0ffa182722adcd6957c7f8b"
+  },
+  "inputs/income_counterfactuals.csv": {
+    "source": "/Users/zhangjiarui/Desktop/MCM:ICM/十月练手1/Model1_收入下限专项核查/results/counterfactuals.csv",
+    "sha256": "b8d2c45ae640dfddbe110b2b17994ec321fca7a3b42486191fc30d975b5fffa6"
+  },
+  "inputs/income_floor_sweep.csv": {
+    "source": "/Users/zhangjiarui/Desktop/MCM:ICM/十月练手1/Model1_收入下限专项核查/results/floor_sweep.csv",
+    "sha256": "2327ce37e8847cee684a4e511eac51e12be81a62f032a49aa0d93c421166cea4"
+  },
+  "inputs/income_penalty_sweep.csv": {
+    "source": "/Users/zhangjiarui/Desktop/MCM:ICM/十月练手1/Model1_收入下限专项核查/results/penalty_sweep.csv",
+    "sha256": "8200d23f3592967080cc3f8fe2cd09289e88f178ae9ae49184e396f550f3158e"
+  },
+  "inputs/income_findings.json": {
+    "source": "/Users/zhangjiarui/Desktop/MCM:ICM/十月练手1/Model1_收入下限专项核查/results/findings.json",
+    "sha256": "1d1c0fa351c2cd376c76d20d264dd2e52db7f25538aab4bffec051efd78939c6"
+  },
+  "inputs/income_verification.json": {
+    "source": "/Users/zhangjiarui/Desktop/MCM:ICM/十月练手1/Model1_收入下限专项核查/results/verification.json",
+    "sha256": "5857998a97933b213cb388377c333ea89fb0a3d63e1f23893e4bedc8a656d4a6"
+  },
+  "inputs/preference_robustness/derived_weights_alternative.json": {
+    "source": "/Users/zhangjiarui/Desktop/MCM:ICM/十月练手1/Model1_v2_第二轮/results/derived_weights_alternative.json",
+    "sha256": "237753e5933324ff390f6615d89bbdfac4893072dc1608a8c051534b3d5f2a72"
+  }
+}

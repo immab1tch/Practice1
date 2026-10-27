@@ -1,0 +1,19 @@
+﻿case,channel,before_investment,after_investment,relative_effect,interpretation
+default,infrastructure,160.0,178.68000902628083,0.11675005641425508,Within the same equilibrium; not a separately solved no-investment policy
+default,ecology,0.7820000000000004,0.38216000169724906,0.5113043456556919,Within the same equilibrium; not a separately solved no-investment policy
+default,community,0.7488000000000006,0.4994869182802103,0.3329501625531385,Within the same equilibrium; not a separately solved no-investment policy
+no_maintenance,infrastructure,160.0,179.53340770619297,0.12208379816370607,Within the same equilibrium; not a separately solved no-investment policy
+no_maintenance,ecology,0.7820000000000069,0.37501571110260395,0.5204402671322242,Within the same equilibrium; not a separately solved no-investment policy
+no_maintenance,community,0.748800000000009,0.4949811232824953,0.3389675169838551,Within the same equilibrium; not a separately solved no-investment policy
+incremental,infrastructure,160.0,160.00000000000074,4.562737841800543e-15,Within the same equilibrium; not a separately solved no-investment policy
+incremental,ecology,0.9478084450564652,0.6881364544148127,0.2739709611114328,Within the same equilibrium; not a separately solved no-investment policy
+incremental,community,0.779775944370341,0.7154127222877753,0.08254066125948305,Within the same equilibrium; not a separately solved no-investment policy
+no_community_effect,infrastructure,160.0,185.50357458555564,0.15939734115972273,Within the same equilibrium; not a separately solved no-investment policy
+no_community_effect,ecology,0.7820000000000056,0.33070438156869975,0.5771043713955276,Within the same equilibrium; not a separately solved no-investment policy
+no_community_effect,community,0.7488000000000073,0.7488000000000073,0.0,Within the same equilibrium; not a separately solved no-investment policy
+no_investment_effects,infrastructure,160.0,160.0,0.0,Within the same equilibrium; not a separately solved no-investment policy
+no_investment_effects,ecology,0.7820000000000579,0.7820000000000579,0.0,Within the same equilibrium; not a separately solved no-investment policy
+no_investment_effects,community,0.7488000000000749,0.7488000000000749,0.0,Within the same equilibrium; not a separately solved no-investment policy
+strict_acceptance,infrastructure,160.0,169.1015556774333,0.05688472298395828,Within the same equilibrium; not a separately solved no-investment policy
+strict_acceptance,ecology,0.7820000000000209,0.4849778757252387,0.3798236883309134,Within the same equilibrium; not a separately solved no-investment policy
+strict_acceptance,community,0.7488000000000271,0.4201756310039423,0.43886801415073834,Within the same equilibrium; not a separately solved no-investment policy

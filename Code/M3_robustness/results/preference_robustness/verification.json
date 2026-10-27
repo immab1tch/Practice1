@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "weight_points": 18,
+  "policy_rows_checked": 20,
+  "regret_cells_checked": 360,
+  "dense_menu_points": 455,
+  "stress_rows": 600,
+  "worst_case_vertex_property_verified": true,
+  "minimax_toy_and_offset_checks": true,
+  "original_model_hash_unchanged": true,
+  "global_optimum_proven": false
+}

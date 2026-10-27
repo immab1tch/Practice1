@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "policy_rows_recomputed": 902,
+  "largest_demand_residual": 2.5622171051509213e-10,
+  "threshold_points": 27,
+  "penalty_points": 16,
+  "profile_points": 14,
+  "frozen_model_verified": true,
+  "global_optimality_proven": false
+}

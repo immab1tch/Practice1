@@ -1,0 +1,7 @@
+{
+  "status": "passed",
+  "M2_independent_formula_and_accounting_checks": 78,
+  "scenarios": 6,
+  "figure_pairs": 2,
+  "scope": "Checks formulas/accounting and delivered evidence, not empirical calibration or global optimality."
+}

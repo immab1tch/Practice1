@@ -1,0 +1,19 @@
+{
+  "specification_pdf": "/Users/zhangjiarui/Desktop/MCM:ICM/十月练手1/模型建立改版3.0.pdf",
+  "specification_pdf_sha256": "424adaef69003f8a32db13eb5312d345b8c29d691c18d814d6c7369dcfda2c38",
+  "relevant_pages": [
+    9,
+    10
+  ],
+  "section": "5.2 偏好权重空间与稳健决策（Minimax Regret）",
+  "structured_weights": 15,
+  "named_weights": [
+    "main",
+    "AHP",
+    "entropy"
+  ],
+  "total_weights": 18,
+  "preserved_model": "Original round-two model.py, including normalized revenue shortfall penalty and soft income target",
+  "method": "18 weight optimizations, cross-weight menu regret, continuous minimax refinement over original 32 measure combinations",
+  "interpretation": "Candidate-pool benchmarks approximate continuous optima; no global-optimum certificate."
+}

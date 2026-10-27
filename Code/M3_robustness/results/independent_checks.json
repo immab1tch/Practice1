@@ -1,0 +1,8 @@
+{
+  "status": "passed",
+  "M3_sensitivity_rows": 48,
+  "M3_stress_rows": 600,
+  "M3_stress_feasible": 245,
+  "figure_pairs": 5,
+  "scope": "Checks formulas and delivered evidence; scenario coverage is not a real-world success probability."
+}

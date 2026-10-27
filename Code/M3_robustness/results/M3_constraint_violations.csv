@@ -1,0 +1,15 @@
+﻿constraint,violations,sample_count,violation_fraction
+budget,309,600,0.515
+ship_capacity,75,600,0.125
+daily_cap,75,600,0.125
+ecology,0,600,0.0
+physical_berths,0,600,0.0
+capacity,0,600,0.0
+annual_daily_link,0,600,0.0
+allocation,0,600,0.0
+acceptance_lower,0,600,0.0
+acceptance_upper,0,600,0.0
+tax_lower,0,600,0.0
+tax_upper,0,600,0.0
+allocation_lower,0,600,0.0
+allocation_upper,0,600,0.0
