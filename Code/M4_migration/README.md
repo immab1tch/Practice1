@@ -97,23 +97,56 @@ The tighter urban/social thresholds raise the acceptance floor and lower the
 crowding ceilings. The absolute Venice revenue floor is the ratio times
 **Venice's own baseline**, which is not supplied here.
 
-## 5. Reproduce
+## 5. Real-data evidence-grounded fee scenarios
+
+The AHP/TOPSIS part above is a framework because policy effectiveness is not
+observed. The frozen `inputs/real_venice_evidence.json` (from `sources/`) adds
+**primary-source evidence** that grounds a conditional fee analysis:
+
+- **29 observed chargeable days (2024, 5 EUR).** Real administrative counts:
+  mean 16,726 vouchers/day, peak 24,686 (a Friday), trough 11,408; the
+  weekend mean is 0.85 of the weekday mean. These are fee-eligible visits
+  (repeat visits included, exemptions excluded), not total city visitors.
+- **WTP survival curve (stated preference).** The Rubbi (2024) survey gives the
+  share willing to pay at each fee (0.680 at 5 EUR → 0.065 at 50 EUR). This is
+  a hypothetical stated preference, **not** an observed demand elasticity.
+- **Conditional fee scenarios.** The absolute level is anchored to the real
+  485,062 vouchers; the relative response at other fees uses the WTP curve:
+  `vouchers(f) = 485,062 · q(f)/q(5)`. The 5-EUR row reproduces the observed
+  gross 2,425,310 EUR. Gross fee revenue peaks at **20 EUR (~3.92m EUR)**; this
+  is a conditional Laffer-style point, explicitly **not** an observed or
+  recommended optimum.
+- **Costs and net.** Only the 2024 fixed Vela remuneration (229,871 EUR) is
+  identified; the 5% commission applies only to the tracked channel and the
+  full collection cost is not. The net upper bound at the 5-EUR anchor is
+  2,195,439 EUR (an upper bound, not a settled net figure).
+- **Feature evidence.** Each 1–5 feature score is now tied to a documented
+  source fact (e.g., F3: 49,304 residents vs 49,693 beds). The scores remain
+  expert codings but are evidence-grounded rather than arbitrary.
+
+## 6. Reproduce
 
 ```bash
-python run_m4.py      # compute, write results/
-python render_m4.py   # English figures (PNG + SVG, 300 dpi) -> figures/
-python verify_m4.py   # 52 independent cross-checks
+python run_m4.py        # AHP/entropy/TOPSIS framework, write results/
+python render_m4.py     # framework English figures (PNG + SVG, 300 dpi)
+python verify_m4.py     # 52 independent cross-checks
+python run_m4_real.py   # real-data fee scenarios from frozen evidence
+python render_m4_real.py
+python verify_m4_real.py  # 44 independent cross-checks
 ```
 
-## 6. Boundary statements (honest scope)
+## 7. Boundary statements (honest scope)
 
 - Every feature score, policy–feature relevance coefficient and threshold
   sensitivity is a **declared semi-quantitative expert coding**, not a measured
-  or fitted value.
+  or fitted value; real evidence supports the feature scores but policy
+  effectiveness remains unobserved.
+- The WTP curve is stated preference (hypothetical), not an observed elasticity;
+  the 20-EUR revenue peak is a conditional scenario, not an optimum.
 - The entropy weights are based on only two destinations and are therefore
   intentionally coarse; they are combined with AHP rather than used alone.
-- Absolute Venice revenue/visitor numbers cannot be produced without Venice's
-  baseline; the module delivers ratios, relative priorities and recalibrated
-  thresholds only.
+- Full collection costs and the channel split for 2024 are not identified, so
+  net revenue is an upper bound; absolute Venice totals need Venice's baseline.
+- Some 2025 sources post-date the competition and are used only for validation.
 - `global_optimality_proven = false`: this is a multi-criteria framework
   demonstration, not a globally optimized solution.

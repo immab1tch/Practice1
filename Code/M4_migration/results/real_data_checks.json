@@ -1,0 +1,9 @@
+{
+  "status": "passed",
+  "M4_real_data_independent_checks": 44,
+  "observed_anchor_vouchers": 485062,
+  "observed_anchor_gross_eur": 2425310,
+  "fee_levels": 8,
+  "real_figure_pairs": 4,
+  "scope": "Cross-checks the evidence-grounded fee scenarios; WTP is stated preference, no causal elasticity or observed optimum claimed."
+}

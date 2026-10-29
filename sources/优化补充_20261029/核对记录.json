@@ -1,0 +1,22 @@
+{
+  "checks": {
+    "29_distinct_days": true,
+    "chronological_dates": true,
+    "positive_integer_counts": true,
+    "daily_sum_matches_official_total": true,
+    "gross_matches_five_euro_fee": true,
+    "2025_channels_reconcile": true,
+    "wtp_probabilities_nonincreasing": true,
+    "all_spending_ranges_ordered": true
+  },
+  "daily_chart_visual_review": "CDA24 PDF p11 date and value labels inspected",
+  "vela_visual_review": "PDF p12 inspected",
+  "wtp_visual_review": "not completed; web text read; screenshot/download blocked",
+  "capacity_visual_review": "web HTML tables read; PDF download blocked",
+  "interpretation": "Arithmetic/transcription checks do not establish causal identification or empirical model validity",
+  "sha256": {
+    "originals/CDA_2024_official.pdf": "60cd365beab6a54f0a7390f81d1adff5302505a064f5f9b2a8cc22baa1643571",
+    "originals/Vela_2024.pdf": "22e3271dda7078627d812536b1db84b7e0f1fc9b104673a1ae26822b1b21fa1d",
+    "originals/Bertocchi_flows.pdf": "0904339392e6d3341e2befd8d39e94679b72ce36f2fce91a5b17fc70010e9093"
+  }
+}

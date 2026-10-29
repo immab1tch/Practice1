@@ -10,5 +10,9 @@
   "inputs/recommended.csv": {
     "source": "Code/M1_equilibrium/results/recommended.csv (frozen Juneau recommended solution)",
     "sha256": "e1d014a3ee11452a3dd670208a821757685ef6edbfe2b562c8afab354c3ff91a"
+  },
+  "inputs/real_venice_evidence.json": {
+    "source": "sources/优化补充_20261029/优化参数与来源.json (frozen primary-source Venice evidence)",
+    "sha256": "9c628eeab41762eae2a5555aca9fe61737bfc1d2aefb8f9633f327c0eefd38e4"
   }
 }

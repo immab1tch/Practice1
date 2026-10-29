@@ -1,0 +1,73 @@
+[
+  {
+    "file": "Rubbi_WTP.pdf",
+    "url": "https://unitesi.unive.it/retrieve/b0fa03f6-59df-4605-a683-b9d0dc74bae9/Tesi_FabioRubbi_pdfA.pdf",
+    "error": "HTTP Error 403: Forbidden",
+    "saved": false
+  },
+  {
+    "file": "Vela_2024.pdf",
+    "url": "https://vela.avmspa.it/sites/default/files/bilancio%20vela%202024%20-%20no%20signed_low.pdf",
+    "status": 200,
+    "bytes": 4082440,
+    "saved": true
+  },
+  {
+    "file": "capacity_2020.html",
+    "url": "https://www.mdpi.com/2071-1050/12/2/512",
+    "error": "HTTP Error 403: Forbidden",
+    "saved": false
+  },
+  {
+    "file": "council_costs.html",
+    "url": "https://consiglio2020.comune.venezia.it/atti-ispettivi/1/atto/913?m=3",
+    "error": "HTTP Error 403: Forbidden",
+    "saved": false
+  },
+  {
+    "file": "fee2025.html",
+    "url": "https://live.comune.venezia.it/it/2025/08/contributo-di-accesso-i-numeri-del-2025",
+    "status": 200,
+    "bytes": 212,
+    "saved": false,
+    "note": "HTTP 200 but 212-byte validation response, not article"
+  },
+  {
+    "file": "pellicani.html",
+    "url": "https://fondazionegiannipellicani.it/citta-contemporanea/ri-pensare-venezia/",
+    "error": "HTTP Error 403: Forbidden",
+    "saved": false
+  },
+  {
+    "file": "capacity_2020.pdf",
+    "url": "https://www.mdpi.com/2071-1050/12/2/512/pdf?version=1578886507",
+    "error": "HTTP Error 403: Forbidden",
+    "saved": false
+  },
+  {
+    "file": "Bertocchi_flows.pdf",
+    "url": "https://www.ripensarevenezia.it/wp-content/uploads/2025/02/Bertocchi_Presentazione-slide-Ri-Pensare.pdf",
+    "status": 200,
+    "bytes": 1607884,
+    "saved": true
+  },
+  {
+    "file": "fee_channel_reply.pdf",
+    "url": "https://consiglio2020.comune.venezia.it/pdf/atti_ispettivi/risposte_1/843_risposta_interrogazione_902.pdf",
+    "error": "HTTP Error 403: Forbidden",
+    "saved": false
+  },
+  {
+    "file": "flows2024.html",
+    "url": "https://www.ripensarevenezia.it/turisti-e-city-users-la-fotografia-aggiornata-dei-flussi/",
+    "error": "HTTP Error 403: Forbidden",
+    "saved": false
+  },
+  {
+    "file": "CDA_2024_official.pdf",
+    "url": "https://dam.comune.venezia.it/api/resource/c1f4fd7d-88ce-4b39-9301-fcfd46a373be",
+    "status": 200,
+    "bytes": 3361146,
+    "saved": true
+  }
+]

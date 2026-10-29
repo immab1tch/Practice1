@@ -1,0 +1,466 @@
+{
+  "retrieved_on": "2026-10-29",
+  "scope": "Supplement for Venice optimization research; no existing model parameters replaced",
+  "sources": {
+    "CDA24": {
+      "title": "Comune di Venezia, Primi risultati, conferenza stampa 19 luglio 2024",
+      "url": "https://dam.comune.venezia.it/api/resource/c1f4fd7d-88ce-4b39-9301-fcfd46a373be",
+      "local_file": "originals/CDA_2024_official.pdf",
+      "locator": "PDF pp10-11; p11 graph visually checked",
+      "published": "2024-07-19",
+      "evidence": "official preliminary administrative counts"
+    },
+    "CDA25": {
+      "title": "Comune di Venezia, Contributo di accesso: i numeri del 2025",
+      "url": "https://live.comune.venezia.it/it/2025/08/contributo-di-accesso-i-numeri-del-2025",
+      "published": "2025-08-04",
+      "evidence": "official preliminary administrative counts",
+      "after_2025_competition": true
+    },
+    "FLOW": {
+      "title": "Ri-Pensare Venezia, Turisti e City Users: la fotografia aggiornata dei flussi",
+      "url": "https://www.ripensarevenezia.it/turisti-e-city-users-la-fotografia-aggiornata-dei-flussi/",
+      "published": "2025, before February workshops; exact date not shown",
+      "evidence": "research-team summary of mobile-positioning estimates, not raw daily observations",
+      "after_2025_competition": true
+    },
+    "TCC": {
+      "title": "Bertocchi et al. (2020), Venice and Overtourism",
+      "url": "https://www.mdpi.com/2071-1050/12/2/512?type=check_update&version=1",
+      "doi": "10.3390/su12020512",
+      "published": "2020-01-09",
+      "locator": "Tables 1-2, sections 3-4",
+      "evidence": "peer-reviewed model inputs, mixed historical sources including 2018 survey"
+    },
+    "WTP": {
+      "title": "Fabio Rubbi, Evaluating Tourists’ Willingness to Pay for an Entrance Fee to Cultural Heritage Cities: The Case Study of Venice",
+      "url": "https://unitesi.unive.it/retrieve/b0fa03f6-59df-4605-a683-b9d0dc74bae9/Tesi_FabioRubbi_pdfA.pdf",
+      "landing_url": "https://unitesi.unive.it/handle/20.500.14247/24139",
+      "published": "academic year 2023/2024; public availability before competition not verified",
+      "locator": "PDF pp23-27,34-36,40-43,51-52; equation 3.3 and table 3.2",
+      "evidence": "master thesis; stated-preference survey, not causal observed-demand elasticity",
+      "availability_before_competition_verified": false
+    },
+    "CONTRACT": {
+      "title": "City council question 903, quoted 2024 Vela service contract",
+      "url": "https://consiglio2020.comune.venezia.it/atti-ispettivi/1/atto/913?m=3",
+      "published": "2024-01-23",
+      "evidence": "contract excerpt quoted in council question; not final full-program accounts"
+    },
+    "REPLY": {
+      "title": "Finance assessor reply, protocol 73545",
+      "url": "https://consiglio2020.comune.venezia.it/pdf/atti_ispettivi/risposte_1/843_risposta_interrogazione_902.pdf",
+      "published": "2024-02-12",
+      "locator": "p1",
+      "evidence": "official clarification of channel-specific sales commission"
+    },
+    "VELA": {
+      "title": "VE.LA. S.p.A. Bilancio di esercizio 2024",
+      "url": "https://vela.avmspa.it/sites/default/files/bilancio%20vela%202024%20-%20no%20signed_low.pdf",
+      "local_file": "originals/Vela_2024.pdf",
+      "locator": "PDF p12, management report printed p6",
+      "published": "2025",
+      "after_2025_competition": true,
+      "evidence": "provider annual accounts; provider revenue is not complete municipal program cost"
+    }
+  },
+  "daily_2024": {
+    "unit": "paid visit vouchers per chargeable day, not all visitors or distinct people",
+    "spatial_scope": "Citta antica, fee-eligible visits in 08:30-16:00",
+    "weekday_definition": "Monday=0, Sunday=6",
+    "outside_list": "unobserved here; never impute zero visitors",
+    "rows": [
+      {
+        "date": "2024-04-25",
+        "weekday": 3,
+        "paid_vouchers": 16201,
+        "fee_eur": 5,
+        "source_id": "CDA24"
+      },
+      {
+        "date": "2024-04-26",
+        "weekday": 4,
+        "paid_vouchers": 24686,
+        "fee_eur": 5,
+        "source_id": "CDA24"
+      },
+      {
+        "date": "2024-04-27",
+        "weekday": 5,
+        "paid_vouchers": 23015,
+        "fee_eur": 5,
+        "source_id": "CDA24"
+      },
+      {
+        "date": "2024-04-28",
+        "weekday": 6,
+        "paid_vouchers": 17264,
+        "fee_eur": 5,
+        "source_id": "CDA24"
+      },
+      {
+        "date": "2024-04-29",
+        "weekday": 0,
+        "paid_vouchers": 18406,
+        "fee_eur": 5,
+        "source_id": "CDA24"
+      },
+      {
+        "date": "2024-04-30",
+        "weekday": 1,
+        "paid_vouchers": 17104,
+        "fee_eur": 5,
+        "source_id": "CDA24"
+      },
+      {
+        "date": "2024-05-01",
+        "weekday": 2,
+        "paid_vouchers": 19835,
+        "fee_eur": 5,
+        "source_id": "CDA24"
+      },
+      {
+        "date": "2024-05-02",
+        "weekday": 3,
+        "paid_vouchers": 16122,
+        "fee_eur": 5,
+        "source_id": "CDA24"
+      },
+      {
+        "date": "2024-05-03",
+        "weekday": 4,
+        "paid_vouchers": 19524,
+        "fee_eur": 5,
+        "source_id": "CDA24"
+      },
+      {
+        "date": "2024-05-04",
+        "weekday": 5,
+        "paid_vouchers": 21757,
+        "fee_eur": 5,
+        "source_id": "CDA24"
+      },
+      {
+        "date": "2024-05-05",
+        "weekday": 6,
+        "paid_vouchers": 13368,
+        "fee_eur": 5,
+        "source_id": "CDA24"
+      },
+      {
+        "date": "2024-05-11",
+        "weekday": 5,
+        "paid_vouchers": 19568,
+        "fee_eur": 5,
+        "source_id": "CDA24"
+      },
+      {
+        "date": "2024-05-12",
+        "weekday": 6,
+        "paid_vouchers": 14155,
+        "fee_eur": 5,
+        "source_id": "CDA24"
+      },
+      {
+        "date": "2024-05-18",
+        "weekday": 5,
+        "paid_vouchers": 20589,
+        "fee_eur": 5,
+        "source_id": "CDA24"
+      },
+      {
+        "date": "2024-05-19",
+        "weekday": 6,
+        "paid_vouchers": 19377,
+        "fee_eur": 5,
+        "source_id": "CDA24"
+      },
+      {
+        "date": "2024-05-25",
+        "weekday": 5,
+        "paid_vouchers": 17908,
+        "fee_eur": 5,
+        "source_id": "CDA24"
+      },
+      {
+        "date": "2024-05-26",
+        "weekday": 6,
+        "paid_vouchers": 16395,
+        "fee_eur": 5,
+        "source_id": "CDA24"
+      },
+      {
+        "date": "2024-06-08",
+        "weekday": 5,
+        "paid_vouchers": 14477,
+        "fee_eur": 5,
+        "source_id": "CDA24"
+      },
+      {
+        "date": "2024-06-09",
+        "weekday": 6,
+        "paid_vouchers": 13139,
+        "fee_eur": 5,
+        "source_id": "CDA24"
+      },
+      {
+        "date": "2024-06-15",
+        "weekday": 5,
+        "paid_vouchers": 16809,
+        "fee_eur": 5,
+        "source_id": "CDA24"
+      },
+      {
+        "date": "2024-06-16",
+        "weekday": 6,
+        "paid_vouchers": 11607,
+        "fee_eur": 5,
+        "source_id": "CDA24"
+      },
+      {
+        "date": "2024-06-22",
+        "weekday": 5,
+        "paid_vouchers": 15285,
+        "fee_eur": 5,
+        "source_id": "CDA24"
+      },
+      {
+        "date": "2024-06-23",
+        "weekday": 6,
+        "paid_vouchers": 14895,
+        "fee_eur": 5,
+        "source_id": "CDA24"
+      },
+      {
+        "date": "2024-06-29",
+        "weekday": 5,
+        "paid_vouchers": 18296,
+        "fee_eur": 5,
+        "source_id": "CDA24"
+      },
+      {
+        "date": "2024-06-30",
+        "weekday": 6,
+        "paid_vouchers": 13035,
+        "fee_eur": 5,
+        "source_id": "CDA24"
+      },
+      {
+        "date": "2024-07-06",
+        "weekday": 5,
+        "paid_vouchers": 13858,
+        "fee_eur": 5,
+        "source_id": "CDA24"
+      },
+      {
+        "date": "2024-07-07",
+        "weekday": 6,
+        "paid_vouchers": 12093,
+        "fee_eur": 5,
+        "source_id": "CDA24"
+      },
+      {
+        "date": "2024-07-13",
+        "weekday": 5,
+        "paid_vouchers": 14886,
+        "fee_eur": 5,
+        "source_id": "CDA24"
+      },
+      {
+        "date": "2024-07-14",
+        "weekday": 6,
+        "paid_vouchers": 11408,
+        "fee_eur": 5,
+        "source_id": "CDA24"
+      }
+    ]
+  },
+  "fee_totals": [
+    {
+      "year": 2024,
+      "days": 29,
+      "paid_vouchers": 485062,
+      "gross_eur": 2425310,
+      "source_id": "CDA24",
+      "status": "preliminary, July 2024 release"
+    },
+    {
+      "year": 2025,
+      "days": 54,
+      "paid_vouchers": 723497,
+      "gross_eur": 5421425,
+      "platform_vouchers": 704467,
+      "off_platform_vouchers": 19030,
+      "fee_options_eur": [
+        5,
+        10
+      ],
+      "source_id": "CDA25",
+      "status": "preliminary, August 2025 release; use for later validation"
+    }
+  ],
+  "day_visitors": {
+    "year": 2024,
+    "annual_visit_estimate": 6300000,
+    "source_id": "FLOW",
+    "scope": "historic centre; mobile-positioning classification of excursionists",
+    "annual_estimate_divided_by_366": 17213.114754098362,
+    "reported_approx_daily_estimate": 20000,
+    "use": "alternative demand-base scenario; classification must be aligned before calibration",
+    "warning": "Source daily approximation and annual sum do not reconcile exactly. No unique-person or chargeable-share interpretation; do not combine with lodging nights as distinct visitors."
+  },
+  "spending_prior": {
+    "source_id": "TCC",
+    "unit": "EUR per visitor per day",
+    "price_year": "not uniquely specified; historical inputs, not 2023/2024 price-adjusted",
+    "hotel": {
+      "lower": 190,
+      "central": 210,
+      "upper": 230
+    },
+    "extra_hotel": {
+      "lower": 140,
+      "central": 160,
+      "upper": 180
+    },
+    "day_tripper": {
+      "lower": 45,
+      "central": 60,
+      "upper": 80
+    },
+    "use": "literature ranges for scenarios, not a contemporary population estimate or confidence interval"
+  },
+  "waste_prior": {
+    "source_id": "TCC",
+    "unit": "kg per visitor per day",
+    "hotel": [
+      2.1,
+      2.3,
+      2.5
+    ],
+    "extra_hotel": [
+      1.8,
+      2.0,
+      2.2
+    ],
+    "day_tripper": [
+      0.9,
+      1.0,
+      1.1
+    ],
+    "use": "historical literature scenario only; validate before contemporary calibration"
+  },
+  "wtp_prior": {
+    "source_id": "WTP",
+    "survey_period": "September-December 2024",
+    "pilot_responses": 216,
+    "final_raw_responses": 176,
+    "analysis_n": 153,
+    "mean_eur": 13.08,
+    "median_eur": 7.0,
+    "open_ended_survival": [
+      {
+        "fee_eur": 5,
+        "share": 0.6797
+      },
+      {
+        "fee_eur": 10,
+        "share": 0.46409999999999996
+      },
+      {
+        "fee_eur": 15,
+        "share": 0.3268
+      },
+      {
+        "fee_eur": 20,
+        "share": 0.27449999999999997
+      },
+      {
+        "fee_eur": 25,
+        "share": 0.2157
+      },
+      {
+        "fee_eur": 30,
+        "share": 0.1438
+      },
+      {
+        "fee_eur": 40,
+        "share": 0.085
+      },
+      {
+        "fee_eur": 50,
+        "share": 0.0654
+      }
+    ],
+    "dc_logit_bid_coefficient": -0.067,
+    "dc_logit_bid_standard_error": 0.017,
+    "use": "alternative stated-preference demand scenario only",
+    "warning": "Logit coefficient is not an elasticity. Mixed day/overnight sample, English-only self-selection, hypothetical fee additional to lodging tax. Do not treat the study's revenue-maximising fee as our sustainability optimum."
+  },
+  "cost_evidence": [
+    {
+      "metric": "2024 quoted Vela fixed service remuneration excluding VAT",
+      "value_eur": 229871,
+      "source_id": "CONTRACT",
+      "use": "partial service-contract component, not total annual collection cost"
+    },
+    {
+      "metric": "commission on tracked Venezia Unica referral sales",
+      "value_fraction": 0.05,
+      "source_id": "REPLY",
+      "use": "multiply by eligible channel sales only; direct cda.ve.it access has no such Vela fee"
+    },
+    {
+      "metric": "Vela reported revenue increment associated with access-fee management",
+      "value_eur_approx": 1420000,
+      "source_id": "VELA",
+      "use": "provider-side scale check, not municipal total cost; do not add to fixed remuneration without de-duplication"
+    },
+    {
+      "metric": "2025 allocation to reducing waste charges",
+      "lower_bound_eur": 1500000,
+      "source_id": "CDA25",
+      "use": "observed reported allocation, not unrestricted surplus or complete net income"
+    }
+  ],
+  "unidentified": [
+    "causal demand elasticity for fee-eligible day visitors",
+    "full daily visitors with chargeable eligibility and exemptions aligned",
+    "current site/time-specific sustainable capacity",
+    "full municipal collection costs, separated fixed/variable/start-up/recurring",
+    "local income floor and social/environmental preference constraints",
+    "causal investment-response coefficients"
+  ],
+  "quarantined_claims": [
+    {
+      "source_id": "TCC",
+      "issue": "Restaurant capacity 240000 in Table 1 versus central 24000 in equation 12; St Mark capacity 10000 versus 100000. Table 2 current-case day trippers 3250 differs from section 4's 14611 (alternative cases).",
+      "action": "Do not auto-import whole capacity matrix or impose 52111 as current hard capacity."
+    },
+    {
+      "source_id": "CDA25",
+      "issue": "Reported daily mean 13046 corresponds approximately to platform-only 704467/54, not all 723497 vouchers. The retrospective 2024 mean 16676 differs from the 2024 official graph/total.",
+      "action": "Compute means from explicit matching numerator and day count; never infer causal elasticity from year averages."
+    },
+    {
+      "source_id": "FLOW",
+      "issue": "Annual 6.3m versus approximate 20k/day; wording of >100k peak overlaps day-tripper/total-tourist categories.",
+      "action": "Keep annual estimate as scenario; do not use ambiguous peak to calibrate day-tripper peak factor."
+    },
+    {
+      "source_id": "CDA24",
+      "issue": "Indexed 2025 official report mentions different retrospective 2024 receipt 2249505; full report link unavailable (404).",
+      "action": "Keep release-specific July 2024 gross 2425310; alternative amount unresolved, not silently substituted or called final net revenue."
+    }
+  ],
+  "derived_fee_means": [
+    {
+      "year": 2024,
+      "paid_vouchers_per_chargeable_day": 16726.275862068964
+    },
+    {
+      "year": 2025,
+      "paid_vouchers_per_chargeable_day": 13398.092592592593
+    }
+  ]
+}

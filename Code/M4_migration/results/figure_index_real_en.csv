@@ -1,0 +1,5 @@
+﻿file,title,note
+M4_05_Real_daily_vouchers,Observed 2024 chargeable days: paid vouchers (5 EUR),"Blue = weekday, gold = weekend. Administrative counts include repeat visits and exclude exemptions; not total city visitors."
+M4_06_WTP_survival,Stated-preference willingness-to-pay survival curve,"Rubbi (2024) survey, n=153. Hypothetical stated preference, not observed demand elasticity."
+M4_07_Fee_gross_revenue,Conditional gross fee revenue (5 EUR is the observed anchor),"Absolute level anchored to the real 485,062 vouchers; relative response from WTP. The 20 EUR peak is a conditional scenario, not an observed optimum."
+M4_08_Feature_evidence,Feature scores grounded in real evidence (source IDs),Scores remain 1-5 expert codings; each is tied to a documented primary-source fact rather than fitted.

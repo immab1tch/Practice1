@@ -1,0 +1,5 @@
+﻿metric,value_eur,value_fraction,scope,source_id
+2024 quoted Vela fixed service remuneration excluding VAT,229871.0,,"partial service-contract component, not total annual collection cost",CONTRACT
+commission on tracked Venezia Unica referral sales,,0.05,multiply by eligible channel sales only; direct cda.ve.it access has no such Vela fee,REPLY
+Vela reported revenue increment associated with access-fee management,1420000.0,,"provider-side scale check, not municipal total cost; do not add to fixed remuneration without de-duplication",VELA
+2025 allocation to reducing waste charges,,,"observed reported allocation, not unrestricted surplus or complete net income",CDA25
