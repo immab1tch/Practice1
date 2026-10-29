@@ -1,0 +1,3 @@
+﻿scenario,max_flow_10k,outgoing_demand_10k,feasible
+before,0.8681,0.957399586148609,False
+after,1.1,1.0999994054407662,True

@@ -2,7 +2,7 @@
 
 > 本文件是项目**唯一入口**。开始任何工作前，必须先读完本文件。
 > 题目：**2025 MCM Problem B — Managing Sustainable Tourism in Juneau（朱诺可持续旅游管理）**
-> 整理日期：2026-10-26（v7.0 权威版）；2026-10-27 新增 M2、M3 自包含模块与英文图（原混杂整合包 `Model2_Model3_整合` 已拆分删除）。本目录已剔除全部旧版本，只保留当前权威成果。
+> 整理日期：2026-10-26（v7.0 权威版）；2026-10-27 新增 M2、M3 自包含模块与英文图；2026-10-29 完成 M4（威尼斯迁移）、M5（4 节点空间均衡），并核对 M1 全部图已为英文、修正各 verify 引用。本目录已剔除全部旧版本，只保留当前权威成果。
 
 ---
 
@@ -38,10 +38,12 @@ Practice1_FINAL/
 │   └── CHANGELOG_模型迭代记录.md  ←    版本演进与"旧版为何作废"
 ├── Code/                          ← 4. 代码（按模型分目录，代码+数据+图一体，各自自包含可运行）
 │   ├── data_raw/juno_raw.xlsx     ←    真实原始数据底稿（4 个 sheet，非空）
-│   ├── M1_equilibrium/            ←    M1 闭环均衡（已完成，可运行）
-│   ├── M1_revenue_audit/          ←    M1 收入下限专项核查（已完成）
+│   ├── M1_equilibrium/            ←    M1 闭环均衡（已完成，可运行，英文图）
+│   ├── M1_revenue_audit/          ←    M1 收入下限专项核查（已完成，英文图）
 │   ├── M2_budget/                 ←    M2 资金账本/反馈/情景（已完成，英文图）
-│   └── M3_robustness/             ←    M3 敏感性/压力/偏好Minimax（已完成，英文图）
+│   ├── M3_robustness/             ←    M3 敏感性/压力/偏好Minimax（已完成，英文图）
+│   ├── M4_migration/              ←    M4 威尼斯迁移 AHP-熵权 TOPSIS（已完成，英文图）
+│   └── M5_spatial/                ←    M5 4节点引力/最大流空间均衡（已完成，英文图）
 ├── Paper/                         ← 5. 论文（现状说明与写作要点）
 └── archive/                       ← 【作废勿用】旧 v6.x 文档/代码/论文/历史 prompt
 ```
@@ -91,8 +93,8 @@ Practice1_FINAL/
 | M1 | 闭环均衡：政策→资金→三类投资→容量/压力/接受度→需求均衡→预算 | ✅ 已完成 |
 | M2 | **资金账本核算**（总预算制、维护预留、措施成本、未配置收入）+ 6 情景对照 + 直接投资反馈 | ✅ 已完成（`Code/M2_budget/`，英文图） |
 | M3 | 12 参数 ±10% + 600 压力情景 + 政策地形 + 收入核查 + **权重空间 Minimax Regret（18 点）** | ✅ 已完成（`Code/M3_robustness/`，英文图） |
-| M4 | **威尼斯迁移**：7 维特征 AHP-熵权 TOPSIS（半定量） | ❌ 无代码 |
-| M5 | **4 节点引力模型**（冷点投资 500 万、压力 0.95→0.80、转移矩阵），不是 5 节点 MILP | ❌ 无代码 |
+| M4 | **威尼斯迁移**：7 维特征 AHP-熵权 TOPSIS（半定量）+ 阈值重校准 | ✅ 已完成（`Code/M4_migration/`，英文图，CR=0.0134） |
+| M5 | **4 节点引力模型**（冷点投资 500 万、压力 0.95→0.80、转移矩阵、最大流），不是 5 节点 MILP | ✅ 已完成（`Code/M5_spatial/`，英文图） |
 
 ---
 
@@ -110,8 +112,8 @@ $py = "C:\Users\Eternal Sunshine\AppData\Local\Programs\Python\Python313\python.
 & $py -m unittest discover -s Code\M1_equilibrium -v
 # M1 结果校验（应全部 PASS）
 & $py Code\M1_equilibrium\verify_results.py
-# 从已有 CSV 重画图（不需重跑）
-& $py Code\M1_equilibrium\redraw.py
+# 从已有 CSV 重画英文图（不需重跑）
+& $py Code\M1_equilibrium\redraw_en.py
 # 收入下限专项核查
 & $py Code\M1_revenue_audit\audit.py
 & $py Code\M1_revenue_audit\verify.py
@@ -127,10 +129,19 @@ $py = "C:\Users\Eternal Sunshine\AppData\Local\Programs\Python\Python313\python.
 & $py Code\M3_robustness\run_preferences.py
 & $py Code\M3_robustness\render_preferences.py
 & $py Code\M3_robustness\verify_preferences.py
+# M4 威尼斯迁移（重跑 / 英文图 / 校验）
+& $py Code\M4_migration\run_m4.py
+& $py Code\M4_migration\render_m4.py
+& $py Code\M4_migration\verify_m4.py
+# M5 空间均衡（重跑 / 英文图 / 校验）
+& $py Code\M5_spatial\run_m5.py
+& $py Code\M5_spatial\render_m5.py
+& $py Code\M5_spatial\verify_m5.py
 ```
 
 已复现结果：M1 `validation.json` = PASS（479 可行政策、48 敏感性行、600 蒙卡、15 图）；收入核查 `verification.json` = PASS（902 政策回代、最大残差 2.56e-10，**未声明全局最优**）。
 M2 `independent_checks.json` = PASS（78 项公式/账本检查、6 情景、2 英文图）；M3 `independent_checks.json` = PASS（48 敏感性、600 压力、245 可行、5 英文图）；M3 偏好 `verification.json` = PASS（18 权重点、20 政策、360 后悔单元、455 菜单点、600 压力、顶点凸性已验证）。
+M4 `independent_checks.json` = PASS（52 项独立检查、AHP CR=0.0134、4 英文图）；M5 `independent_checks.json` = PASS（41 项独立检查、冰川压力 0.95→0.797、最大流由不可行变为可行、4 英文图）。
 
 ---
 
@@ -142,14 +153,16 @@ M2 `independent_checks.json` = PASS（78 项公式/账本检查、6 情景、2 �
 
 ---
 
-## 6. 下一步任务（按优先级）
+## 6. 任务完成情况（截至 2026-10-29）
 
-1. **M4**：威尼斯 7 维 AHP-熵权 TOPSIS（v7.0 PDF 第 4 章已给威尼斯 7 维打分表与判断矩阵）。
-2. **M5**：4 节点引力模型 x_i = A_i(1+τ_i)^(−ε)·x/Σ，冷点投资 500 万、压力 0.95→0.80，给冷热转移矩阵；税率离散化（防双决策变量相乘）按补充文档细则。
-3. **M1 英文论文图**：M2/M3 共 12 张图已是英文 300 dpi；但 **M1 的 15+4 张图仍为中文**（`Code/M1_equilibrium/results/figures`、`Code/M1_revenue_audit/results/figures`），需改绘图脚本中文字符串为英文后用 redraw 重画（CSV 已在，无需重跑 NSGA-II），统一 300 dpi、与 `Reference/award_papers_B2025/` 风格对齐。
-4. **论文**：`archive/旧论文_main_v61.pdf` 是旧版（仅写到 M1，且用 3.6 亿硬下限、xd 独立等旧设定），须按 v7.0 重写 M1 并补 M2–M5。M2/M3 的英文图表与核心结论已就绪（账本、40.83% 可行率、R0/peak_factor 最敏感、Minimax 0.118102→0.110780），详见 `Paper/论文现状与写作要点.md` 与各模块 README。
+1. **M1 闭环均衡 + 收入下限专项核查**：✅ 已完成，全部图已为英文（`figures_en.py`/`redraw_en.py`/`report_en.py`），verify 引用已修正。
+2. **M2 资金账本**：✅ 已完成（78 项独立检查、6 情景、英文图）。
+3. **M3 敏感性/压力/偏好 Minimax**：✅ 已完成（48 敏感性、600 压力、245 可行、Minimax 0.118102→0.110780、英文图）。
+4. **M4 威尼斯迁移**：✅ 已完成（7 维特征 AHP-熵权 TOPSIS，CR=0.0134；阈值重校准；52 项独立检查；英文图）。
+5. **M5 4 节点空间均衡**：✅ 已完成（引力分配 + 500 万冷点投资，冰川压力 0.95→0.797；最大流割集校验；冷热转移矩阵；税率离散化；41 项独立检查；英文图）。
+6. **论文**：按用户要求**本次不写**。若后续需要，`archive/旧论文_main_v61.pdf` 为旧版（仅写到 M1，且用旧设定），须按 v7.0 重写 M1 并补 M2–M5；各模块英文图表与核心结论已就绪。
 
-> 每个新模块完成后，必须像 M1 一样提供：可复现脚本 + 独立 verify 回代 + 关键 CSV + 英文图（PNG+SVG）+ 诚实的边界声明（不夸大、不把假设写成拟合）。
+> 每个新模块均已提供：可复现脚本 + 独立 verify 回代 + 关键 CSV + 英文图（PNG+SVG）+ 诚实的边界声明（不夸大、不把假设写成拟合）。
 
 ---
 

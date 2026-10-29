@@ -117,7 +117,7 @@ def main():
     save(cross,'independent_optimizer');save(COMBOS,'all_combo_solutions');save(LOGS,'solver_diagnostics')
     manifest=dict(model_sha256=hashlib.sha256((ROOT/'model_snapshot.py').read_bytes()).hexdigest(),original_model_sha256=(ROOT/'inputs/original_model.sha256').read_text().strip(),python=platform.python_version(),weights=W.tolist(),floor_grid=floors,penalty_grid=penalties,profile_grid=targets,global_optimality_proven=False,independent_seed=451)
     (OUT/'manifest.json').write_text(json.dumps(manifest,indent=2))
-    from report import render
+    from report_en import render
     render(ROOT)
     print('AUDIT COMPLETE',flush=True)
 

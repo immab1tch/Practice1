@@ -12,7 +12,7 @@ Model1_v1_实现/.venv/bin/python Model1_收入下限专项核查/verify.py
 换电脑可使用与前两轮相同的依赖（requirements.txt），Python 3.9+。单独重绘：
 
 ```bash
-python -c "from pathlib import Path; from report import render; render(Path.cwd())"
+python report_en.py
 ```
 
 实验：27个收入目标、16个罚系数、14个固定游客量剖面点；措施组合枚举加多起点局部优化；两组固定优胜措施分支的差分进化交叉核验。只检查这个问题，不属于新的全模型升级。

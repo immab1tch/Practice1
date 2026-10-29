@@ -1,0 +1,5 @@
+﻿file,title,note
+M4_01_Feature_profiles,Destination pressure profiles (normalized 0-1),"Semi-quantitative expert coding; Juneau is nature-dominated, Venice is urban/social-dominated."
+M4_02_Feature_weights,"AHP, entropy and combined feature weights",Entropy downweights features shared by both destinations; combined weights retain the AHP structural importance.
+M4_03_Threshold_recalibration,Threshold recalibration from Juneau to Venice,Urban/social features tighten crowding and acceptance thresholds; the absolute revenue floor needs Venice's own baseline.
+M4_04_Policy_priorities,TOPSIS policy-priority ranking,Juneau: shore power + capacity expansion; Venice: daily cap + rent subsidy + high tourism fee.

@@ -1,6 +1,5 @@
 """English paper figures (PNG + SVG, 300 dpi); every figure reads exported evidence.
-This is the paper-ready counterpart of figures.py: identical data/geometry, English
-labels only. Run via redraw_en.py (reads existing CSVs, no model rerun)."""
+Paper-ready English labels; run via redraw_en.py (reads existing CSVs, no model rerun)."""
 from pathlib import Path
 import json
 import numpy as np

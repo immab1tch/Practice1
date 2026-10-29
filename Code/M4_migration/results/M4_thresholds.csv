@@ -1,0 +1,6 @@
+﻿key,name,juneau_base,factor,raw_recalibrated,venice_value,lower,upper
+S_min,Resident acceptance floor,0.7,1.27,0.8889999999999999,0.8889999999999999,0.5,0.95
+H_max,Social pressure ceiling,1.0,0.78,0.78,0.78,0.5,1.2
+E_max,Ecological pressure ceiling,1.0,0.8300000000000001,0.8300000000000001,0.8300000000000001,0.6,1.2
+daily_ceiling,Daily peak ceiling (10k/day),2.0,0.9,1.8,1.8,1.0,3.0
+revenue_ratio,Revenue floor as share of baseline,0.92,0.9,0.8280000000000001,0.8280000000000001,0.6,1.0

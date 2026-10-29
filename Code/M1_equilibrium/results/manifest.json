@@ -12,17 +12,17 @@
   "global_optimum_proven": false,
   "hashes": {
     "model.py": "348bcce14bd562380ef75802774bfa6f8b1cb5689416c526de3cc1d766385cec",
-    "run_round2.py": "64c08bfedb196d8815798e63d86ff4b624c90eb0789ff3409c2055ebec5c127b",
-    "config.json": "158bfc16d8a9656e747d901c9d6e0cd067951df24c431afdd968690e0268b041",
-    "recommended.csv": "25449add4fd4d5f70b922f2fd5b7243d2acb079e6abb1c24d4b90ae8b938b72e"
+    "run_round2.py": "25c48d38c17256c407d915e58c771fe465e85e9287fe9eb53228ded48cfc8c77",
+    "config.json": "158bfc16d8a9656e747d901c9d6e0cd067951df24c43afdd968690e0268b041",
+    "recommended.csv": "25449add4fd4d5f70b9213800c23a63186bc4be6f4b54e"
   },
   "final_source_hashes": {
-    "redraw.py": "6a68731a2e739ceeceb928e9f8cf8d69f81eecb9a92213825eb1ad2d33e531ac",
-    "test_model.py": "ca31dfc23e4930849169e742afb23b7d19bf3e3646f50adee85b83e883ad88f0",
-    "verify_results.py": "56691b8534c9633d28fff5bb6569e6b68fb5b97d82be04e10413e7acbfaf7c7a",
     "model.py": "348bcce14bd562380ef75802774bfa6f8b1cb5689416c526de3cc1d766385cec",
-    "figures.py": "157b876cefa6e97d3860ae5fc3e03221899455fb479430bd20908ffe6aa3ee12",
-    "run_round2.py": "51e376ef69a27643b614f82a161dd4e8af0ff42bf62135e98e78b7dc58f008d0"
+    "run_round2.py": "25c48d38c17256c407d915e58c771fe465e85e9287fe9eb53228ded48cfc8c77",
+    "figures_en.py": "97bf2993111135f4e927570855b03a0a19dd3743a827a56a53158a7d73ca65ec",
+    "redraw_en.py": "d32c30aa9bdaec29cf6a0bd5e789b42de0aea32d9b13a654d254f1940e5257f6",
+    "test_model.py": "ca31dfc23e4930849169e742afb23b7d19bf3e3646f50adee85b83e883ad88f0",
+    "verify_results.py": "108f6dc421888fcd4b1c6bb43378bcf45467dfa53e154756f4638715e044a6df"
   },
-  "postprocessing": "Canonical zero spending for zero-effect investment channels; figures regenerated from audited CSV; consistent sensitivity axes."
+  "postprocessing": "Canonical zero spending for zero-effect investment channels; figures regenerated in English (300 dpi PNG+SVG) from audited CSV; consistent sensitivity axes."
 }

@@ -1,0 +1,15 @@
+﻿destination,feature_id,feature_name,raw,intensity
+Juneau,F1,Natural-environment pressure,5,1.0
+Juneau,F2,Density and crowding,2,0.4
+Juneau,F3,Housing displacement,2,0.4
+Juneau,F4,Visitor concentration,4,0.8
+Juneau,F5,Transport/infra bottleneck,3,0.6
+Juneau,F6,Ecosystem fragility,5,1.0
+Juneau,F7,Resident social conflict,3,0.6
+Venice,F1,Natural-environment pressure,2,0.4
+Venice,F2,Density and crowding,5,1.0
+Venice,F3,Housing displacement,5,1.0
+Venice,F4,Visitor concentration,5,1.0
+Venice,F5,Transport/infra bottleneck,5,1.0
+Venice,F6,Ecosystem fragility,4,0.8
+Venice,F7,Resident social conflict,5,1.0

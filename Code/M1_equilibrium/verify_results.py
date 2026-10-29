@@ -38,7 +38,7 @@ stress=pd.read_csv(out/'stress_samples.csv');assert len(stress)==600
 for _,row in stress.iloc[::24].iterrows():
  q=replace(p,**{k[6:]:row[k] for k in stress.columns if k.startswith('input_')})
  r,_,_=evaluate(vector(row),q);assert bool(row.feasible)==bool(r['feasible'])
-index=pd.read_csv(out/'figure_index.csv');assert len(index)==15
+index=pd.read_csv(out/'figure_index_en.csv');assert len(index)==15
 for name in index.file:
  for ext in ['png','svg']:assert (out/'figures'/f'{name}.{ext}').stat().st_size>1000
 assert abs(pd.read_csv(out/'budget_ledger.csv').million_usd.sum()-b.available*100)<1e-6

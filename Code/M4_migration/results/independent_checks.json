@@ -1,0 +1,9 @@
+{
+  "status": "passed",
+  "M4_independent_checks": 52,
+  "ahp_consistency_ratio": 0.013389806750347013,
+  "destinations": 2,
+  "policies": 7,
+  "figure_pairs": 4,
+  "scope": "Cross-checks the semi-quantitative MCDM math and delivered evidence; not empirical calibration to Venice microdata."
+}

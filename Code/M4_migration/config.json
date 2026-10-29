@@ -1,0 +1,55 @@
+{
+  "theta": 0.5,
+  "features": [
+    {"id": "F1", "name_en": "Natural-environment pressure", "name_zh": "自然环境承压"},
+    {"id": "F2", "name_en": "Density and crowding", "name_zh": "密度与拥挤"},
+    {"id": "F3", "name_en": "Housing displacement", "name_zh": "住房挤出"},
+    {"id": "F4", "name_en": "Visitor concentration", "name_zh": "游客时空集中"},
+    {"id": "F5", "name_en": "Transport/infra bottleneck", "name_zh": "交通基建瓶颈"},
+    {"id": "F6", "name_en": "Ecosystem fragility", "name_zh": "生态系统脆弱"},
+    {"id": "F7", "name_en": "Resident social conflict", "name_zh": "居民社会矛盾"}
+  ],
+  "raw_scores": {
+    "Juneau": [5, 2, 2, 4, 3, 5, 3],
+    "Venice": [2, 5, 5, 5, 5, 4, 5]
+  },
+  "score_scale": 5,
+  "score_meaning": "1 = negligible, 3 = moderate, 5 = severe; semi-quantitative expert coding of publicly-known destination characteristics, not measured data.",
+  "policies": [
+    {"id": "P1", "name_en": "Capacity / infrastructure expansion", "name_zh": "容量/基建扩充"},
+    {"id": "P2", "name_en": "Shore power", "name_zh": "岸电"},
+    {"id": "P3", "name_en": "Daily visitor cap / quota", "name_zh": "日上限/限流配额"},
+    {"id": "P4", "name_en": "High tourism fee / tax", "name_zh": "高额旅游费/税"},
+    {"id": "P5", "name_en": "Rent subsidy / housing support", "name_zh": "租金补贴/住房保障"},
+    {"id": "P6", "name_en": "Transit management / dispersion", "name_zh": "交通管理/分流"},
+    {"id": "P7", "name_en": "Alcohol / public-order control", "name_zh": "酒类/秩序管控"}
+  ],
+  "policy_feature_relevance": [
+    [0.6, 0.5, 0.2, 0.5, 0.8, 0.5, 0.4],
+    [0.8, 0.1, 0.0, 0.2, 0.2, 0.8, 0.2],
+    [0.3, 0.8, 0.5, 0.9, 0.3, 0.4, 0.8],
+    [0.3, 0.5, 0.5, 0.7, 0.2, 0.3, 0.6],
+    [0.0, 0.5, 0.9, 0.1, 0.2, 0.0, 0.5],
+    [0.4, 0.5, 0.2, 0.7, 0.8, 0.4, 0.5],
+    [0.1, 0.4, 0.1, 0.3, 0.2, 0.1, 0.5]
+  ],
+  "intensity_power": 2.0,
+  "intensity_power_meaning": "Policy-attention weights use intensity**power so that priorities are driven by the most severe pressure gaps; the feature profile itself is reported on the linear scale.",
+  "ahp_matrix": [
+    [1, 2, 0.5, 0.5, 1, 0.5, 1],
+    [0.5, 1, 0.5, 0.3333, 0.5, 0.3333, 0.5],
+    [2, 2, 1, 1, 1, 0.5, 1],
+    [2, 3, 1, 1, 2, 1, 1],
+    [1, 2, 1, 0.5, 1, 0.5, 1],
+    [2, 3, 2, 1, 2, 1, 2],
+    [1, 2, 1, 1, 1, 0.5, 1]
+  ],
+  "thresholds": [
+    {"key": "S_min", "name_en": "Resident acceptance floor", "base": 0.7, "gamma": [0, 0.15, 0.2, 0, 0, 0, 0.15], "bounds": [0.5, 0.95]},
+    {"key": "H_max", "name_en": "Social pressure ceiling", "base": 1.0, "gamma": [0, -0.2, 0, -0.1, 0, 0, -0.2], "bounds": [0.5, 1.2]},
+    {"key": "E_max", "name_en": "Ecological pressure ceiling", "base": 1.0, "gamma": [0.2, 0, 0, 0, 0, 0.25, 0], "bounds": [0.6, 1.2]},
+    {"key": "daily_ceiling", "name_en": "Daily peak ceiling (10k/day)", "base": 2.0, "gamma": [0, -0.1, 0, -0.2, 0, 0, 0], "bounds": [1.0, 3.0]},
+    {"key": "revenue_ratio", "name_en": "Revenue floor as share of baseline", "base": 0.92, "gamma": [0, 0, -0.1, 0, 0, 0, -0.1], "bounds": [0.6, 1.0]}
+  ],
+  "note": "All feature scores, relevance coefficients and threshold sensitivities are declared semi-quantitative assumptions for a framework demonstration. They are not calibrated to Venice microdata; absolute Venice revenue values require Venice's own baseline."
+}

@@ -1,0 +1,10 @@
+{
+  "inputs/parameters_used.json": {
+    "source": "Code/M1_equilibrium/results/parameters_used.json (frozen Juneau baseline)",
+    "sha256": "158bfc16d8a9656e747d901c9d6e0cd067951df24c43afdd968690e0268b041"
+  },
+  "inputs/recommended.csv": {
+    "source": "Code/M1_equilibrium/results/recommended.csv (frozen M1 recommended solution)",
+    "sha256": "e1d014a3ee11452a3dd670208a821757685ef6edbfe2b562c8afab354c3ff91a"
+  }
+}

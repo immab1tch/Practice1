@@ -39,8 +39,8 @@ assert (np.diff(pen.sort_values('penalty_R').income_gap)<=1e-6).all()
 profile=pd.read_csv(out/'visitor_profile.csv');assert len(profile)==14
 peak=profile.loc[profile.J.idxmax()]
 assert abs(peak.target_x-147.2)<1e-8
-assert abs(pd.read_csv(out/'score_decomposition.csv').delta_J.sum()-json.loads((out/'findings.json').read_text())['score_decomposition_total'])<1e-9
-for name in pd.read_csv(out/'figure_index.csv').name:
+assert abs(pd.read_csv(out/'score_decomposition_en.csv').delta_J.sum()-json.loads((out/'findings.json').read_text())['score_decomposition_total'])<1e-9
+for name in pd.read_csv(out/'figure_index_en.csv').name:
  for ext in ['png','svg']:assert (out/'figures'/f'{name}.{ext}').stat().st_size>1000
 result=dict(status='PASS',policy_rows_recomputed=count,largest_demand_residual=max_residual,threshold_points=27,penalty_points=16,profile_points=14,frozen_model_verified=True,global_optimality_proven=False)
 (out/'verification.json').write_text(json.dumps(result,indent=2));print(json.dumps(result,indent=2))

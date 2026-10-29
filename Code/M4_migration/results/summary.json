@@ -1,0 +1,44 @@
+{
+  "destinations": [
+    "Juneau",
+    "Venice"
+  ],
+  "ahp": {
+    "lambda_max": 7.106019768933448,
+    "CI": 0.017669961488908054,
+    "CR": 0.01338633446129398,
+    "acceptable": true
+  },
+  "feature_weights": {
+    "combined": {
+      "F1": 0.18672166276627603,
+      "F2": 0.1642563474995677,
+      "F3": 0.20603897099945248,
+      "F4": 0.10432152330753953,
+      "F5": 0.10395780526939676,
+      "F6": 0.12404941446400213,
+      "F7": 0.11065427569376549
+    }
+  },
+  "venice_thresholds": {
+    "S_min": 0.8889999999999999,
+    "H_max": 0.78,
+    "E_max": 0.8300000000000001,
+    "daily_ceiling": 1.8,
+    "revenue_ratio": 0.8280000000000001
+  },
+  "top_three_policies": {
+    "Juneau": [
+      "Shore power",
+      "Capacity / infrastructure expansion",
+      "Transit management / dispersion"
+    ],
+    "Venice": [
+      "Daily visitor cap / quota",
+      "Rent subsidy / housing support",
+      "High tourism fee / tax"
+    ]
+  },
+  "global_optimality_proven": false,
+  "note": "Semi-quantitative expert coding; not calibrated to Venice microdata."
+}

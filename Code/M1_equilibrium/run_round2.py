@@ -124,7 +124,7 @@ def main():
     manifest=dict(seeds=args.seeds,population=args.population,generations=args.generations,python=platform.python_version(),stress_seed=20261026,stress_n=600,global_optimum_proven=False,
         hashes={f.name:hashlib.sha256(f.read_bytes()).hexdigest() for f in [ROOT/'model.py',ROOT/'run_round2.py',args.config,ROOT/'baseline_round1/recommended.csv']})
     (out/'manifest.json').write_text(json.dumps(manifest,indent=2))
-    from figures import create_figures
+    from figures_en import create_figures
     create_figures(out,ROOT,p)
     print('Finished; figures and interpretation saved.',flush=True)
 

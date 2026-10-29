@@ -1,6 +1,5 @@
 """English paper figures for the revenue-floor audit (PNG + SVG, 300 dpi).
-Counterpart of report.py: identical data/geometry, English labels; reads existing CSVs.
-Run: python report_en.py"""
+English labels; reads existing CSVs. Run: python report_en.py"""
 from pathlib import Path
 import json
 import numpy as np

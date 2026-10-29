@@ -1,0 +1,29 @@
+{
+  "before": {
+    "glacier_utilization": 0.9504636468442028
+  },
+  "after": {
+    "glacier_utilization": 0.7968993133625178,
+    "visitors_10k": {
+      "N1": 59.2000475647387,
+      "N2": 39.526205942780884,
+      "N3": 32.21106437116454,
+      "N4": 16.26268212131587
+    }
+  },
+  "investment_budget_10k_usd": 500,
+  "max_flow_before": {
+    "flow": 0.8681,
+    "demand": 0.957399586148609,
+    "feasible": false
+  },
+  "max_flow_after": {
+    "flow": 1.1,
+    "demand": 1.0999994054407662,
+    "feasible": true
+  },
+  "cold_gain_10k": 19.024776484064166,
+  "glacier_target_below_080": true,
+  "global_optimality_proven": false,
+  "note": "Semi-quantitative gravity + max-flow; investment coefficients are assumptions."
+}

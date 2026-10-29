@@ -29,7 +29,6 @@ python3 -m venv .venv
 ```bash
 # 英文版（推荐，论文直接用）：输出到 results/figures，索引 figure_index_en.csv
 python redraw_en.py        # Windows 用 $py redraw_en.py
-# 中文版（仅备查）：python redraw.py
 ```
 
 ## 核心修正
