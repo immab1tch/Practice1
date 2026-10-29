@@ -1,9 +1,9 @@
 {
   "status": "passed",
-  "M5_independent_checks": 41,
+  "M5_independent_checks": 45,
   "glacier_utilization_before": 0.9504636468442028,
   "glacier_utilization_after": 0.7968993133625178,
   "max_flow_feasible_after": true,
-  "figure_pairs": 4,
+  "figure_pairs": 5,
   "scope": "Cross-checks the gravity allocation, investment response, max-flow cut and transfer matrix; not empirical calibration."
 }

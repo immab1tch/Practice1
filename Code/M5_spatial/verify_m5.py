@@ -88,11 +88,18 @@ checks += len(node_ids) * 2 + 1
 
 # Delivered figures.
 fig_index = pd.read_csv(OUT / "figure_index_en.csv")
-assert len(fig_index) == 4
+assert len(fig_index) == 5
 for name in fig_index.file:
     for ext in ["png", "svg"]:
         assert (ROOT / "figures" / f"{name}.{ext}").stat().st_size > 1000
 checks += len(fig_index) * 2
+
+# Coefficient sensitivity: calibrated row reproduces the main result; 4 scenarios present.
+sens = pd.read_csv(OUT / "M5_coefficient_sensitivity.csv")
+cal = sens.loc[sens.label.str.startswith("calibrated")].iloc[0]
+assert abs(cal.glacier_utilization - glacier_util) < 1e-6
+assert len(sens) == 4
+checks += 2
 
 result = {
     "status": "passed",

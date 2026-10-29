@@ -72,6 +72,30 @@ effective attractiveness toward that potential.
 The glacier utilization falls from **0.95 to 0.797, below the 0.80 target**,
 and total visitors are unchanged.
 
+> **Calibration provenance (read carefully).** The v7.0 PDF states the *target*
+> (500万 brings the glacier below 0.80) but supplies no response coefficients,
+> so the primary β set was **target-calibrated** — chosen so the framework
+> reproduces that stated outcome. The 0.797 figure is therefore a consistency
+> demonstration, **not an independent proof that 500万 suffices**. This is
+> recorded in `config.json` (`calibration_provenance`) and quantified below.
+
+## 3a. Coefficient sensitivity
+
+Recomputing the same investment with alternative (un-fitted) coefficient sets:
+
+| Coefficient set | Glacier utilization | Below 0.80? | Max flow feasible? |
+|---|---:|:---:|:---:|
+| Calibrated (target) | 0.797 | Yes | Yes |
+| Neutral round coefficients | 0.800 | No (boundary) | Yes |
+| Conservative | 0.843 | No | No |
+| Optimistic | 0.757 | Yes | Yes |
+
+The honest conclusion: 500万 moves the glacier **to the 0.80 threshold** under
+neutral assumptions; whether it lands just below or just above depends on the
+assumed response coefficients. The diversion mechanism and the road-bottleneck
+finding are robust; the exact margin is not. See `M5_coefficient_sensitivity.csv`
+and figure `M5_05`.
+
 ## 4. Max-flow cut-set verification
 
 The daily peak (1.84万) is routed from the port over road/boat edges to a
@@ -117,7 +141,7 @@ bilinear term (two decision variables multiplied). The model avoids this:
 ```bash
 python run_m5.py      # compute, write results/
 python render_m5.py   # English figures (PNG + SVG, 300 dpi) -> figures/
-python verify_m5.py   # 41 independent cross-checks
+python verify_m5.py   # 45 independent cross-checks
 ```
 
 ## 8. Boundary statements (honest scope)
@@ -125,6 +149,9 @@ python verify_m5.py   # 41 independent cross-checks
 - Node attractiveness, resistance, capacity and the investment-response
   coefficients are **declared semi-quantitative inputs/assumptions**, calibrated
   to reproduce the known visitor concentration, not fitted to microdata.
+- The primary β set is **target-calibrated** to the PDF's stated 0.80 outcome;
+  under neutral coefficients the glacier sits at the 0.80 boundary. The model
+  does not independently prove 500万 is sufficient.
 - The transfer matrix is a proportional reconstruction of net changes, not an
   observed individual-level movement table.
 - `global_optimality_proven = false`: this is a spatial simulation, not a

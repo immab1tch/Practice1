@@ -99,6 +99,22 @@ def main():
     save(fig, "M5_04_Transfer_matrix", "Hot-to-cold visitor transfer matrix (10k visitors)",
          "Rows are origin nodes, columns are destination nodes; about 190k visitors shift to the cold nodes.")
 
+    # 05 Coefficient sensitivity (calibration transparency).
+    sens = pd.read_csv(OUT / "M5_coefficient_sensitivity.csv")
+    fig, ax = plt.subplots(figsize=(10, 5.6))
+    labels = ["Calibrated\n(target)", "Neutral\nround", "Conservative", "Optimistic"]
+    colors = [GREEN if v else PINK for v in sens.glacier_below_080]
+    bars = ax.bar(np.arange(len(sens)), sens.glacier_utilization, 0.6, color=colors)
+    ax.bar_label(bars, fmt="%.3f", padding=3, fontsize=10)
+    ax.axhline(0.80, color="#333333", ls="--", lw=1.5, label="Target 0.80")
+    ax.set_xticks(np.arange(len(sens))); ax.set_xticklabels(labels, fontsize=9)
+    ax.set_ylabel("Glacier utilization after investment")
+    ax.set_ylim(0, 0.95)
+    ax.legend()
+    save(fig, "M5_05_Coefficient_sensitivity",
+         "Sensitivity to assumed investment-response coefficients",
+         "The primary beta set is target-calibrated; neutral coefficients place the glacier at ~0.80 (the boundary), so the exact margin is assumption-dependent.")
+
     pd.DataFrame(entries).to_csv(OUT / "figure_index_en.csv", index=False, encoding="utf-8-sig")
     print("M5 English figures written to figures/")
 

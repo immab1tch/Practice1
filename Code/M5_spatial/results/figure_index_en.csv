@@ -3,3 +3,4 @@ M5_01_Gravity_allocation,Gravity allocation before and after cold-point investme
 M5_02_Utilization,Node utilization: glacier pressure 0.95 -> 0.80,Investment lowers glacier utilization from 0.95 below the 0.80 target without capping total visitors.
 M5_03_Network_maxflow,Max-flow cut-set: road capacity vs peak demand,Before investment the road cut is the bottleneck; transit spending raises max flow to meet demand.
 M5_04_Transfer_matrix,Hot-to-cold visitor transfer matrix (10k visitors),"Rows are origin nodes, columns are destination nodes; about 190k visitors shift to the cold nodes."
+M5_05_Coefficient_sensitivity,Sensitivity to assumed investment-response coefficients,"The primary beta set is target-calibrated; neutral coefficients place the glacier at ~0.80 (the boundary), so the exact margin is assumption-dependent."

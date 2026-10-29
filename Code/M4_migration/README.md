@@ -6,6 +6,15 @@ destination** without that destination's microdata. It follows the
 new destination onto a shared pressure-feature space, re-weight the criteria,
 re-rank policy types, and recalibrate the thresholds.
 
+> **Provenance (read carefully).** The v7.0 PDF supplies the **method**
+> (AHP + entropy + TOPSIS + threshold recalibration) and the **qualitative
+> expected conclusions** (Juneau: capacity + shore power; Venice: daily cap,
+> high fee, rent subsidy), but it does **not** list the seven feature scores,
+> the AHP pairwise matrix, or the policy–feature relevance coefficients. Every
+> concrete number in `config.json` is therefore a **declared expert coding
+> constructed for this demonstration**, chosen to be consistent with the PDF's
+> stated conclusions; it is not measured Venice data.
+
 ## 1. Pressure-feature space
 
 Seven pressure features are coded on a 1–5 expert scale (1 = negligible,
@@ -64,6 +73,12 @@ This matches the expected migration logic: a nature-cruise destination leads
 with **shore power + capacity expansion** (relieve pressure without sacrificing
 volume), while a dense urban destination leads with a **daily cap, rent subsidy
 and high tourism fee** (control demand and protect residents).
+
+**Ranking robustness.** Perturbing every feature score by ±1 (2,000 Monte Carlo
+re-codings), the top-two set is retained for **Juneau in 95%** of cases and for
+**Venice in 62%**. The Juneau ranking is robust; the Venice ordering within the
+{daily cap, rent subsidy, high fee} cluster is sensitive to the exact coding,
+although that cluster as a whole remains the priority.
 
 ## 4. Threshold recalibration
 

@@ -1,0 +1,5 @@
+﻿label,beta_marketing,beta_resistance,beta_capacity,beta_edge,glacier_utilization,max_flow_10k,demand_10k,flow_feasible,glacier_below_080
+calibrated (reproduces PDF target),0.003,0.0013,0.06,0.0008,0.7968993133625178,1.1,1.0999994054407662,True,True
+neutral round coefficients,0.003,0.001,0.06,0.001,0.8002435749363223,1.0969,1.0968939245958467,True,False
+conservative,0.002,0.001,0.05,0.0005,0.842745336582928,1.035,1.0574267944817621,False,False
+optimistic,0.004,0.002,0.07,0.0012,0.7569348435783301,1.1371,1.1371104066747328,True,True

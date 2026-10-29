@@ -20,8 +20,15 @@
     "beta_marketing": 0.003,
     "beta_resistance": 0.0013,
     "beta_capacity": 0.06,
-    "beta_edge": 0.0008
+    "beta_edge": 0.0008,
+    "calibration_provenance": "The primary beta set is TARGET-CALIBRATED: it was chosen so that the 500万 investment reproduces the v7.0 PDF's stated outcome (glacier pressure 0.95 -> below 0.80). It is not fitted to microdata and is not an independent proof that 500万 suffices. Neutral round coefficients place the glacier at about 0.80 (the boundary); see coefficient_sensitivity below and M5_coefficient_sensitivity.csv."
   },
+  "coefficient_sensitivity": [
+    {"label": "calibrated (reproduces PDF target)", "beta_marketing": 0.003, "beta_resistance": 0.0013, "beta_capacity": 0.06, "beta_edge": 0.0008},
+    {"label": "neutral round coefficients", "beta_marketing": 0.003, "beta_resistance": 0.001, "beta_capacity": 0.06, "beta_edge": 0.001},
+    {"label": "conservative", "beta_marketing": 0.002, "beta_resistance": 0.001, "beta_capacity": 0.05, "beta_edge": 0.0005},
+    {"label": "optimistic", "beta_marketing": 0.004, "beta_resistance": 0.002, "beta_capacity": 0.07, "beta_edge": 0.0012}
+  ],
   "edges": [
     {"from": "N1", "to": "N2", "capacity_baseline": 0.50},
     {"from": "N1", "to": "N3", "capacity_baseline": 0.30},

@@ -27,6 +27,30 @@ def main():
     x_total = cfg["x_total"]
     daily_peak = cfg["daily_peak"]
 
+    def scenario_with_coefficients(coeffs):
+        """Recompute the post-investment outcome with a custom beta set."""
+        cfg2 = json.loads(json.dumps(cfg))
+        for key in ("beta_marketing", "beta_resistance", "beta_capacity", "beta_edge"):
+            cfg2["investment"][key] = coeffs[key]
+        A1, res1, cap1, edges1, _ = apply_investment(cfg2)
+        x1, sh1, _ = gravity_allocation(A1, res1, gamma, x_total)
+        daily1 = sh1 * daily_peak
+        flow1, out1, ok1 = network_max_flow(edges1, daily1, node_ids)
+        gi = node_ids.index("N2")
+        return float(x1[gi] / cap1[gi]), float(flow1), float(out1), bool(ok1)
+
+    # Coefficient sensitivity (makes the target-calibration transparent).
+    sens_rows = []
+    for sc in cfg.get("coefficient_sensitivity", []):
+        gu, flow, demand, ok = scenario_with_coefficients(sc)
+        sens_rows.append(dict(label=sc["label"], beta_marketing=sc["beta_marketing"],
+                              beta_resistance=sc["beta_resistance"], beta_capacity=sc["beta_capacity"],
+                              beta_edge=sc["beta_edge"], glacier_utilization=gu,
+                              max_flow_10k=flow, demand_10k=demand, flow_feasible=ok,
+                              glacier_below_080=bool(gu < 0.80)))
+    pd.DataFrame(sens_rows).to_csv(OUT / "M5_coefficient_sensitivity.csv",
+                                   index=False, encoding="utf-8-sig")
+
     # Baseline allocation.
     A0 = cfg["attractiveness_baseline"]
     res0 = cfg["resistance_baseline"]
