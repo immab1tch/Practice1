@@ -54,6 +54,48 @@ python render_m3.py
 python render_m4.py
 python render_m5.py
 python render_overview.py
+python render_premium.py
 ```
 
 The full list of figures and their data sources is in `figure_index.csv`.
+
+## Premium upgrade (second round)
+
+To close the remaining visual gap with the strongest papers, `render_premium.py`
+adds four figures that the references use but the first round did not include:
+
+- **3D Pareto front** (`M1P_03`): the 458 real non-dominated points plotted in
+  visitor-revenue-environment space and colored by satisfaction, with the
+  recommended point marked as a star.
+- **Gradient feasibility region** (`M1P_04`): a smooth monotonic revenue curve
+  (PCHIP interpolation of the real points) with a gradient fill and an annotated
+  optimum.
+- **Policy radar** (`M4P_04`): Juneau vs. Venice TOPSIS profiles on seven axes.
+- **Conceptual schematic** (`OVP_02`): natural vs. policy-shaped visitor
+  distribution against a carrying-capacity line. Axes are normalized and it is
+  explicitly labeled "schematic, not to scale"; it carries no measurements.
+
+PCHIP smoothing and gradient fills are visual only; the real sample points are
+kept on the chart, and no frozen value is changed. The verification now covers
+15 figures with 70 independent checks.
+
+## Honest limits of the remaining gap
+
+A few elements in the reference screenshots cannot be reproduced exactly from
+this project, for identifiable reasons rather than effort:
+
+1. **Modeling difference.** The reference 3D surfaces are dense continuous
+   Pareto surfaces. Our M1 front is a 458-point NSGA-II set, so an honest 3D
+   figure is a point cloud (with a star), not a filled parametric surface.
+   Fitting a continuous surface would present an approximation as a result.
+2. **Data-structure difference.** Many reference heatmaps are smooth grids over
+   continuous parameter sweeps. Our frozen heatmaps are small discrete matrices
+   (e.g. 4x4, seven features); producing extra grid cells would require running
+   the model over a new sweep, which is outside a restyling task and would
+   invent values not present in the frozen results.
+3. **Tooling / human edge.** Pixel-perfect editorial schematics, hand-drawn
+   conceptual diagrams and bespoke callouts are faster to fine-tune by hand in
+   vector tools (Adobe Illustrator, Figma, or PowerPoint) than through a
+   plotting library. Matplotlib reaches roughly the same information design but
+   the last mile of hand-tuned layout is where a human has the advantage.
+

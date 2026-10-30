@@ -10,3 +10,7 @@ M5P_01,Gravity allocation before vs after,M5 spatial,grouped gradient bars,resty
 M5P_02,Node utilization against the 0.80 target,M5 spatial,grouped bars with reference line,restyled,Code/M5_spatial/results/M5_allocation_before.csv; M5_allocation_after.csv
 M5P_03,Visitor transfer matrix after investment,M5 spatial,annotated heatmap,restyled,Code/M5_spatial/results/M5_transfer_matrix.csv
 OVP_01,Executive dashboard,Overview,multi-panel KPI dashboard,new,frozen M1/M4/M5 results
+M1P_03,3D Pareto front (revenue-environment-satisfaction),M1 equilibrium,3D colored scatter with star,new,Code/M1_equilibrium/results/pareto.csv
+M1P_04,Revenue response with gradient feasibility region,M1 equilibrium,smooth PCHIP curve with gradient fill,new,Code/M1_equilibrium/results/pareto.csv
+M4P_04,Policy-priority profiles radar,M4 migration,radar chart (TOPSIS closeness),new,Code/M4_migration/results/M4_policy_ranking.csv
+OVP_02,Visitor distribution before vs after demand management,Overview,conceptual schematic (normalized),new,conceptual illustration (no measurements)

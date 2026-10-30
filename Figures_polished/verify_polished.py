@@ -33,6 +33,10 @@ expected = [
     "M5_spatial/M5P_02_Utilization_target",
     "M5_spatial/M5P_03_Transfer_heatmap",
     "Overview/OVP_01_Executive_dashboard",
+    "M1_equilibrium/M1P_03_Pareto_3D",
+    "M1_equilibrium/M1P_04_Revenue_feasibility",
+    "M4_migration/M4P_04_Policy_radar",
+    "Overview/OVP_02_Distribution_schematic",
 ]
 for f in expected:
     for ext in ("png", "svg"):
@@ -99,6 +103,20 @@ led = pd.read_csv(PROJ / "Code/M2_budget/results/M2_budget_ledger.csv")
 sub = led[(led.case == "default") & (led.million_usd > 0)]
 expect(abs(sub.share_of_total_tax.sum() - 1.0) < 1e-9)
 expect(abs(sub.million_usd.sum() - 50.780009) < 1e-6)
+
+# ---- Premium 3D Pareto: real frozen points, recommended env pressure ----
+expect(len(pareto) == 458)
+expect(abs(rec.C_env - pareto.iloc[0].C_env) < 1e-9)
+expect(pareto.C_env.between(0.2, 1.0).all())
+
+# ---- Premium revenue curve: visitor range and recommended revenue ----
+expect(abs(pareto.x.min() / 100 - 1.208805) < 1e-6)
+expect(abs(pareto.x.max() / 100 - 1.60) < 1e-9)
+expect(abs(rec.R * 100 - 345.0) < 1e-9)
+
+# ---- Premium radar: seven policies per destination, all closeness in [0,1] ----
+expect(pr.policy_id.nunique() == 7)
+expect(pr.closeness.between(0, 1).all())
 
 result = {
     "status": "passed",
