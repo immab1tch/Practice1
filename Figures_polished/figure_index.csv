@@ -1,0 +1,12 @@
+figure_id,title,module,chart_type,status,source_data
+M1P_01,New investment allocation,M1 equilibrium,gradient vertical bars,restyled,Code/M1_equilibrium/results/recommended.csv
+M1P_02,Pareto front color-mapped by satisfaction,M1 equilibrium,colored scatter with colorbar,restyled,Code/M1_equilibrium/results/pareto.csv
+M2P_01,Fund allocation donut,M2 budget,donut chart,new,Code/M2_budget/results/M2_budget_ledger.csv
+M3P_01,Sensitivity ranking,M3 robustness,diverging gradient horizontal bars,restyled,Code/M3_robustness/results/M3_sensitivity_ranking.csv
+M4P_01,Combined feature weights with component sources,M4 migration,gradient bars with AHP/entropy markers,restyled,Code/M4_migration/results/M4_feature_weights.csv
+M4P_02,TOPSIS policy-priority ranking,M4 migration,two-panel gradient horizontal bars,restyled,Code/M4_migration/results/M4_policy_ranking.csv
+M4P_03,Willingness to pay and conditional gross revenue,M4 migration,dual-axis step line and bars,new,Code/M4_migration/results/M4_real_fee_scenarios.csv
+M5P_01,Gravity allocation before vs after,M5 spatial,grouped gradient bars,restyled,Code/M5_spatial/results/M5_allocation_before.csv; M5_allocation_after.csv
+M5P_02,Node utilization against the 0.80 target,M5 spatial,grouped bars with reference line,restyled,Code/M5_spatial/results/M5_allocation_before.csv; M5_allocation_after.csv
+M5P_03,Visitor transfer matrix after investment,M5 spatial,annotated heatmap,restyled,Code/M5_spatial/results/M5_transfer_matrix.csv
+OVP_01,Executive dashboard,Overview,multi-panel KPI dashboard,new,frozen M1/M4/M5 results
